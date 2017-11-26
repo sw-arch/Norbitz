@@ -1,0 +1,139 @@
+---
+swagger: "2.0"
+info:
+  version: "1.1.1"
+  title: "Norbitz Travel API"
+  contact:
+    name: "Slack Channel"
+    url: "https://drbyron.slack.com/messages/norbitz-travel/"
+host: "api.norbitz.jac.observer"
+tags:
+- name: "public"
+  description: "calls anonymous users can invoke"
+- name: "private"
+  description: "calls logged-in users can invoke"
+schemes:
+- "http"
+paths:
+  /register:
+    post:
+      tags:
+      - "public"
+      summary: "Register"
+      description: "Use this endpoint to register a new user"
+      operationId: "register"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "credentials"
+        description: "username and password"
+        required: false
+        schema:
+          $ref: "#/definitions/Credential"
+      responses:
+        201:
+          description: "User registered"
+          schema:
+            $ref: "#/definitions/User"
+        401:
+          description: "User already exists"
+      x-swagger-router-controller: "swagger_server.controllers.public_controller"
+  /login:
+    post:
+      tags:
+      - "public"
+      summary: "Login"
+      description: "Use this endpoint to login to Norbitz."
+      operationId: "login"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "credentials"
+        description: "User to login as"
+        required: false
+        schema:
+          $ref: "#/definitions/Credential"
+      responses:
+        200:
+          description: "Login Success"
+          schema:
+            $ref: "#/definitions/User"
+        401:
+          description: "Login Failure"
+      x-swagger-router-controller: "swagger_server.controllers.public_controller"
+  /user:
+    get:
+      tags:
+      - "private"
+      summary: "Load user data"
+      description: "Load your data with this endpoint."
+      operationId: "load"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "Username"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "User"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid username"
+      x-swagger-router-controller: "swagger_server.controllers.private_controller"
+    post:
+      tags:
+      - "private"
+      summary: "Save user data"
+      description: "Save your data with this endpoint."
+      operationId: "save"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "user"
+        description: "User"
+        required: false
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        201:
+          description: "Saved"
+        400:
+          description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.private_controller"
+definitions:
+  Credential:
+    required:
+    - "password"
+    - "username"
+    properties:
+      username:
+        type: "string"
+        example: "JacobAMason"
+      password:
+        type: "string"
+        example: "p4ssw0rd"
+    example:
+      password: "p4ssw0rd"
+      username: "JacobAMason"
+  User:
+    required:
+    - "userdata"
+    - "username"
+    properties:
+      username:
+        type: "string"
+        example: "JacobAMason"
+      userdata:
+        type: "string"
+        format: "json"
+        example: "{...}"
+    example:
+      userdata: "{...}"
+      username: "JacobAMason"

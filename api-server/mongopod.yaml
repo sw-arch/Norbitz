@@ -14,6 +14,8 @@ spec:
         - name: data
           mountPath: /data/db
           subPath: data
+      args:
+        - --auth
   volumes:
     - name: data
       persistentVolumeClaim:

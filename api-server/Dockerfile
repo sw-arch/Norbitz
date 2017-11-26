@@ -1,9 +1,16 @@
-FROM python:3
-LABEL maintainer = "JacobAMason <jacob@jacobmason.net>"
+FROM python:3-alpine
 
-WORKDIR /app
-COPY requirements.txt /app
-RUN pip install -r requirements.txt
-COPY app /app
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY requirements.txt /usr/src/app/
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY . /usr/src/app
+
 EXPOSE 80
-ENTRYPOINT ["python", "server.py"]
+
+ENTRYPOINT ["python3"]
+
+CMD ["-m", "swagger_server"]
