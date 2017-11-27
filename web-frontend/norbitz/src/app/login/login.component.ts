@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { PublicService as NorbitzPublicService } from '../../apis/norbitz';
 
 @Component({
@@ -16,14 +15,25 @@ export class LoginComponent implements OnInit {
 
   username = ""
   password = ""
+  loginError = false;
 
   login(){
-    console.log("Login: "+this.username+", "+this.password);
-
+    console.log("Sending login: "+this.username+", "+this.password);
+    this.loginError = false;
     this.norbitz.login({
       username: this.username,
       password: this.password,
-    }).subscribe(data => console.log(data.userdata))
+    }).subscribe(
+      (data) => {
+        //Success
+        console.log("Login success - welcome " + data.username)        
+      },
+      (err) => {
+        //Err
+        console.log(err)
+        console.log("Login Error!")
+        this.loginError = true;
+      })
   }
 
 }
