@@ -1,7 +1,15 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div style="text-align:center">
   <h1>
-    Dogs can grow beards all over
     <app-login></app-login>
   </h1>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerTo" placeholder="Angular forms (w/ deserialization)"
+           [formControl]="serializedDate">
+    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+
 </div>

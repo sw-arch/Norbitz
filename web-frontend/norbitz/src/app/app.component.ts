@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { LoginComponent } from './login/login.component';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +7,7 @@ import { LoginComponent } from './login/login.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
+
 }
