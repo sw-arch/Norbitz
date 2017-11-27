@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 
 
+import { ApiModule as NorbitzModule } from '../apis/norbitz';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,6 +19,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NorbitzModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
