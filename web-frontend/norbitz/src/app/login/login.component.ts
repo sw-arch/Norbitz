@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   loginError = false;
 
   login(){
-    console.log("Sending login: "+this.username+", "+this.password);
     this.loginError = false;
     this.user.loggedIn = false;
     this.norbitz.login({
@@ -33,15 +32,12 @@ export class LoginComponent implements OnInit {
       password: this.password,
     }).subscribe(
       (data) => {
-        console.log("Login success - welcome " + data.username)
         this.user.loggedIn = true;
         this.user.username = data.username;
         this.user.pastOrders = data.userdata;
         this.router.navigateByUrl('/home');        
       },
       (err) => {
-        console.log(err)
-        console.log("Login Error!")
         this.loginError = true;
       })
   }
