@@ -1,6 +1,12 @@
 <app-header></app-header>
 <h1>Home</h1>
 
+<mat-select>
+  <mat-option value="option1">Starkville -> Atlanta</mat-option>
+  <mat-option value="option2">Atlanta -> Starkville</mat-option>
+</mat-select>
+
+
 <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" [value]="startDate">
 <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
 <mat-datepicker #pickerStart></mat-datepicker>
@@ -8,3 +14,21 @@
 <input matInput [matDatepicker]="pickerEnd" placeholder="End Date" [value]="endDate">
 <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
 <mat-datepicker #pickerEnd></mat-datepicker>
+
+<mat-card onclick="callHurts()">
+  <mat-card-content>
+    <p>Rent a car</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card onclick="callBoat()">
+  <mat-card-content>
+    <p>Take a cruise</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card onclick="callAirs()">
+  <mat-card-content>
+    <p>Reserve a flight</p>
+  </mat-card-content>
+</mat-card>
