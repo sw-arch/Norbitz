@@ -2,16 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatMenuModule } from '@angular/material/menu';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserService } from './user/user.service'
+import { UserService } from './user/user.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+
 
 
 import { ApiModule as NorbitzModule } from '../apis/norbitz';
@@ -34,12 +36,14 @@ import { ApiModule as ScandalsModule } from '../apis/scandals';
     MatNativeDateModule,
     MatDatepickerModule,
     ReactiveFormsModule,
+    MatInputModule,
     FormsModule,
     NorbitzModule,
     AirdndModule,
     CarnivoreModule,
     HurtsModule,
     ScandalsModule,
+    MatMenuModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

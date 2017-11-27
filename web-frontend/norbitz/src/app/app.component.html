@@ -3,12 +3,9 @@
   <router-outlet></router-outlet>
 
   <div *ngIf="this.user.loggedIn">
-    Welcome {{this.user.username}}! <button type="submit" class="btn btn-success" (click)="logout()">Logout</button>      
+    Welcome {{this.user.username}}! <button type="submit" class="btn btn-success" (click)="logout()">Logout</button>
   </div>
 
-    <input matInput [matDatepicker]="pickerTo" placeholder="Angular forms (w/ deserialization)"
-           [formControl]="serializedDate">
-    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
-    
+
+
 </div>

@@ -11,15 +11,13 @@ import { UserService } from './user/user.service'
 export class AppComponent {
   constructor(
     private user: UserService,
-    private router: Router,    
+    private router: Router,
   ) { }
 
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
 
   logout(){
     this.user.loggedIn = false;
-    this.router.navigateByUrl('/login');        
+    this.router.navigateByUrl('/login');
   }
 
 }
