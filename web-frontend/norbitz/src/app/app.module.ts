@@ -9,6 +9,10 @@ import { LoginComponent } from './login/login.component';
 
 
 import { ApiModule as NorbitzModule } from '../apis/norbitz';
+import { ApiModule as AirdndModule } from '../apis/airdnd';
+import { ApiModule as CarnivoreModule } from '../apis/carnivore-cruise-lines';
+import { ApiModule as HurtsModule } from '../apis/hurts-car-rental';
+import { ApiModule as ScandalsModule } from '../apis/scandals';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,10 @@ import { ApiModule as NorbitzModule } from '../apis/norbitz';
     AppRoutingModule,
     FormsModule,
     NorbitzModule,
+    AirdndModule,
+    CarnivoreModule,
+    HurtsModule,
+    ScandalsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
