@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService as NorbitzPublicService } from '../../apis/norbitz';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service'
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private norbitz: NorbitzPublicService, private router: Router) { }
+  constructor(
+    private norbitz: NorbitzPublicService,
+    private user: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -21,6 +26,7 @@ export class LoginComponent implements OnInit {
   login(){
     console.log("Sending login: "+this.username+", "+this.password);
     this.loginError = false;
+    this.user.loggedIn = false;
     this.norbitz.login({
       username: this.username,
       password: this.password,
@@ -28,7 +34,10 @@ export class LoginComponent implements OnInit {
       (data) => {
         //Success
         console.log("Login success - welcome " + data.username)
-        this.router.navigateByUrl('/home');
+        this.user.loggedIn = true;
+        this.user.username = data.username;
+        this.user.pastOrders = data.userdata;
+        this.router.navigateByUrl('/home');        
       },
       (err) => {
         //Err

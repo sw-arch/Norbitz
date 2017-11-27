@@ -18,6 +18,8 @@ import { ApiModule as HurtsModule } from '../apis/hurts-car-rental';
 import { ApiModule as ScandalsModule } from '../apis/scandals';
 import { HomeComponent } from './home/home.component';
 
+import { UserService } from './user.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,7 @@ import { HomeComponent } from './home/home.component';
     HurtsModule,
     ScandalsModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
