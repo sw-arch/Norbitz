@@ -8,7 +8,7 @@ export class UserService {
     private router: Router,
   ) { 
     //Not logged in by default
-    this.loggedIn = false;
+    this.loggedIn = true;
   }
 
   loggedIn: Boolean;

@@ -10,20 +10,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 
+import { ApiModule as NorbitzModule } from '../apis/norbitz';
+import { ApiModule as AirdndModule, BASE_PATH as AirdndBasePath } from '../apis/airdnd';
+import { ApiModule as CarnivoreModule } from '../apis/carnivore-cruise-lines';
+import { ApiModule as HurtsModule } from '../apis/hurts-car-rental';
+import { ApiModule as ScandalsModule } from '../apis/scandals';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserService } from './user/user.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-
-
-
-import { ApiModule as NorbitzModule } from '../apis/norbitz';
-import { ApiModule as AirdndModule } from '../apis/airdnd';
-import { ApiModule as CarnivoreModule } from '../apis/carnivore-cruise-lines';
-import { ApiModule as HurtsModule } from '../apis/hurts-car-rental';
-import { ApiModule as ScandalsModule } from '../apis/scandals';
 import { HeaderComponent } from './header/header.component';
+import { LodgingComponent } from './lodging/lodging.component';
 
 
 @NgModule({
@@ -32,6 +31,7 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
+    LodgingComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +51,10 @@ import { HeaderComponent } from './header/header.component';
     MatCardModule,
     MatSelectModule,
   ],
-  providers: [UserService],
+  providers: [
+    UserService, 
+    { provide: AirdndBasePath, useValue: "http://35.193.67.106/AirDND/AirDND/1.0.1"},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
