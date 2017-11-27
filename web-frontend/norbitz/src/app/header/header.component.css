@@ -1,0 +1,15 @@
+#header {
+    height: 50px;
+    background-color: #4cae4c;
+    color: white;
+    padding: 10px;
+}
+
+#title {
+    font-size: 20px;
+    float: left;
+}
+
+#userinfo {
+    float: right;
+}

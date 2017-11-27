@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user/user.service'
+import { HeaderComponent } from '../header/header.component'
 
 
 @Component({
@@ -10,9 +12,13 @@ export class HomeComponent implements OnInit {
   startDate;
   endDate;
 
-  constructor() { }
+  constructor(
+    private user: UserService,
+  ) { }
 
   ngOnInit() {
+    //Redirect user to login if not logged in
+    this.user.verifyLoggedIn()
   }
 
 }

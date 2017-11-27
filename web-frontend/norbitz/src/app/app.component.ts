@@ -9,15 +9,6 @@ import { UserService } from './user/user.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(
-    private user: UserService,
-    private router: Router,
-  ) { }
-
-
-  logout(){
-    this.user.loggedIn = false;
-    this.router.navigateByUrl('/login');
-  }
+  constructor() { }
 
 }

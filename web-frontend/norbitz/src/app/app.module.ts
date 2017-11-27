@@ -21,6 +21,7 @@ import { ApiModule as AirdndModule } from '../apis/airdnd';
 import { ApiModule as CarnivoreModule } from '../apis/carnivore-cruise-lines';
 import { ApiModule as HurtsModule } from '../apis/hurts-car-rental';
 import { ApiModule as ScandalsModule } from '../apis/scandals';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ApiModule as ScandalsModule } from '../apis/scandals';
     AppComponent,
     LoginComponent,
     HomeComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
