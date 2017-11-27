@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PublicService as NorbitzPublicService } from '../../apis/norbitz';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { PublicService as NorbitzPublicService } from '../../apis/norbitz';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private norbitz: NorbitzPublicService) { }
+  constructor(private norbitz: NorbitzPublicService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
     }).subscribe(
       (data) => {
         //Success
-        console.log("Login success - welcome " + data.username)        
+        console.log("Login success - welcome " + data.username)
+        this.router.navigateByUrl('/home');
       },
       (err) => {
         //Err

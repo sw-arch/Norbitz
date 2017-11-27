@@ -16,11 +16,13 @@ import { ApiModule as AirdndModule } from '../apis/airdnd';
 import { ApiModule as CarnivoreModule } from '../apis/carnivore-cruise-lines';
 import { ApiModule as HurtsModule } from '../apis/hurts-car-rental';
 import { ApiModule as ScandalsModule } from '../apis/scandals';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

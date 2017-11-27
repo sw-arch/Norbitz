@@ -1,15 +1,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div style="text-align:center">
-  <h1>
-    <app-login></app-login>
-  </h1>
+  <router-outlet></router-outlet>
 
-  <mat-form-field>
     <input matInput [matDatepicker]="pickerTo" placeholder="Angular forms (w/ deserialization)"
            [formControl]="serializedDate">
     <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
-  </mat-form-field>
 
 
 </div>
