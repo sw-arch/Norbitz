@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -9,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { ApiModule as NorbitzModule } from '../apis/norbitz';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatDatepickerModule,
     ReactiveFormsModule,
-
+    FormsModule,
+    NorbitzModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
