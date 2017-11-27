@@ -1,6 +1,10 @@
-.login-error{
+.login-error {
     color: red;
     font-size: 18px;
+}
+
+h1 {
+  text-align: center;
 }
 
 form {
