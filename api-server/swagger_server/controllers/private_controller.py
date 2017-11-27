@@ -45,11 +45,13 @@ def save(user=None):  # noqa: E501
     if ret is None:
         return "Invalid username", 400
 
-    mongo_controls.get_db().users.update(
+    mongo_controls.get_db().users.update_one(
         {
             'username': user.username
         },
         {
-            'userdata': user.userdata
+            '$set': {
+                'userdata': user.userdata
+            }
         }
     )
