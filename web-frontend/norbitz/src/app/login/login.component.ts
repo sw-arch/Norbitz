@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 import { PublicService as NorbitzPublicService } from '../../apis/norbitz';
 
 @Component({
@@ -9,7 +8,7 @@ import { PublicService as NorbitzPublicService } from '../../apis/norbitz';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private norbitz: NorbitzPublicService, private cdRef: ChangeDetectorRef) { }
+  constructor(private norbitz: NorbitzPublicService) { }
 
   ngOnInit() {
   }
@@ -25,17 +24,15 @@ export class LoginComponent implements OnInit {
       username: this.username,
       password: this.password,
     }).subscribe(
-      function(data){
+      (data) => {
         //Success
         console.log("Login success - welcome " + data.username)        
       },
-      function(err){
+      (err) => {
         //Err
         console.log(err)
         console.log("Login Error!")
         this.loginError = true;
-        this.username = "random name here"
-        //this.cdRef.detectChanges()
       })
   }
 
