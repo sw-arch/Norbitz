@@ -1,5 +1,7 @@
 <h1>Login</h1>
 <form>
+  <p *ngIf="loginError" class="login-error">Invalid username or password</p>
+
   <div class="form-group">
     <label for="username">Username</label>
     <input type="text" class="form-control" name="username" id="username" [(ngModel)]="username">
