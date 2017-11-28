@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService as HurtsService, Vehicle, SpecialEquipment } from '../../apis/hurts-car-rental';
 import { MatTableDataSource, MatTable } from '@angular/material';
-import { HttpEvent } from '@angular/common/http';
 
 @Component({
   selector: 'app-extras',
@@ -21,7 +20,7 @@ export class ExtrasComponent implements OnInit {
 
   ngOnInit() {
     this.hurts.getVehicleByLocation(this.destLocation).subscribe(
-      (value)=>{
+      (value: any)=>{
         //Success
         console.log("Airdnd search success for "+this.destLocation)
         console.log(value)
