@@ -2,10 +2,10 @@
     <p>Loading...</p>
 </div>
 <div *ngIf="!isLoading && !hurtsVehicles">
-No vehicles could be found for  {{destLocation}}
+No vehicles could be found for {{location}}
 </div>
 <div *ngIf="!isLoading && hurtsVehicles">
-    <b>Cars avalible for {{destLocation}}</b>
+    <b>Cars avalible for {{location}}</b>
     <div id="hurtstable">
         <mat-table #table [dataSource]="hurtsDataSource">
 

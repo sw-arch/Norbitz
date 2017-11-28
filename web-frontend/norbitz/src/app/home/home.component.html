@@ -14,13 +14,13 @@
   </mat-form-field>
 
   <mat-form-field (click)="pickerStart.open()">
-    <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" [formControl]="startDateCF" formControlName="startDate" required>
+    <input matInput [matDatepicker]="pickerStart" placeholder="Departure Date" [formControl]="startDateCF" formControlName="startDate" required>
     <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
     <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field (click)="pickerEnd.open()">
-    <input matInput [matDatepicker]="pickerEnd" placeholder="End Date" [formControl]="endDateCF" formControlName="endDate" required>
+    <input matInput [matDatepicker]="pickerEnd" placeholder="Return Date" [formControl]="endDateCF" formControlName="endDate" required>
     <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
     <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
   </mat-form-field>
@@ -29,9 +29,9 @@
 </form>
 
 <mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper">
-  <mat-step label="Transportation" >
-    <span class="skip-button">
-      <button mat-button matStepperNext>Skip</button>
+  <mat-step label="Transportation" [editable]="!checkoutComplete">
+    <span class="skip-button" [ngClass]="transportationFormDone ? 'formdone' : ''">
+      <button mat-button matStepperNext>{{transportationFormDone ? "Next" : "Skip"}} <i class="material-icons">navigate_next</i></button>
     </span>
     <h2>Transportation</h2>
     <br/>
@@ -40,11 +40,11 @@
     <br/>
     <hr/>
     <h3>Cars <i>from Hurts</i></h3>
-    <app-cars [location]="origin" [fromDate]="startDate" [toDate]="endDate" (formDone)="extrasFormDone = $event"></app-cars>
+    <app-cars [location]="origin" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="transCarSelected = $event"></app-cars>
   </mat-step>
-  <mat-step label="Lodging" [stepControl]="false">
-      <span class="skip-button">
-        <button mat-button matStepperNext>Skip</button>
+  <mat-step label="Lodging" [editable]="!checkoutComplete">
+      <span class="skip-button" [ngClass]="lodgingFormDone ? 'formdone' : ''">
+        <button mat-button matStepperNext>{{lodgingFormDone ? "Next" : "Skip"}} <i class="material-icons">navigate_next</i></button>
       </span>
       <h2>Lodging</h2>
       <h3>Hotels <i>from Hulbun</i></h3>
@@ -54,26 +54,30 @@
       <h3>Rooms <i>from AirD&amp;D</i></h3>
       <app-lodging></app-lodging>
   </mat-step>
-  <mat-step label="Extras" [stepControl]="false">
+  <mat-step label="Extras" [editable]="!checkoutComplete">
     <span class="skip-button" [ngClass]="extrasFormDone ? 'formdone' : ''">
-      <button mat-button matStepperNext>{{extrasFormDone ? "Next" : "Skip"}}</button>
+      <button mat-button matStepperNext>{{extrasFormDone ? "Next" : "Skip"}} <i class="material-icons">navigate_next</i></button>
     </span>
     <h2>Extras</h2>
     <h3>Local Transportation <i>from Hurts</i></h3>
-    <app-cars [location]="desination" [fromDate]="startDate" [toDate]="endDate" (formDone)="extrasFormDone = $event"></app-cars>
+    <app-cars [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="extrasCarSelected = $event"></app-cars>
     <br/>
     <hr>
     <h3>Local Events <i>from Sandals</i></h3>
     <app-fun></app-fun>
   </mat-step>
-  <mat-step label="Review" [stepControl]="false" [stepControl]="reviewFormGroup">
+  <mat-step label="Review" [stepControl]="reviewFormGroup" [editable]="!checkoutComplete">
     <h2>Review Order</h2>
-    [List pending orders here]
+    <p *ngIf="!anyFormDone">No items have been selected</p>
+    <div *ngIf="anyFormDone">
+        [List pending orders here]
+    </div>
+    <br/>
     <br/>
     <div style="text-align: right;" class="formdone">
-      <button mat-button matStepperNext>Place Order</button>   
-    </div> 
-    <!--Hidden checkbox that will permit the user to continue when checked... maybe-->
+      <button mat-button (click)="placeOrder(stepper)" [disabled]="!anyFormDone">Place Order</button>   
+    </div>
+    <!--Hidden checkbox that will permit the user to continue when checked-->
     <form [formGroup]="reviewFormGroup">
         <mat-checkbox class="hidden" formControlName="cbCtrl" [(ngModel)]="reviewOk" required></mat-checkbox>
     </form>

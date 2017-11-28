@@ -28,7 +28,9 @@ export class CarsComponent implements OnInit {
   @Input()
   toDate: string = "2017-12-02T00:00:00";
 
-  @Output() formDone = new EventEmitter();
+  //Output an event when a car is selected/deselected
+  @Output()
+  selectionEvent = new EventEmitter();
 
   ngOnInit() {
     this.hurts.getVehicleByLocation(this.location).subscribe(
@@ -51,11 +53,11 @@ export class CarsComponent implements OnInit {
   selectCar(vehicleID){
     if(vehicleID == this.selectedVehicleID){
       this.selectedVehicleID = null;
-      this.formDone.emit(false);
+      this.selectionEvent.emit(false);
     }else{
       console.log("User selected vehicle " + vehicleID );
       this.selectedVehicleID = vehicleID;
-      this.formDone.emit(true);
+      this.selectionEvent.emit(true);
     }
   }
 

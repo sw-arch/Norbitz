@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { UserService } from '../user/user.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatStepper } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -27,9 +28,19 @@ export class HomeComponent implements OnInit {
   isLinear = true;
   reviewOk = false;
   showStepper = false;
-  extrasFormDone = false;
 
-
+  flightSelected = false;
+  transCarSelected = false;
+  hotelSelected = false;
+  roomSelected = false;
+  extrasCarSelected = false;
+  funSelected = false;
+  checkoutComplete = false;
+  get transportationFormDone(){ return this.flightSelected || this.transCarSelected; }  
+  get lodgingFormDone(){ return this.hotelSelected || this.roomSelected; }  
+  get extrasFormDone(){ return this.extrasCarSelected || this.funSelected; }  
+  get anyFormDone(){ return this.transportationFormDone || this.lodgingFormDone || this.extrasFormDone; }  
+  
   constructor(
     private user: UserService,
     private router: Router,
@@ -57,7 +68,7 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    //TODO: Remove placeholder for testing
+    //TODO: Remove these placeholder meant for testing
     this.origin = this.possibleLocations[0];
     this.desination = this.possibleLocations[1];
     this.startDateCF.setValue(new Date("2017-12-01T05:00:00.000Z"));
@@ -66,11 +77,27 @@ export class HomeComponent implements OnInit {
 
   search(){
     //TODO: Clear pending orders?
-    this.extrasFormDone = false;
+    this.flightSelected = false;
+    this.transCarSelected = false;
+    this.hotelSelected = false;
+    this.roomSelected = false;
+    this.extrasCarSelected = false;
+    this.funSelected = false;
+    this.reviewOk = false;
+    this.checkoutComplete = false;
     this.showStepper = false;
     setTimeout(() => {
       this.showStepper = true;
     }, 100);
+  }
+
+  placeOrder(stepper:MatStepper){
+    this.reviewOk = true;
+    this.checkoutComplete = true;
+    setTimeout(() => {
+      stepper.next();
+      console.log("TODO: Place order(s)");
+    }, 30);
   }
 
 }
