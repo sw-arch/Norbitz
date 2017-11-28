@@ -15,6 +15,8 @@ import {
 import { ApiModule as NorbitzModule } from '../apis/norbitz';
 import { ApiModule as AirdndModule, BASE_PATH as AirdndBasePath } from '../apis/airdnd';
 import { ApiModule as CarnivoreModule, BASE_PATH as CarnivoreBasePath } from '../apis/carnivore-cruise-lines';
+import { ApiModule as DelterModule, BASE_PATH as DelterBasePath } from '../apis/delter-airlines';
+import { ApiModule as HilbunModule, BASE_PATH as HilbunBasePath } from '../apis/hilbun-hotels';
 import { ApiModule as HurtsModule, BASE_PATH as HurtsBasePath } from '../apis/hurts-car-rental';
 import { ApiModule as ScandalsModule, BASE_PATH as ScandalsBasePath } from '../apis/scandals';
 
@@ -42,25 +44,29 @@ import { ExtrasComponent } from './extras/extras.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    ReactiveFormsModule,
     MatInputModule,
+    MatCardModule,
+    MatSelectModule,
+    MatTableModule,
     FormsModule,
     NorbitzModule,
     AirdndModule,
     CarnivoreModule,
+    DelterModule,
+    HilbunModule,
     HurtsModule,
     ScandalsModule,
-    MatCardModule,
-    MatSelectModule,
-    MatTableModule,
   ],
   providers: [
     UserService, 
     { provide: AirdndBasePath, useValue: "http://35.193.67.106/AirDND/AirDND/1.0.1"},
     { provide: CarnivoreBasePath, useValue: ""},
+    { provide: DelterBasePath, useValue: ""},
+    { provide: HilbunBasePath, useValue: "http://35.196.7.68:3000"},
     { provide: HurtsBasePath, useValue: "http://softwarebois.com"},
     { provide: ScandalsBasePath, useValue: ""},
   ],
