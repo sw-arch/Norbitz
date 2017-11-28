@@ -5,3 +5,13 @@ mat-form-field {
 .hidden {
     display: none;
 }
+
+.skip-button {
+    float: right;
+}
+
+.skip-button button {
+    width: 100px;
+    height: 50px;
+    margin-top: 15px;
+}

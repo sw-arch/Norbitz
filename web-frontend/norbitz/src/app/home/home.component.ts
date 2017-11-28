@@ -18,9 +18,10 @@ export class HomeComponent implements OnInit {
   origin;
   desination;
 
-  formGroups: Array<FormGroup>;
+  reviewFormGroup: FormGroup;
 
   isLinear = true;
+  reviewOk = false;
 
   constructor(
     private user: UserService,
@@ -34,10 +35,9 @@ export class HomeComponent implements OnInit {
         if(!isLoggedIn) this.router.navigateByUrl('/login');
       }
     );
-    this.formGroups = new Array<FormGroup>();
-    this.formGroups.push(this._formBuilder.group({
+    this.reviewFormGroup = this._formBuilder.group({
       cbCtrl: [false, Validators.required]
-    }));
+    });
   }
 
   search(){

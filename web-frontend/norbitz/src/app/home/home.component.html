@@ -30,27 +30,48 @@
   <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!origin || !desination">Search</button>
 </form>
 
-<mat-horizontal-stepper [linear]="true" #stepper>
-  <mat-step label="Transportation" [stepControl]="formGroups[0]">
-    <button mat-button (click)="firstOk=true;stepper.next();" >Skip</button>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step label="Transportation" >
+    <span class="skip-button">
+      <button mat-button matStepperNext>Skip</button>
+    </span>
+    <h2>Transportation</h2>
     <br/>
     [Delta Here]
-    <form [formGroup]="formGroups[0]">
-        <mat-checkbox class="hidden" formControlName="cbCtrl" [(ngModel)]="firstOk" required></mat-checkbox>
-    </form>
+    <br/>
+    [Cruse here?]
   </mat-step>
   <mat-step label="Lodging" [stepControl]="false">
-      Content 2
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        
-      </div>
+      <span class="skip-button">
+        <button mat-button matStepperNext>Skip</button>
+      </span>
+      <h2>Lodging</h2>
+      <br/>
+      [Hotels]
+      <br/>
+      [Airdnd]
   </mat-step>
   <mat-step label="Extras" [stepControl]="false">
+    <span class="skip-button">
+      <button mat-button matStepperNext>Skip</button>
+    </span>
+    <h2>Extras</h2>
+    <br/>
     <app-extras></app-extras>
+    <br/>
+    <h3>Local Events</h3>
+    [Events here]
   </mat-step>
-  <mat-step label="Review" [stepControl]="false">
+  <mat-step label="Review" [stepControl]="false" [stepControl]="reviewFormGroup">
+    [List order here]
+    <br/>
+    <button mat-button matStepperNext>Place Order</button>    
+    <!--Hidden checkbox that will permit the user to continue when checked... maybe-->
+    <form [formGroup]="reviewFormGroup">
+        <mat-checkbox class="hidden" formControlName="cbCtrl" [(ngModel)]="reviewOk" required></mat-checkbox>
+    </form>
   </mat-step>
   <mat-step label="Finish" [stepControl]="false">
+    [Confimation]
   </mat-step>
 </mat-horizontal-stepper>
