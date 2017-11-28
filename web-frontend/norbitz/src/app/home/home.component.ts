@@ -5,7 +5,6 @@ import { UserService } from '../user/user.service';
 import { ExtrasComponent } from '../extras/extras.component';
 import {FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Validator, ValidationErrors, ValidatorFn } from '@angular/forms/src/directives/validators';
-import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-home',
