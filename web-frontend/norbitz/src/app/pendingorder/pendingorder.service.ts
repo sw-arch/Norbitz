@@ -14,8 +14,8 @@ export class Order {
   extraCarId: any;
   extraCarData = {};
 
-  funId: any;
-  funData = {};
+  funIdsAll: Set<string> = new Set<string>();;
+  funDataAll: any;
 }
 
 @Injectable()

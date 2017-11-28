@@ -14,7 +14,7 @@ export class FunComponent implements OnInit {
   scandalsActivitiesArr: Array<Activity>;  
   scandalsDataSource: MatTableDataSource<Activity>;
   displayedColumns = ['select', 'name', 'description', 'location', 'quantity', 'time', 'cost'];
-  selectedActivityName = null;
+  selectedActivityNames: Set<string> = new Set<string>();
 
   constructor(
     private scandals: ScandalsService,
@@ -53,22 +53,18 @@ export class FunComponent implements OnInit {
   }
 
   buttonStyle(vId){
-    return vId == this.selectedActivityName ? "buttonselected" : "buttonregular";
+    return this.selectedActivityNames.has(vId) ? "buttonselected" : "buttonregular";
   }
 
   selectActivity(activityName){
-    if (activityName == this.selectedActivityName) {
-      this.selectedActivityName = null;
-      this.pending.order.funId = null;      
+    if (this.selectedActivityNames.has(activityName)) {
+      this.selectedActivityNames.delete(activityName);
+      this.pending.order.funIdsAll = this.selectedActivityNames;      
       this.selectionEvent.emit(false);
     } else {
-      this.selectedActivityName = activityName;
-      let activity:Activity = this.scandalsActivitiesArr.find((val)=>val.name==activityName);   
-      this.pending.order.funId = activityName;
-      this.pending.order.funData['Name'] = activity.name;
-      this.pending.order.funData['Location'] = activity.location;
-      this.pending.order.funData['Date and Time'] = activity.time;      
-      this.pending.order.funData['Cost'] = activity.cost;
+      this.selectedActivityNames.add(activityName);
+      this.pending.order.funIdsAll = this.selectedActivityNames;  
+      this.pending.order.funDataAll = this.scandalsActivitiesArr;
       this.selectionEvent.emit(true);
     }
   }

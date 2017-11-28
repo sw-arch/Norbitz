@@ -17,4 +17,8 @@ export class OrderdisplayComponent implements OnInit {
     return Object.keys(ojb);
   }
 
+  getActivity(activityName){
+    return this.pending.order.funDataAll.find((val)=>val.name==activityName);
+  }
+
 }

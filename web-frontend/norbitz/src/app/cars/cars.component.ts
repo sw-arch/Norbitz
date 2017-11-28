@@ -66,7 +66,6 @@ export class CarsComponent implements OnInit {
         this.pending.order.transCarId = null;        
       }
     }else{
-      console.log("User selected vehicle " + vehicleID );
       this.selectedVehicleID = vehicleID;
       if(this.extraCar){
         this.pending.order.extraCarId = vehicleID;
