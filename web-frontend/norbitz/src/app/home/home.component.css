@@ -17,7 +17,7 @@ mat-form-field {
     margin-top: 15px;
 }
 
-.skip-button.formdone button {
+.formdone button {
     background-color: #4cae4c;
     color: white;
 }
@@ -28,4 +28,13 @@ mat-form-field {
 
 .ng-invalid:not(form) {
     border-left: none;
+}
+
+.mat-horizontal-stepper-header-container {
+    border-bottom: 1px #dad5d5 solid;
+    border-top: 1px #dad5d5 solid;
+}
+
+h2 {
+    color: #4cae4c
 }

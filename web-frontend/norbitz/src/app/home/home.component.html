@@ -35,35 +35,44 @@
     </span>
     <h2>Transportation</h2>
     <br/>
-    [Delta Here]
+    <h3>Flights <i>from Delter</i></h3>
+    <app-flights></app-flights>
     <br/>
-    [Cruse here?]
+    <hr/>
+    <h3>Cars <i>from Hurts</i></h3>
+    <app-cars [location]="origin" [fromDate]="startDate" [toDate]="endDate" (formDone)="extrasFormDone = $event"></app-cars>
   </mat-step>
   <mat-step label="Lodging" [stepControl]="false">
       <span class="skip-button">
         <button mat-button matStepperNext>Skip</button>
       </span>
       <h2>Lodging</h2>
+      <h3>Hotels <i>from Hulbun</i></h3>
+      <app-hotel></app-hotel>
       <br/>
-      [Hotels]
-      <br/>
-      [Airdnd]
+      <hr/>
+      <h3>Rooms <i>from AirD&amp;D</i></h3>
+      <app-lodging></app-lodging>
   </mat-step>
   <mat-step label="Extras" [stepControl]="false">
     <span class="skip-button" [ngClass]="extrasFormDone ? 'formdone' : ''">
       <button mat-button matStepperNext>{{extrasFormDone ? "Next" : "Skip"}}</button>
     </span>
     <h2>Extras</h2>
-    <br/>
+    <h3>Local Transportation <i>from Hurts</i></h3>
     <app-cars [location]="desination" [fromDate]="startDate" [toDate]="endDate" (formDone)="extrasFormDone = $event"></app-cars>
     <br/>
-    <h3>Local Events</h3>
-    [Events here]
+    <hr>
+    <h3>Local Events <i>from Sandals</i></h3>
+    <app-fun></app-fun>
   </mat-step>
   <mat-step label="Review" [stepControl]="false" [stepControl]="reviewFormGroup">
-    [List order here]
+    <h2>Review Order</h2>
+    [List pending orders here]
     <br/>
-    <button mat-button matStepperNext>Place Order</button>    
+    <div style="text-align: right;" class="formdone">
+      <button mat-button matStepperNext>Place Order</button>   
+    </div> 
     <!--Hidden checkbox that will permit the user to continue when checked... maybe-->
     <form [formGroup]="reviewFormGroup">
         <mat-checkbox class="hidden" formControlName="cbCtrl" [(ngModel)]="reviewOk" required></mat-checkbox>

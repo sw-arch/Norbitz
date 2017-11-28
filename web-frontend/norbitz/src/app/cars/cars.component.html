@@ -1,9 +1,8 @@
-<h3>Hurts Car Rental</h3>
 <div *ngIf="isLoading">
     <p>Loading...</p>
 </div>
 <div *ngIf="!isLoading && !hurtsVehicles">
-No vechiles could be found for  {{destLocation}}
+No vehicles could be found for  {{destLocation}}
 </div>
 <div *ngIf="!isLoading && hurtsVehicles">
     <b>Cars avalible for {{destLocation}}</b>
