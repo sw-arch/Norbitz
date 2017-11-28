@@ -17,6 +17,7 @@ export class ExtrasComponent implements OnInit {
   isLoading = true;
   displayedColumns = ['select','type','makeModel','passengers',"extras",'cost'];
   hurtsDataSource;
+  selectedVehicleID = null;
 
   ngOnInit() {
     this.hurts.getVehicleByLocation(this.destLocation).subscribe(
@@ -36,7 +37,12 @@ export class ExtrasComponent implements OnInit {
   }
 
   selectCar(vehicleID){
-    console.log("User selected vehicle " + vehicleID );
+    if(vehicleID == this.selectedVehicleID){
+      this.selectedVehicleID = null;
+    }else{
+      console.log("User selected vehicle " + vehicleID );
+      this.selectedVehicleID = vehicleID;
+    }
   }
 
   specialEquipToString(eq: SpecialEquipment){
@@ -49,7 +55,11 @@ export class ExtrasComponent implements OnInit {
       if(eq.snowChains){ eqArr.push("Snow Chains") }
       return eqArr.join(", ");
     }
-    return "bla";
+    return "";
+  }
+
+  bStyle(vId){
+    return vId == this.selectedVehicleID? "bselected" : "bregular";
   }
 
 }

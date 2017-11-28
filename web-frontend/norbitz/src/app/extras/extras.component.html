@@ -10,7 +10,9 @@
             <ng-container matColumnDef="select">
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell *matCellDef="let element">
-                            <button type="submit" class="btn btn-success" (click)="selectCar(element.vehicleID)">Select</button>                            
+                        <button type="submit" class="btn btn-success" [ngClass]="bStyle(element.vehicleID)" (click)="selectCar(element.vehicleID)">
+                                {{element.vehicleID == selectedVehicleID ? "Remove": "Select"}}
+                        </button>                            
                     </mat-cell>
             </ng-container>
 
