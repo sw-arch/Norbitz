@@ -1,14 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material';
-import { MatInputModule } from '@angular/material';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatCardModule } from '@angular/material';
 import { MatSelectModule } from '@angular/material/select';
+import { 
+  MatFormFieldModule, 
+  MatInputModule,
+  MatNativeDateModule,
+  MatCardModule,
+  MatTableModule
+} from '@angular/material';
 
 import { ApiModule as NorbitzModule } from '../apis/norbitz';
 import { ApiModule as AirdndModule, BASE_PATH as AirdndBasePath } from '../apis/airdnd';
@@ -23,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { LodgingComponent } from './lodging/lodging.component';
+import { ExtrasComponent } from './extras/extras.component';
 
 
 
@@ -33,6 +36,7 @@ import { LodgingComponent } from './lodging/lodging.component';
     HomeComponent,
     HeaderComponent,
     LodgingComponent,
+    ExtrasComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,7 @@ import { LodgingComponent } from './lodging/lodging.component';
     ScandalsModule,
     MatCardModule,
     MatSelectModule,
+    MatTableModule,
   ],
   providers: [
     UserService, 

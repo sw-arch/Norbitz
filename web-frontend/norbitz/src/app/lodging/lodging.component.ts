@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminsService as AirdndService, BASE_PATH as AirdndBasePath } from '../../apis/airdnd';
+import { AdminsService as AirdndService } from '../../apis/airdnd';
 
 @Component({
   selector: 'app-lodging',

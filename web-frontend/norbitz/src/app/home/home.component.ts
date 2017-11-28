@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   search(){
     //TEMP: Will prob start with transportation first
-    this.router.navigateByUrl('/book/lodging');    
+    this.router.navigateByUrl('/book/extras');    
   }
 
 }
