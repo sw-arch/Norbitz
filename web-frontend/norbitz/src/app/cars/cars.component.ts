@@ -3,11 +3,11 @@ import { UserService as HurtsService, Vehicle, SpecialEquipment } from '../../ap
 import { MatTableDataSource, MatTable } from '@angular/material';
 
 @Component({
-  selector: 'app-extras',
-  templateUrl: './extras.component.html',
-  styleUrls: ['./extras.component.css']
+  selector: 'app-cars',
+  templateUrl: './cars.component.html',
+  styleUrls: ['./cars.component.css']
 })
-export class ExtrasComponent implements OnInit {
+export class CarsComponent implements OnInit {
 
   constructor(
     private hurts: HurtsService,
@@ -20,7 +20,7 @@ export class ExtrasComponent implements OnInit {
   selectedVehicleID = null;
 
   @Input()
-  desination: string = "Huntsville, AL";
+  location: string = "Huntsville, AL";
 
   @Input()
   fromDate: string = "2017-12-01T00:00:00";
@@ -31,10 +31,10 @@ export class ExtrasComponent implements OnInit {
   @Output() formDone = new EventEmitter();
 
   ngOnInit() {
-    this.hurts.getVehicleByLocation(this.desination).subscribe(
+    this.hurts.getVehicleByLocation(this.location).subscribe(
       (value: any)=>{
         //Success
-        console.log("Hurts search success for "+this.desination)
+        console.log("Hurts search success for "+this.location)
         console.log(value)
         this.hurtsVehicles = value.vehicles;
         this.hurtsDataSource = new MatTableDataSource<Vehicle>(this.hurtsVehicles); 
@@ -42,7 +42,7 @@ export class ExtrasComponent implements OnInit {
       },
       (error)=>{
         //Error
-        console.log("Hurts search error for "+this.desination)
+        console.log("Hurts search error for "+this.location)
         console.log(error)
       }
     );

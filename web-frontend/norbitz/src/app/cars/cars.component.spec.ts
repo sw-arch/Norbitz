@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExtrasComponent } from './extras.component';
+import { ExtrasComponent } from './cars.component';
 
 describe('ExtrasComponent', () => {
   let component: ExtrasComponent;

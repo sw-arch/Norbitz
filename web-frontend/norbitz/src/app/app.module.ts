@@ -30,7 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { LodgingComponent } from './lodging/lodging.component';
-import { ExtrasComponent } from './extras/extras.component';
+import { CarsComponent } from './cars/cars.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { CruisesComponent } from './cruises/cruises.component';
 import { FunComponent } from './fun/fun.component';
@@ -42,7 +42,7 @@ import { FunComponent } from './fun/fun.component';
     HomeComponent,
     HeaderComponent,
     LodgingComponent,
-    ExtrasComponent,
+    CarsComponent,
     HotelComponent,
     CruisesComponent,
     FunComponent,
