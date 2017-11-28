@@ -28,7 +28,7 @@ export class ExtrasComponent implements OnInit {
     this.hurts.getVehicleByLocation(this.destLocation).subscribe(
       (value: any)=>{
         //Success
-        console.log("Airdnd search success for "+this.destLocation)
+        console.log("Hurts search success for "+this.destLocation)
         console.log(value)
         this.hurtsVehicles = value.vehicles;
         this.hurtsDataSource = new MatTableDataSource<Vehicle>(this.hurtsVehicles); 
@@ -36,7 +36,7 @@ export class ExtrasComponent implements OnInit {
       },
       (error)=>{
         //Error
-        console.log("Airdnd search error for "+this.destLocation)
+        console.log("Hurts search error for "+this.destLocation)
         console.log(error)
       }
     );

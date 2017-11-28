@@ -2,32 +2,30 @@
 
 <form [formGroup]="searchFormGroup">    
   <mat-form-field>
-    <mat-select placeholder="Origin City" [(value)]="origin" formControlName="origin" required>
-      <mat-option value="Starkvile, MS">Starkvile, MS</mat-option>
-      <mat-option value="Atlanta, GA">Atlanta, GA</mat-option>
+    <mat-select placeholder="Origin City" [(ngModel)]="origin" formControlName="origin" required>
+      <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Desination City" [(value)]="desination" formControlName="desination" required>
-      <mat-option value="Starkvile, MS">Starkvile, MS</mat-option>
-      <mat-option value="Atlanta, GA">Atlanta, GA</mat-option>
+    <mat-select placeholder="Desination City" [(ngModel)]="desination" formControlName="desination" required>
+        <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>        
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" (value)="startDate" (click)="pickerStart.open()" required>
+  <mat-form-field (click)="pickerStart.open()">
+    <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" [formControl]="startDateCF" formControlName="startDate" required>
     <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
     <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="pickerEnd" placeholder="End Date" [value]="endDate" (value)="endDate" (click)="pickerEnd.open()" required>
-    <mat-datepicker-toggle matSuffix [for]="pickerEnd" disabled></mat-datepicker-toggle>
+  <mat-form-field (click)="pickerEnd.open()">
+    <input matInput [matDatepicker]="pickerEnd" placeholder="End Date" [formControl]="endDateCF" formControlName="endDate" required>
+    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
     <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
   </mat-form-field>
 
-  <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!origin || !desination">Search</button>
+  <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!this.searchFormGroup.valid">Search</button>
 </form>
 
 <mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper">
