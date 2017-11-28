@@ -6,8 +6,9 @@ import { HomeComponent } from './home/home.component';
 import { LodgingComponent } from './lodging/lodging.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { CruisesComponent } from './cruises/cruises.component';
-import {FunComponent} from "./fun/fun.component";
 import { CarsComponent } from './cars/cars.component';
+import { FunComponent } from './fun/fun.component';
+import { FlightsComponent } from './flights/flights.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'book/hotel',  component: HotelComponent },
   { path: 'book/cruises', component: CruisesComponent },
   { path: 'book/fun', component: FunComponent },
-
+  { path: 'book/flights', component: FlightsComponent },
 ];
 
 @NgModule({
