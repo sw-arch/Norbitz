@@ -29,20 +29,28 @@
 
   <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!origin || !desination">Search</button>
 </form>
-<mat-card onclick="callHurts()">
-  <mat-card-content>
-    <p>Rent a car</p>
-  </mat-card-content>
-</mat-card>
 
-<mat-card onclick="callBoat()">
-  <mat-card-content>
-    <p>Take a cruise</p>
-  </mat-card-content>
-</mat-card>
-
-<mat-card onclick="callAirs()">
-  <mat-card-content>
-    <p>Reserve a flight</p>
-  </mat-card-content>
-</mat-card>
+<mat-horizontal-stepper [linear]="true" #stepper>
+  <mat-step label="Transportation" [stepControl]="formGroups[0]">
+    <button mat-button (click)="firstOk=true;stepper.next();" >Skip</button>
+    <br/>
+    [Delta Here]
+    <form [formGroup]="formGroups[0]">
+        <mat-checkbox class="hidden" formControlName="cbCtrl" [(ngModel)]="firstOk" required></mat-checkbox>
+    </form>
+  </mat-step>
+  <mat-step label="Lodging" [stepControl]="false">
+      Content 2
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        
+      </div>
+  </mat-step>
+  <mat-step label="Extras" [stepControl]="false">
+    <app-extras></app-extras>
+  </mat-step>
+  <mat-step label="Review" [stepControl]="false">
+  </mat-step>
+  <mat-step label="Finish" [stepControl]="false">
+  </mat-step>
+</mat-horizontal-stepper>

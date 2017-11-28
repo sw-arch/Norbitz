@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { UserService } from '../user/user.service';
+import { ExtrasComponent } from '../extras/extras.component';
+import {MatIconRegistry} from '@angular/material';
+import {FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { Validator, ValidationErrors, ValidatorFn } from '@angular/forms/src/directives/validators';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +16,16 @@ export class HomeComponent implements OnInit {
   startDate;
   endDate;
   origin;
+  desination;
+
+  formGroups: Array<FormGroup>;
+
+  isLinear = true;
 
   constructor(
     private user: UserService,
-    private router: Router    
+    private router: Router,
+    private _formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -24,6 +34,10 @@ export class HomeComponent implements OnInit {
         if(!isLoggedIn) this.router.navigateByUrl('/login');
       }
     );
+    this.formGroups = new Array<FormGroup>();
+    this.formGroups.push(this._formBuilder.group({
+      cbCtrl: [false, Validators.required]
+    }));
   }
 
   search(){
