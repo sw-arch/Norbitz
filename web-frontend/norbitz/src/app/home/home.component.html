@@ -1,21 +1,34 @@
 <h1>Home</h1>
 
-<mat-select>
-  <mat-option value="option1">Starkville -> Atlanta</mat-option>
-  <mat-option value="option2">Atlanta -> Starkville</mat-option>
-</mat-select>
+<form>    
+  <mat-form-field>
+    <mat-select placeholder="Origin City" [(value)]="origin" required>
+      <mat-option value="Starkvile, MS">Starkvile, MS</mat-option>
+      <mat-option value="Atlanta, GA">Atlanta, GA</mat-option>
+    </mat-select>
+  </mat-form-field>
 
+  <mat-form-field>
+    <mat-select placeholder="Desination City" [(value)]="desination" required>
+      <mat-option value="Starkvile, MS">Starkvile, MS</mat-option>
+      <mat-option value="Atlanta, GA">Atlanta, GA</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<input matInput [matDatepicker]="pickerStart" placeholder="Start Date" [value]="startDate">
-<mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-<mat-datepicker #pickerStart></mat-datepicker>
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerStart" placeholder="Start Date" (value)="startDate" (click)="pickerStart.open()" required>
+    <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+    <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
+  </mat-form-field>
 
-<input matInput [matDatepicker]="pickerEnd" placeholder="End Date" [value]="endDate">
-<mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-<mat-datepicker #pickerEnd></mat-datepicker>
+  <mat-form-field>
+    <input matInput [matDatepicker]="pickerEnd" placeholder="End Date" [value]="endDate" (value)="endDate" (click)="pickerEnd.open()" required>
+    <mat-datepicker-toggle matSuffix [for]="pickerEnd" disabled></mat-datepicker-toggle>
+    <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
+  </mat-form-field>
 
-<button type="submit" class="btn btn-success" (click)="search()">Search</button>
-
+  <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!origin || !desination">Search</button>
+</form>
 <mat-card onclick="callHurts()">
   <mat-card-content>
     <p>Rent a car</p>

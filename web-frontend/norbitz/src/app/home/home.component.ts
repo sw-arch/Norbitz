@@ -10,6 +10,7 @@ import { UserService } from '../user/user.service'
 export class HomeComponent implements OnInit {
   startDate;
   endDate;
+  origin;
 
   constructor(
     private user: UserService,
