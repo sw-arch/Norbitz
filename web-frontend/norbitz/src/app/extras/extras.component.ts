@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService as HurtsService, Vehicle } from '../../apis/hurts-car-rental';
+import { UserService as HurtsService, Vehicle, SpecialEquipment } from '../../apis/hurts-car-rental';
 import { MatTableDataSource, MatTable } from '@angular/material';
 import { HttpEvent } from '@angular/common/http';
 
@@ -16,12 +16,12 @@ export class ExtrasComponent implements OnInit {
 
   destLocation = "Huntsville, AL";
   isLoading = true;
-  displayedColumns = ['select','makeModel','passengers','cost'];
+  displayedColumns = ['select','type','makeModel','passengers',"extras",'cost'];
   hurtsDataSource;
 
   ngOnInit() {
     this.hurts.getVehicleByLocation(this.destLocation).subscribe(
-      (value: Vehicle[])=>{
+      (value)=>{
         //Success
         console.log("Airdnd search success for "+this.destLocation)
         console.log(value)
@@ -38,6 +38,19 @@ export class ExtrasComponent implements OnInit {
 
   selectCar(vehicleID){
     console.log("User selected vehicle " + vehicleID );
+  }
+
+  specialEquipToString(eq: SpecialEquipment){
+    if(eq){
+      var eqArr = new Array<String>();
+      if(eq.gps){ eqArr.push("GPS") }
+      if(eq.leftControl){ eqArr.push("Left Control") }
+      //if(eq.maxChildSeat > 0){ eqArr.push("Child Seat Space (up to "+eq.maxChildSeat+")") }
+      if(eq.skiRack){ eqArr.push("Ski Rack") }
+      if(eq.snowChains){ eqArr.push("Snow Chains") }
+      return eqArr.join(", ");
+    }
+    return "bla";
   }
 
 }

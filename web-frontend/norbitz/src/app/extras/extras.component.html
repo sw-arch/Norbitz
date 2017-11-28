@@ -1,5 +1,5 @@
 <h1>Book Trip Extras</h1>
-<h3>Car Rental</h3>
+<h3>Hurts Car Rental</h3>
 <div *ngIf="isLoading">
     <p>Loading...</p>
 </div>
@@ -16,7 +16,7 @@
             </ng-container>
 
             <ng-container matColumnDef="cost">
-                    <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>Cost/day</mat-header-cell>
                     <mat-cell *matCellDef="let element">${{element.cost}}.00</mat-cell>
             </ng-container>
 
@@ -26,9 +26,19 @@
             </ng-container>
 
             <ng-container matColumnDef="passengers">
-                    <mat-header-cell *matHeaderCellDef>Passengers</mat-header-cell>
+                    <mat-header-cell *matHeaderCellDef>Max Passengers</mat-header-cell>
                     <mat-cell *matCellDef="let element">{{element.passengers}}</mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.type}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="extras">
+                        <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{specialEquipToString(element.specialEquipment)}}</mat-cell>
+                </ng-container>
             
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
