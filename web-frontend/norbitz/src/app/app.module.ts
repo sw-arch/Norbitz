@@ -34,6 +34,7 @@ import { CarsComponent } from './cars/cars.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { CruisesComponent } from './cruises/cruises.component';
 import { FunComponent } from './fun/fun.component';
+import { FlightsComponent } from './flights/flights.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FunComponent } from './fun/fun.component';
     HotelComponent,
     CruisesComponent,
     FunComponent,
+    FlightsComponent,
   ],
   imports: [
     BrowserModule,
