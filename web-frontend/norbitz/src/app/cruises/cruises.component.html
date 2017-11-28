@@ -1,10 +1,72 @@
-<h3>Carnivore Cruises</h3>
+<h3>Carnivore Cruise Lines</h3>
 <div *ngIf="isLoading">
   <p>Loading...</p>
 </div>
-<div *ngIf="!isLoading && !cruises">
-No cruises could be found for {{destLocation}}
+<div *ngIf="!isLoading && !cruiseItems">
+  No vechiles could be found for  {{city + state}}
 </div>
-<div *ngIf="!isLoading && cruises">
+<div *ngIf="!isLoading && cruiseItems">
+  <b>Cars avalible for {{city + state}}</b>
+  <div id="carnivoretable">
+    <mat-table #table [dataSource]="cruiseDataSource">
 
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.cruiseId)"
+                  (click)="selectCruise(element.cruiseId)">
+            {{element.cruiseId == selectedCruise? "Remove": "Select"}}
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="available">
+        <mat-header-cell *matHeaderCellDef>Tickets</mat-header-cell>
+        <mat-cell *matCellDef="let element">${{element.avalible}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef>Cost</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.cost}}.00</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Cruise Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+        <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.duration}} days</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="port">
+        <mat-header-cell *matHeaderCellDef>Port</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.fromLocation}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="roomCapacity">
+        <mat-header-cell *matHeaderCellDef>Room Size</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.roomCapacity}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="roomID">
+        <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.roomID}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="depart">
+        <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.departureDate}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="return">
+        <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.returnDate}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
 </div>
