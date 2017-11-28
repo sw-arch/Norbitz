@@ -64,7 +64,7 @@
     <br/>
     <hr>
     <h3>Local Events <i>from Sandals</i></h3>
-    <app-fun></app-fun>
+    <app-fun [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="funSelected = $event"></app-fun>
   </mat-step>
   <mat-step label="Review" [stepControl]="reviewFormGroup" [editable]="!checkoutComplete">
     <h2>Review Order</h2>
