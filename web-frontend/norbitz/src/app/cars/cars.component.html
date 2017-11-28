@@ -38,6 +38,11 @@ No vehicles could be found for {{location}}
                 <mat-cell *matCellDef="let element">{{element.type}}</mat-cell>
             </ng-container>
 
+            <ng-container matColumnDef="mpg">
+                    <mat-header-cell *matHeaderCellDef>MPG</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{element.mpg}} MPG</mat-cell>
+                </ng-container>
+
             <ng-container matColumnDef="extras">
                         <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
                         <mat-cell *matCellDef="let element">{{specialEquipToString(element.specialEquipment)}}</mat-cell>

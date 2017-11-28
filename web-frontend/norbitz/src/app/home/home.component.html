@@ -40,7 +40,7 @@
     <br/>
     <hr/>
     <h3>Cars <i>from Hurts</i></h3>
-    <app-cars [location]="origin" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="transCarSelected = $event"></app-cars>
+    <app-cars [location]="origin" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="transCarSelected = $event" [extraCar]="false"></app-cars>
   </mat-step>
   <mat-step label="Lodging" [editable]="!checkoutComplete">
       <span class="skip-button" [ngClass]="lodgingFormDone ? 'formdone' : ''">
@@ -60,7 +60,7 @@
     </span>
     <h2>Extras</h2>
     <h3>Local Transportation <i>from Hurts</i></h3>
-    <app-cars [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="extrasCarSelected = $event"></app-cars>
+    <app-cars [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="extrasCarSelected = $event" [extraCar]="true"></app-cars>
     <br/>
     <hr>
     <h3>Local Events <i>from Sandals</i></h3>
@@ -70,7 +70,7 @@
     <h2>Review Order</h2>
     <p *ngIf="!anyFormDone">No items have been selected</p>
     <div *ngIf="anyFormDone">
-        [List pending orders here]
+        <app-orderdisplay></app-orderdisplay>
     </div>
     <br/>
     <br/>

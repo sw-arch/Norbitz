@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { UserService } from '../user/user.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material';
+import { PendingorderService } from '../pendingorder/pendingorder.service'
 
 @Component({
   selector: 'app-home',
@@ -44,7 +45,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private user: UserService,
     private router: Router,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private pending: PendingorderService,
   ) { }
 
   ngOnInit() {
@@ -69,23 +71,31 @@ export class HomeComponent implements OnInit {
     });
 
     //TODO: Remove these placeholder meant for testing
-    this.origin = this.possibleLocations[0];
+    this.origin = this.possibleLocations[2];
     this.desination = this.possibleLocations[1];
     this.startDateCF.setValue(new Date("2017-12-01T05:00:00.000Z"));
     this.endDateCF.setValue(new Date("2017-12-03T05:00:00.000Z"));    
   }
 
   search(){
-    //TODO: Clear pending orders?
+    this.showStepper = false;
+
     this.flightSelected = false;
     this.transCarSelected = false;
     this.hotelSelected = false;
     this.roomSelected = false;
     this.extrasCarSelected = false;
     this.funSelected = false;
+
     this.reviewOk = false;
     this.checkoutComplete = false;
-    this.showStepper = false;
+
+    this.pending.clearOrder();
+    this.pending.order.origin = this.origin;
+    this.pending.order.desination = this.desination;
+    this.pending.order.startDate = this.startDate;
+    this.pending.order.endDate = this.endDate;
+
     setTimeout(() => {
       this.showStepper = true;
     }, 100);

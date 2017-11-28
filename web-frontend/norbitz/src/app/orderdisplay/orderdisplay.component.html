@@ -1,0 +1,19 @@
+<div class="order">
+    <b>Origin: </b>{{pending.order.origin}}<br/>
+    <b>Desination: </b>{{pending.order.desination}}<br/>
+    <b>Departure Date: </b>{{pending.order.startDate}}<br/>
+    <b>Return Date: </b>{{pending.order.endDate}}<br/>
+    <br/>
+    <div *ngIf="pending.order.extraCarId">
+      <h3>Local Rental Car</h3>
+      <div *ngFor="let key of getKeys(pending.order.extraCarData)">
+          <b>{{key}}: </b> {{pending.order.extraCarData[key]}}
+      </div>
+    </div>
+    <div *ngIf="pending.order.transCarId">
+        <h3>Transporation Rental Car</h3>
+        <div *ngFor="let key of getKeys(pending.order.transCarData)">
+            <b>{{key}}: </b> {{pending.order.transCarData[key]}}
+        </div>
+      </div>
+</div>

@@ -23,9 +23,12 @@ import { ApiModule as HilbunModule, BASE_PATH as HilbunBasePath } from '../apis/
 import { ApiModule as HurtsModule, BASE_PATH as HurtsBasePath } from '../apis/hurts-car-rental';
 import { ApiModule as ScandalsModule, BASE_PATH as ScandalsBasePath } from '../apis/scandals';
 
+import { UserService } from './user/user.service';
+import { PendingorderService } from './pendingorder/pendingorder.service';
+
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserService } from './user/user.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -35,6 +38,7 @@ import { HotelComponent } from './hotel/hotel.component';
 import { CruisesComponent } from './cruises/cruises.component';
 import { FunComponent } from './fun/fun.component';
 import { FlightsComponent } from './flights/flights.component';
+import { OrderdisplayComponent } from './orderdisplay/orderdisplay.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +52,7 @@ import { FlightsComponent } from './flights/flights.component';
     CruisesComponent,
     FunComponent,
     FlightsComponent,
+    OrderdisplayComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +83,7 @@ import { FlightsComponent } from './flights/flights.component';
   ],
   providers: [
     UserService,
+    PendingorderService,
     { provide: AirdndBasePath, useValue: "http://35.193.67.106/AirDND/AirDND/1.0.1"},
     { provide: CarnivoreBasePath, useValue: "http://35.196.221.242"},
     { provide: DelterBasePath, useValue: "http://35.188.55.177/api/v1.0"},
