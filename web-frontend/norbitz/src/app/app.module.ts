@@ -32,6 +32,7 @@ import { HeaderComponent } from './header/header.component';
 import { LodgingComponent } from './lodging/lodging.component';
 import { ExtrasComponent } from './extras/extras.component';
 import { HotelComponent } from './hotel/hotel.component';
+import { CruisesComponent } from './cruises/cruises.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HotelComponent } from './hotel/hotel.component';
     LodgingComponent,
     ExtrasComponent,
     HotelComponent,
+    CruisesComponent,
   ],
   imports: [
     BrowserModule,
