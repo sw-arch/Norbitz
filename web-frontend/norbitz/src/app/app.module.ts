@@ -9,7 +9,10 @@ import {
   MatInputModule,
   MatNativeDateModule,
   MatCardModule,
-  MatTableModule
+  MatTableModule,
+  MatStepperModule,
+  MatIconModule,
+  MatCheckboxModule,
 } from '@angular/material';
 
 import { ApiModule as NorbitzModule } from '../apis/norbitz';
@@ -28,8 +31,6 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { LodgingComponent } from './lodging/lodging.component';
 import { ExtrasComponent } from './extras/extras.component';
-
-
 
 @NgModule({
   declarations: [
@@ -60,6 +61,12 @@ import { ExtrasComponent } from './extras/extras.component';
     HilbunModule,
     HurtsModule,
     ScandalsModule,
+    MatCardModule,
+    MatSelectModule,
+    MatTableModule,
+    MatStepperModule,
+    MatIconModule,
+    MatCheckboxModule,
   ],
   providers: [
     UserService, 
