@@ -52,12 +52,12 @@
       [Airdnd]
   </mat-step>
   <mat-step label="Extras" [stepControl]="false">
-    <span class="skip-button">
-      <button mat-button matStepperNext>Skip</button>
+    <span class="skip-button" [ngClass]="extrasFormDone ? 'formdone' : ''">
+      <button mat-button matStepperNext>{{extrasFormDone ? "Next" : "Skip"}}</button>
     </span>
     <h2>Extras</h2>
     <br/>
-    <app-extras></app-extras>
+    <app-extras [destLocation]="desination" (formDone)="extrasFormDone = $event"></app-extras>
     <br/>
     <h3>Local Events</h3>
     [Events here]

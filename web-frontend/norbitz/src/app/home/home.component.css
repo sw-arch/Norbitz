@@ -15,3 +15,8 @@ mat-form-field {
     height: 50px;
     margin-top: 15px;
 }
+
+.skip-button.formdone button {
+    background-color: #4cae4c;
+    color: white;
+}

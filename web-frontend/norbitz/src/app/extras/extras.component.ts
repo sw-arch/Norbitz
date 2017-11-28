@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserService as HurtsService, Vehicle, SpecialEquipment } from '../../apis/hurts-car-rental';
 import { MatTableDataSource, MatTable } from '@angular/material';
 
@@ -13,11 +13,15 @@ export class ExtrasComponent implements OnInit {
     private hurts: HurtsService,
   ) { }
 
-  destLocation = "Huntsville, AL";
   isLoading = true;
   displayedColumns = ['select','type','makeModel','passengers',"extras",'cost'];
   hurtsDataSource;
   selectedVehicleID = null;
+
+  @Input()
+  destLocation: string = "Huntsville, AL";
+
+  @Output() formDone = new EventEmitter();
 
   ngOnInit() {
     this.hurts.getVehicleByLocation(this.destLocation).subscribe(
@@ -39,9 +43,11 @@ export class ExtrasComponent implements OnInit {
   selectCar(vehicleID){
     if(vehicleID == this.selectedVehicleID){
       this.selectedVehicleID = null;
+      this.formDone.emit(false);
     }else{
       console.log("User selected vehicle " + vehicleID );
       this.selectedVehicleID = vehicleID;
+      this.formDone.emit(true);
     }
   }
 
