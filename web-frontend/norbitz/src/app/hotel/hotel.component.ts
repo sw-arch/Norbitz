@@ -22,14 +22,14 @@ export class HotelComponent implements OnInit {
     this.rooms.getroomById(this.id).subscribe(
       (value: any)=>{
         //Success
-        console.log("Search success for Hilbun Rooms "+this.id)
+        console.log("Search success for Hilbun Rooms "+ this.id)
         console.log(value)
         this.roomDataSource = new MatTableDataSource<Room>(value.rooms);
         this.isLoading = false;
       },
       (error)=>{
         //Error
-        console.log("Airdnd search error for "+this.id);
+        console.log("Hilbun search error for "+this.id);
         console.log(error);
       }
     );
@@ -38,6 +38,7 @@ export class HotelComponent implements OnInit {
   selectRoom(roomID){
     console.log("User selected Room: " + roomID );
   }
+
 
   // specialEquipToString(eq: SpecialEquipment){
   //   if(eq){
