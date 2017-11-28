@@ -73,7 +73,7 @@ import { HotelComponent } from './hotel/hotel.component';
   providers: [
     UserService,
     { provide: AirdndBasePath, useValue: "http://35.193.67.106/AirDND/AirDND/1.0.1"},
-    { provide: CarnivoreBasePath, useValue: ""},
+    { provide: CarnivoreBasePath, useValue: "http://35.196.221.242"},
     { provide: DelterBasePath, useValue: "http://35.188.55.177/api/v1.0"},
     { provide: HilbunBasePath, useValue: "http://35.196.7.68:3000"},
     { provide: HurtsBasePath, useValue: "http://softwarebois.com"},
