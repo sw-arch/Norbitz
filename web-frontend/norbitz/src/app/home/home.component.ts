@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../user/user.service'
+import { Observable } from 'rxjs/Rx';
+import { UserService } from '../user/user.service';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +19,11 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //Redirect user to login if not logged in
-    this.user.verifyLoggedIn()
+    this.user.isLoggedIn$().take(1).subscribe(
+      isLoggedIn => {
+        if(!isLoggedIn) this.router.navigateByUrl('/login');
+      }
+    );
   }
 
   search(){

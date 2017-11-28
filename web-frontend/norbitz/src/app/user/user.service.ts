@@ -1,30 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
+  username: BehaviorSubject<string>;
+  userdata: BehaviorSubject<Object>;
 
   constructor(
     private router: Router,
-  ) { 
-    //Not logged in by default
-    this.loggedIn = true;
+  ) {
+    this.username = new BehaviorSubject<string>(null);
+    this.userdata = new BehaviorSubject<Object>(null);
+    this.setUserFromLocalstorage();
   }
 
-  loggedIn: Boolean;
-  username: String
-  pastOrders: Object;
-
-  //Redirect user to login if not logged in
-  verifyLoggedIn(){
-    if(!this.loggedIn){
-      this.router.navigateByUrl('/login');
-    }
+  public login(data) {
+    localStorage.setItem('username', data.username);
+    localStorage.setItem('userdata', data.userdata);
+    this.setUserFromLocalstorage();
+    this.router.navigateByUrl('/home');
   }
 
-  logout(){
-    this.loggedIn = false;
+  public isLoggedIn$() {
+    return this.username.map(username => username !== null)
+  }
+
+  public logout() {
+    localStorage.removeItem('username');
+    localStorage.removeItem('userdata');
+    this.setUserFromLocalstorage();
     this.router.navigateByUrl('/login');
   }
 
+  private setUserFromLocalstorage() {
+    this.username.next(localStorage.getItem('username'));
+    this.userdata.next(localStorage.getItem('userdata'));
+  }
 }
