@@ -4,8 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
-import { 
-  MatFormFieldModule, 
+import {
+  MatFormFieldModule,
   MatInputModule,
   MatNativeDateModule,
   MatCardModule,
@@ -31,6 +31,7 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { LodgingComponent } from './lodging/lodging.component';
 import { ExtrasComponent } from './extras/extras.component';
+import { HotelComponent } from './hotel/hotel.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ExtrasComponent } from './extras/extras.component';
     HeaderComponent,
     LodgingComponent,
     ExtrasComponent,
+    HotelComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,7 @@ import { ExtrasComponent } from './extras/extras.component';
     MatCheckboxModule,
   ],
   providers: [
-    UserService, 
+    UserService,
     { provide: AirdndBasePath, useValue: "http://35.193.67.106/AirDND/AirDND/1.0.1"},
     { provide: CarnivoreBasePath, useValue: ""},
     { provide: DelterBasePath, useValue: "http://35.188.55.177/api/v1.0"},

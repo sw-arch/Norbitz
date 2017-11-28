@@ -1,0 +1,48 @@
+<h1>Book Trip Extras</h1>
+<h3>Hilbun Hotel Rooms</h3>
+<div *ngIf="isLoading">
+  <p>Loading...</p>
+</div>
+<div *ngIf="!isLoading">
+  <b>Rooms available for {{id}}</b>
+  <div id="hurtstable">
+    <mat-table #table [dataSource]="roomDataSource">
+
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button type="submit" class="btn btn-success" (click)="selectRoom(element.roomId)">Select</button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="number">
+        <mat-header-cell *matHeaderCellDef>Room Number</mat-header-cell>
+        <mat-cell *matCellDef="let element">${{element.roomNumber}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef>Room Type</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.roomType}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef>Cost / Day</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.roomCost}}.00</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef>City</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.location}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>Vacancy</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.status}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
+
