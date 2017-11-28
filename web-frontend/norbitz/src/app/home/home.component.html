@@ -30,7 +30,7 @@
   <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!origin || !desination">Search</button>
 </form>
 
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper">
   <mat-step label="Transportation" >
     <span class="skip-button">
       <button mat-button matStepperNext>Skip</button>

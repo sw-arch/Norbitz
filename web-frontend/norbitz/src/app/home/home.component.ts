@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 import { UserService } from '../user/user.service';
 import { ExtrasComponent } from '../extras/extras.component';
-import {MatIconRegistry} from '@angular/material';
 import {FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Validator, ValidationErrors, ValidatorFn } from '@angular/forms/src/directives/validators';
+import { setTimeout } from 'timers';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
 
   isLinear = true;
   reviewOk = false;
+  showStepper = false;
 
   constructor(
     private user: UserService,
@@ -41,8 +42,12 @@ export class HomeComponent implements OnInit {
   }
 
   search(){
-    //TEMP: Will prob start with transportation first
-    this.router.navigateByUrl('/book/extras');    
+    console.log(this.startDate);
+    //TODO: Clear pending orders?
+    this.showStepper = false;
+    setTimeout(() => {
+      this.showStepper = true;
+    }, 100);
   }
 
 }
