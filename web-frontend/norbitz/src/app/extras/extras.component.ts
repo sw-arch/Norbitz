@@ -20,15 +20,21 @@ export class ExtrasComponent implements OnInit {
   selectedVehicleID = null;
 
   @Input()
-  destLocation: string = "Huntsville, AL";
+  desination: string = "Huntsville, AL";
+
+  @Input()
+  fromDate: string = "2017-12-01T00:00:00";
+
+  @Input()
+  toDate: string = "2017-12-02T00:00:00";
 
   @Output() formDone = new EventEmitter();
 
   ngOnInit() {
-    this.hurts.getVehicleByLocation(this.destLocation).subscribe(
+    this.hurts.getVehicleByLocation(this.desination).subscribe(
       (value: any)=>{
         //Success
-        console.log("Hurts search success for "+this.destLocation)
+        console.log("Hurts search success for "+this.desination)
         console.log(value)
         this.hurtsVehicles = value.vehicles;
         this.hurtsDataSource = new MatTableDataSource<Vehicle>(this.hurtsVehicles); 
@@ -36,7 +42,7 @@ export class ExtrasComponent implements OnInit {
       },
       (error)=>{
         //Error
-        console.log("Hurts search error for "+this.destLocation)
+        console.log("Hurts search error for "+this.desination)
         console.log(error)
       }
     );

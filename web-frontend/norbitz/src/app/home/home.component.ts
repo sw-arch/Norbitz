@@ -61,8 +61,8 @@ export class HomeComponent implements OnInit {
     //TODO: Remove placeholder for testing
     this.origin = this.possibleLocations[0];
     this.desination = this.possibleLocations[1];
-    this.startDateCF.setValue(new Date("2017-11-01T05:00:00.000Z"));
-    this.endDateCF.setValue(new Date("2017-11-03T05:00:00.000Z"));    
+    this.startDateCF.setValue(new Date("2017-12-01T05:00:00.000Z"));
+    this.endDateCF.setValue(new Date("2017-12-03T05:00:00.000Z"));    
   }
 
   search(){
