@@ -12,7 +12,7 @@ No activities could be found for {{ location }}
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let element">
                 <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.name)" (click)="selectActivity(element.name)">
-                  {{element.name == selectedActivityName ? "Remove": "Select"}}
+                  {{selectedActivityNames.has(element.name) ? "Remove": "Select"}}
                 </button>                    
               </mat-cell>
             </ng-container>
