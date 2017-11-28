@@ -33,6 +33,7 @@ import { LodgingComponent } from './lodging/lodging.component';
 import { ExtrasComponent } from './extras/extras.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { CruisesComponent } from './cruises/cruises.component';
+import { FunComponent } from './fun/fun.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CruisesComponent } from './cruises/cruises.component';
     ExtrasComponent,
     HotelComponent,
     CruisesComponent,
+    FunComponent,
   ],
   imports: [
     BrowserModule,
