@@ -77,7 +77,7 @@ import { HotelComponent } from './hotel/hotel.component';
     { provide: DelterBasePath, useValue: "http://35.188.55.177/api/v1.0"},
     { provide: HilbunBasePath, useValue: "http://35.196.7.68:3000"},
     { provide: HurtsBasePath, useValue: "http://softwarebois.com"},
-    { provide: ScandalsBasePath, useValue: ""},
+    { provide: ScandalsBasePath, useValue: "http://35.196.71.129"},
   ],
   bootstrap: [AppComponent]
 })
