@@ -13,6 +13,9 @@ export class Order {
 
   extraCarId: any;
   extraCarData = {};
+
+  funId: any;
+  funData = {};
 }
 
 @Injectable()

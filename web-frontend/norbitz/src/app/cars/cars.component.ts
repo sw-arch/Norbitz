@@ -60,7 +60,11 @@ export class CarsComponent implements OnInit {
     if(vehicleID == this.selectedVehicleID){
       this.selectedVehicleID = null;
       this.selectionEvent.emit(false);
-      this.pending.order.extraCarId = null;
+      if(this.extraCar){
+        this.pending.order.extraCarId = null;
+      }else{
+        this.pending.order.transCarId = null;        
+      }
     }else{
       console.log("User selected vehicle " + vehicleID );
       this.selectedVehicleID = vehicleID;

@@ -16,4 +16,10 @@
             <b>{{key}}: </b> {{pending.order.transCarData[key]}}
         </div>
       </div>
+    <div *ngIf="pending.order.funId">
+        <h3>Local Events</h3>
+        <div *ngFor="let key of getKeys(pending.order.funData)">
+            <b>{{key}}: </b> {{pending.order.funData[key]}}
+        </div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { DefaultService as ScandalsService, Activity } from '../../apis/scandals';
 import { MatTableDataSource, MatTable } from '@angular/material';
+import { PendingorderService } from '../pendingorder/pendingorder.service'
 
 @Component({
   selector: 'app-fun',
@@ -10,11 +11,15 @@ import { MatTableDataSource, MatTable } from '@angular/material';
 export class FunComponent implements OnInit {
   isLoading: boolean = true;
   scandalsActivities: Array<Activity>;
+  scandalsActivitiesArr: Array<Activity>;  
   scandalsDataSource: MatTableDataSource<Activity>;
   displayedColumns = ['select', 'name', 'description', 'location', 'quantity', 'time', 'cost'];
   selectedActivityName = null;
 
-  constructor(private scandals: ScandalsService) { }
+  constructor(
+    private scandals: ScandalsService,
+    private pending: PendingorderService,   
+  ) { }
 
   @Input()
   location: string = "Huntsville, AL";
@@ -25,7 +30,7 @@ export class FunComponent implements OnInit {
   @Input()
   toDate: string = "2017-12-02T00:00:00";
 
-  //Output an event when a car is selected/deselected
+  //Output an event when a event is selected/deselected
   @Output()
   selectionEvent = new EventEmitter();
 
@@ -40,8 +45,9 @@ export class FunComponent implements OnInit {
         return arr;
       })
       .subscribe((data) => {
-        this.scandalsDataSource = new MatTableDataSource<Activity>(data); 
+        this.scandalsDataSource = new MatTableDataSource<Activity>(data);
         this.isLoading = false;
+        this.scandalsActivitiesArr = data;
       }
     )
   }
@@ -53,9 +59,16 @@ export class FunComponent implements OnInit {
   selectActivity(activityName){
     if (activityName == this.selectedActivityName) {
       this.selectedActivityName = null;
+      this.pending.order.funId = null;      
       this.selectionEvent.emit(false);
     } else {
       this.selectedActivityName = activityName;
+      let activity:Activity = this.scandalsActivitiesArr.find((val)=>val.name==activityName);   
+      this.pending.order.funId = activityName;
+      this.pending.order.funData['Name'] = activity.name;
+      this.pending.order.funData['Location'] = activity.location;
+      this.pending.order.funData['Date and Time'] = activity.time;      
+      this.pending.order.funData['Cost'] = activity.cost;
       this.selectionEvent.emit(true);
     }
   }
