@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   origin;
   desination;
 
+  searchFormGroup: FormGroup;
   reviewFormGroup: FormGroup;
 
   isLinear = true;
@@ -38,6 +39,15 @@ export class HomeComponent implements OnInit {
     this.reviewFormGroup = this._formBuilder.group({
       cbCtrl: [false, Validators.required]
     });
+    this.searchFormGroup = this._formBuilder.group({
+      'origin': '',
+      'desination': ''
+    });
+    this.searchFormGroup.valueChanges.subscribe(data => {
+      if(this.showStepper){
+        this.search();
+      }
+    });    
   }
 
   search(){

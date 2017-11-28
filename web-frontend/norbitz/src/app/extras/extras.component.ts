@@ -16,6 +16,7 @@ export class ExtrasComponent implements OnInit {
   isLoading = true;
   displayedColumns = ['select','type','makeModel','passengers',"extras",'cost'];
   hurtsDataSource;
+  hurtsVehicles;
   selectedVehicleID = null;
 
   @Input()
@@ -29,7 +30,8 @@ export class ExtrasComponent implements OnInit {
         //Success
         console.log("Airdnd search success for "+this.destLocation)
         console.log(value)
-        this.hurtsDataSource = new MatTableDataSource<Vehicle>(value.vehicles);        
+        this.hurtsVehicles = value.vehicles;
+        this.hurtsDataSource = new MatTableDataSource<Vehicle>(this.hurtsVehicles); 
         this.isLoading = false;
       },
       (error)=>{

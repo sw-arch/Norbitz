@@ -1,15 +1,15 @@
 <h1>Home</h1>
 
-<form>    
+<form [formGroup]="searchFormGroup">    
   <mat-form-field>
-    <mat-select placeholder="Origin City" [(value)]="origin" required>
+    <mat-select placeholder="Origin City" [(value)]="origin" formControlName="origin" required>
       <mat-option value="Starkvile, MS">Starkvile, MS</mat-option>
       <mat-option value="Atlanta, GA">Atlanta, GA</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Desination City" [(value)]="desination" required>
+    <mat-select placeholder="Desination City" [(value)]="desination" formControlName="desination" required>
       <mat-option value="Starkvile, MS">Starkvile, MS</mat-option>
       <mat-option value="Atlanta, GA">Atlanta, GA</mat-option>
     </mat-select>
