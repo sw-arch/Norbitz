@@ -1,29 +1,32 @@
 <div class="order">
-    <b>Origin: </b>{{pending.order.origin}}<br/>
-    <b>Desination: </b>{{pending.order.desination}}<br/>
-    <b>Departure Date: </b>{{pending.order.startDate}}<br/>
-    <b>Return Date: </b>{{pending.order.endDate}}<br/>
+    <b>Origin: </b>{{order.origin}}<br/>
+    <b>Desination: </b>{{order.desination}}<br/>
+    <b>Departure Date: </b>{{toDateDisplayString(order.startDate)}}<br/>
+    <b>Return Date: </b>{{toDateDisplayString(order.endDate)}}<br/>
     <br/>
-    <div *ngIf="pending.order.transCarId">
+    <div *ngIf="order.transCarId">
         <h3>Transporation Rental Car</h3>
-        <div *ngFor="let key of getKeys(pending.order.transCarData)">
-            <b>{{key}}: </b> {{pending.order.transCarData[key]}}
+        <div *ngFor="let key of getKeys(order.transCarData)">
+            <b>{{key}}: </b> {{order.transCarData[key]}}
         </div>
     </div>
-    <div *ngIf="pending.order.extraCarId">
+    <div *ngIf="order.extraCarId">
       <h3>Local Rental Car</h3>
-      <div *ngFor="let key of getKeys(pending.order.extraCarData)">
-          <b>{{key}}: </b> {{pending.order.extraCarData[key]}}
+      <div *ngFor="let key of getKeys(order.extraCarData)">
+          <b>{{key}}: </b> {{order.extraCarData[key]}}
       </div>
     </div>
-    <div *ngIf="pending.order.funIdsAll.size > 0">
+    <div *ngIf="order.funIdsAll.size > 0">
         <h3>Local Events</h3>
-        <div *ngFor="let activity of pending.order.funIdsAll">
+        <div *ngFor="let activity of order.funIdsAll">
             <b>Activity: </b> {{activity}}<br/>
             <b>Location: </b> {{getActivity(activity).location}}<br/>
-            <b>Date/Time: </b> {{getActivity(activity).time}}<br/>        
-            <b>Cost: </b> {{getActivity(activity).cost}}<br/>
+            <b>Date/Time: </b> {{toDateTimeDisplayString(getActivity(activity).time)}}<br/>        
+            <b>Cost: </b> ${{getActivity(activity).cost.toFixed(2)}}<br/>
             <br/>
         </div>
     </div>
+    <br/>
+    <br/>
+    <b>GRAND TOTAL:</b> ${{usedSavedTotals ? order.savedTotalCost.toFixed(2) : order.calculatedTotalCost.toFixed(2)}}
 </div>

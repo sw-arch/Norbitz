@@ -70,7 +70,7 @@
     <h2>Review Order</h2>
     <p *ngIf="!anyFormDone">No items have been selected</p>
     <div *ngIf="anyFormDone">
-        <app-orderdisplay></app-orderdisplay>
+        <app-orderdisplay [order]="pending.order"></app-orderdisplay>
     </div>
     <br/>
     <br/>
@@ -83,6 +83,7 @@
     </form>
   </mat-step>
   <mat-step label="Finish" [stepControl]="false">
-    [Confimation]
+    <h2>Order Complete</h2>
+    <app-orderdisplay [order]="finalOrder" [usedSavedTotals]="true"></app-orderdisplay>
   </mat-step>
 </mat-horizontal-stepper>

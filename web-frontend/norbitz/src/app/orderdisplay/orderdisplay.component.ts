@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PendingorderService } from '../pendingorder/pendingorder.service'
+import { Component, OnInit, Input } from '@angular/core';
+import { Order } from '../pendingorder/order'
 
 @Component({
   selector: 'app-orderdisplay',
@@ -8,7 +8,13 @@ import { PendingorderService } from '../pendingorder/pendingorder.service'
 })
 export class OrderdisplayComponent implements OnInit {
 
-  constructor(private pending: PendingorderService) { }
+  constructor() { }
+
+  @Input()
+  order: Order;
+
+  @Input()
+  usedSavedTotals: Boolean = false;
 
   ngOnInit() {
   }
@@ -17,8 +23,17 @@ export class OrderdisplayComponent implements OnInit {
     return Object.keys(ojb);
   }
 
+  toDateDisplayString(orgDate){
+    return new Date(orgDate).toLocaleDateString();
+  }
+
+  toDateTimeDisplayString(orgDate){
+    let dateObj:Date = new Date(orgDate);
+    return dateObj.toLocaleDateString() + " at " + dateObj.toLocaleTimeString();
+  }
+
   getActivity(activityName){
-    return this.pending.order.funDataAll.find((val)=>val.name==activityName);
+    return this.order.funDataAll.find((val)=>val.name==activityName);
   }
 
 }

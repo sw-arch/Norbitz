@@ -78,7 +78,12 @@ export class CarsComponent implements OnInit {
       orderObj['Type'] = vehicle.type;
       orderObj['Make/Model'] = vehicle.year + " " + vehicle.make + " " + vehicle.model;    
       orderObj['Special Equipment'] = this.specialEquipToString(vehicle.specialEquipment);
-      orderObj['Cost/Day'] = vehicle.cost;    
+      orderObj['Cost/Day'] = "$"+vehicle.cost.toFixed(2);
+      if(this.extraCar){
+        this.pending.order.extraCarCostPerDay = vehicle.cost;
+      }else{
+        this.pending.order.transCarCostPerDay = vehicle.cost;        
+      }
       this.selectionEvent.emit(true);
     }
   }

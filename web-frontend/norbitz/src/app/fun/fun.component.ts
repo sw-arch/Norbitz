@@ -68,4 +68,9 @@ export class FunComponent implements OnInit {
       this.selectionEvent.emit(true);
     }
   }
+
+  toDateTimeDisplayString(orgDate){
+    let dateObj:Date = new Date(orgDate);
+    return dateObj.toLocaleDateString() + " at " + dateObj.toLocaleTimeString();
+  }
 }

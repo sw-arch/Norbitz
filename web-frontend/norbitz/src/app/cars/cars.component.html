@@ -20,7 +20,7 @@ No vehicles could be found for {{location}}
 
             <ng-container matColumnDef="cost">
                     <mat-header-cell *matHeaderCellDef>Cost/day</mat-header-cell>
-                    <mat-cell *matCellDef="let element">${{element.cost}}.00</mat-cell>
+                    <mat-cell *matCellDef="let element">${{element.cost.toFixed(2)}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="makeModel">

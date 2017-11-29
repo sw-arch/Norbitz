@@ -34,7 +34,7 @@ No activities could be found for {{ location }}
 
             <ng-container matColumnDef="time">
                 <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.time}}</mat-cell>
+                <mat-cell *matCellDef="let element">{{toDateTimeDisplayString(element.time)}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="quantity">
@@ -44,7 +44,7 @@ No activities could be found for {{ location }}
 
             <ng-container matColumnDef="cost">
                 <mat-header-cell *matHeaderCellDef>Cost</mat-header-cell>
-                <mat-cell *matCellDef="let element">${{element.cost}}</mat-cell>
+                <mat-cell *matCellDef="let element">${{element.cost.toFixed(2)}}</mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

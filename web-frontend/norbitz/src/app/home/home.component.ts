@@ -5,6 +5,7 @@ import { UserService } from '../user/user.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material';
 import { PendingorderService } from '../pendingorder/pendingorder.service'
+import { Order } from '../pendingorder/order'
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,7 @@ export class HomeComponent implements OnInit {
   isLinear = true;
   reviewOk = false;
   showStepper = false;
+  finalOrder:Order = new Order();
 
   flightSelected = false;
   transCarSelected = false;
@@ -107,6 +109,8 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       stepper.next();
       console.log("TODO: Place order(s)");
+      let str:string = this.pending.getString();
+      this.finalOrder = JSON.parse(str);
     }, 30);
   }
 
