@@ -16,7 +16,7 @@
           <b>{{key}}: </b> {{order.extraCarData[key]}}
       </div>
     </div>
-    <div *ngIf="order.funIdsArr.length > 0">
+    <div *ngIf="order.funIdsArr && order.funIdsArr.length > 0">
         <h3>Local Events</h3>
         <div *ngFor="let activity of order.funIdsArr">
             <b>Activity: </b> {{activity}}<br/>

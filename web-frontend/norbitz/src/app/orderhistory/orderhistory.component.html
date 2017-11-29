@@ -1,1 +1,12 @@
 <h1>Order History</h1>
+<div *ngIf="!ordersLoaded">
+  Loading...
+</div>
+<div *ngIf="ordersLoaded">
+  <div *ngFor="let order of orders">
+    <app-orderdisplay [order]="order" [usedSavedTotals]="true"></app-orderdisplay>
+    <br/>
+    <hr/>
+    <br/>
+  </div>
+</div>
