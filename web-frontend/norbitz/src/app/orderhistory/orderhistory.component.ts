@@ -19,6 +19,10 @@ export class OrderhistoryComponent implements OnInit {
   orders: Array<Order> = new Array<Order>();
 
   ngOnInit() {
+    this.loadOrders();
+  }
+
+  loadOrders(){
     this.norbitzPrivate.load(this.user.username.getValue()).subscribe(
       (data)=>{
         //Success
@@ -34,6 +38,29 @@ export class OrderhistoryComponent implements OnInit {
         console.log("Save load failure!")
         console.log(error)
         this.ordersLoaded = true;        
+      }
+    );
+  }
+
+  clearOrderHistory(){
+    this.ordersLoaded = false;
+    this.norbitzPrivate._delete(this.user.username.getValue()).subscribe(
+      (data)=>{
+        //Success
+        console.log("Orders deleted")
+        this.ordersLoaded = true;
+        this.orders = new Array<Order>();
+      },
+      (error)=>{
+        //Error
+        if(error && error.status == 200){
+          console.log("Orders deleted")
+          this.ordersLoaded = true;
+          this.orders = new Array<Order>();
+        }else{
+          console.log("Failure clearning orders!")
+          console.log(error);
+        }
       }
     );
   }

@@ -3,10 +3,17 @@
   Loading...
 </div>
 <div *ngIf="ordersLoaded">
+  <div *ngIf="orders.length == 0">
+    No orders to display.
+  </div>
   <div *ngFor="let order of orders">
     <app-orderdisplay [order]="order" [usedSavedTotals]="true"></app-orderdisplay>
     <br/>
     <hr/>
     <br/>
   </div>
+</div>
+<br/>
+<div style="text-align: right;" *ngIf="orders.length > 0" class="clearorders">
+  <button mat-button (click)="clearOrderHistory()" >Clear Order History</button>   
 </div>
