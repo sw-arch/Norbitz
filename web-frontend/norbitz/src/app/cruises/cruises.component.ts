@@ -35,7 +35,7 @@ export class CruisesComponent implements OnInit {
         //Success
         console.log("Carnivore search success for "+ this.city + ', ' + this.state);
         console.log(value);
-        this.cruiseItems = value.cruises;
+        this.cruiseItems = value.cruiseItems;
         this.cruiseDataSource = new MatTableDataSource<CruiseItem>(this.cruiseItems);
         this.isLoading = false;
       },
