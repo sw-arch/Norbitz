@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrivateService as NorbitzPrivateService } from '../../apis/norbitz';
 import { UserService } from '../user/user.service';
 import { Order } from '../pendingorder/order'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orderhistory',
@@ -12,7 +13,8 @@ export class OrderhistoryComponent implements OnInit {
 
   constructor(
     private norbitzPrivate: NorbitzPrivateService,
-    private user: UserService,    
+    private user: UserService,
+    private router: Router,    
   ) { }
 
   ordersLoaded: boolean = false;
@@ -63,6 +65,10 @@ export class OrderhistoryComponent implements OnInit {
         }
       }
     );
+  }
+
+  goHome(){
+    this.router.navigateByUrl('/home');
   }
 
 }

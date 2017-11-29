@@ -85,5 +85,8 @@
   <mat-step label="Finish" [stepControl]="false">
     <h2>Order Complete</h2>
     <app-orderdisplay [order]="finalOrder" [usedSavedTotals]="true"></app-orderdisplay>
+    <div style="text-align: right;" class="formdone">
+      <button mat-button (click)="viewPastOrders()">View Past Orders</button>   
+    </div>
   </mat-step>
 </mat-horizontal-stepper>
