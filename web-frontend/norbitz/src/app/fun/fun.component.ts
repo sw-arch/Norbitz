@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
-import { DefaultService as ScandalsService, Activity } from '../../apis/scandals';
 import { MatTableDataSource, MatTable } from '@angular/material';
 import { PendingorderService } from '../pendingorder/pendingorder.service'
+import { DefaultService as ScandalsService, Activity } from '../../apis/scandals';
 
 @Component({
   selector: 'app-fun',
@@ -11,7 +11,6 @@ import { PendingorderService } from '../pendingorder/pendingorder.service'
 export class FunComponent implements OnInit {
   isLoading: boolean = true;
   scandalsActivities: Array<Activity>;
-  scandalsActivitiesArr: Array<Activity>;  
   scandalsDataSource: MatTableDataSource<Activity>;
   displayedColumns = ['select', 'name', 'description', 'location', 'quantity', 'time', 'cost'];
   selectedActivityNames: Set<string> = new Set<string>();
@@ -47,7 +46,6 @@ export class FunComponent implements OnInit {
       .subscribe((data) => {
         this.scandalsDataSource = new MatTableDataSource<Activity>(data);
         this.isLoading = false;
-        this.scandalsActivitiesArr = data;
       }
     )
   }
@@ -64,7 +62,7 @@ export class FunComponent implements OnInit {
     } else {
       this.selectedActivityNames.add(activityName);
       this.pending.order.funIdsAll = this.selectedActivityNames;  
-      this.pending.order.funDataAll = this.scandalsActivitiesArr;
+      this.pending.order.funDataAll = this.scandalsActivities;
       this.selectionEvent.emit(true);
     }
   }
