@@ -36,7 +36,7 @@
     <h2>Transportation</h2>
     <br/>
     <h3>Flights <i>from Delter</i></h3>
-    <app-flights></app-flights>
+    <app-flights [origin]="origin" [destination]="destination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="flightSelected = $event"></app-flights>
     <br/>
     <hr/>
     <h3>Cars <i>from Hurts</i></h3>

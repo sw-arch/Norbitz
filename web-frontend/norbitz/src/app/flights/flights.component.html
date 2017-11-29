@@ -1,3 +1,9 @@
-<p>
-  flights works!
-</p>
+<div *ngIf="isLoading">
+  <p>Loading...</p>
+</div>
+<div *ngIf="!isLoading && !flights">
+No flights could be found for {{location}}
+</div>
+<div *ngIf="!isLoading && flights">
+  <b>Flights avalible for {{location}}</b>
+</div>
