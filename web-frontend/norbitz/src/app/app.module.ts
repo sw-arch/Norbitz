@@ -26,13 +26,12 @@ import { ApiModule as ScandalsModule, BASE_PATH as ScandalsBasePath } from '../a
 import { UserService } from './user/user.service';
 import { PendingorderService } from './pendingorder/pendingorder.service';
 
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { LodgingComponent } from './lodging/lodging.component';
+import { HomestaysComponent } from './homestays/homestays.component';
 import { CarsComponent } from './cars/cars.component';
 import { HotelComponent } from './hotel/hotel.component';
 import { CruisesComponent } from './cruises/cruises.component';
@@ -46,7 +45,7 @@ import { OrderdisplayComponent } from './orderdisplay/orderdisplay.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    LodgingComponent,
+    HomestaysComponent,
     CarsComponent,
     HotelComponent,
     CruisesComponent,
