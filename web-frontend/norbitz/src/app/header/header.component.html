@@ -1,7 +1,9 @@
 <div id="header">
-  <span id="title">Norbitz Travel</span>
+  <span id="title" (click)="homeClicked()">Norbitz Travel</span>
   <span *ngIf="this.isLoggedIn$ | async" id="userinfo">
     Welcome {{ this.username | async }}!
+    &nbsp;    
+    <button type="submit" class="btn" (click)="pastOrdersClicked()">Past Orders</button>    
     &nbsp;
     <button type="submit" class="btn" (click)="this.user.logout()">Logout</button>
   </span>

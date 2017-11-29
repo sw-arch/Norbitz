@@ -38,6 +38,7 @@ import { CruisesComponent } from './cruises/cruises.component';
 import { FunComponent } from './fun/fun.component';
 import { FlightsComponent } from './flights/flights.component';
 import { OrderdisplayComponent } from './orderdisplay/orderdisplay.component';
+import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { OrderdisplayComponent } from './orderdisplay/orderdisplay.component';
     FunComponent,
     FlightsComponent,
     OrderdisplayComponent,
+    OrderhistoryComponent,
   ],
   imports: [
     BrowserModule,
