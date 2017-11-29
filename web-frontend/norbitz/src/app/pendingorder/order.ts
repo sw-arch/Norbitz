@@ -1,5 +1,3 @@
-import { forEach } from "@angular/router/src/utils/collection";
-
 export class Order {
     constructor() { }
 
@@ -21,10 +19,6 @@ export class Order {
     funIdsArr: string[] = [];
 
     savedTotalCost: number = 0.0;
-
-    updateFunIdsArr(){
-        this.funIdsArr = Array.from(this.funIds);
-    }
     
     get startDateDate():Date {
         return new Date(this.startDate);
@@ -58,4 +52,9 @@ export class Order {
     private msToDays(seconds: number):number {
         return Math.ceil(seconds/1000/60/60/24);
     }
+
+    public updateFunIdsArr(){
+        this.funIdsArr = Array.from(this.funIds);
+    }
+
 }

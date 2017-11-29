@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { MatStepper } from '@angular/material';
 import { PendingorderService } from '../pendingorder/pendingorder.service'
 import { Order } from '../pendingorder/order'
+import { PrivateService as NorbitzPrivateService } from '../../apis/norbitz';
 
 @Component({
   selector: 'app-home',
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private _formBuilder: FormBuilder,
     private pending: PendingorderService,
+    private norbitzPrivate: NorbitzPrivateService,    
   ) { }
 
   ngOnInit() {
@@ -109,10 +111,29 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       stepper.next();
       console.log("TODO: Place order(s)");
+      this.saveOrderToServer()
       let str:string = this.pending.getString();
       console.log(str);
       this.finalOrder = JSON.parse(str);
     }, 30);
   }
+
+  public saveOrderToServer(){
+    this.norbitzPrivate.save({
+        username: this.user.username.getValue(),
+        order: this.pending.getString(),
+      }).subscribe(
+        (data)=>{
+          //Success
+          console.log("Save data success")
+          console.log(data)
+        },
+        (error)=>{
+          //Error
+          console.log("Save data failure!")
+          console.log(error)
+        }
+      );
+}
 
 }
