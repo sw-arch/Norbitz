@@ -11,7 +11,7 @@
  */
 
 
-export interface Credential {
+export interface OrderMessage {
     username: string;
-    password: string;
+    order: string;
 }
