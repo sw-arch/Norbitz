@@ -19,7 +19,12 @@ export class Order {
     funIdsArr: string[] = [];
 
     savedTotalCost: number = 0.0;
-    
+
+    selectedCruiseId: any;
+    selectedCruiseData = {};
+    cruiseCostPerDay: number = 0.0;
+
+  
     get startDateDate():Date {
         return new Date(this.startDate);
     }
@@ -53,8 +58,10 @@ export class Order {
         return Math.ceil(seconds/1000/60/60/24);
     }
 
+
     public updateFunIdsArr(){
         this.funIdsArr = Array.from(this.funIds);
     }
 
 }
+

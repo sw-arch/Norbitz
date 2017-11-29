@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import { DevelopersService, CruiseItem, HistoryItem, AdminsService } from '../../apis/carnivore-cruise-lines';
 import { MatTableDataSource, MatTable } from '@angular/material';
+import { PendingorderService } from '../pendingorder/pendingorder.service'
 
 @Component({
   selector: 'app-cruises',
@@ -11,7 +12,7 @@ export class CruisesComponent implements OnInit {
 
   constructor(
     private cruises: DevelopersService,
-    private admins: AdminsService,
+    private pending: PendingorderService,
   ) { }
 
   isLoading = true;
@@ -54,41 +55,18 @@ export class CruisesComponent implements OnInit {
     }else{
       console.log("User selected Cruise " + cruiseId );
       this.selectedCruise = cruiseId;
+      let cruise:CruiseItem = this.cruiseItems.find((val)=>val.cruiseLinerID==cruiseId);
+      var orderObj = this.pending.order.selectedCruiseId;
+      orderObj['Port'] = cruise.fromLocation;
+      orderObj['Name'] = cruise.name;
+      orderObj['Room Capacity'] = cruise.roomCapacity;
+      orderObj['Room ID'] = cruise.roomID;
+      orderObj['Duration'] = cruise.duration;
+      orderObj['Cost/Day'] = "$"+cruise.price.toFixed(2);
       this.formDone.emit(true);
     }
   }
 
-//
-//   if(vehicleID == this.selectedVehicleID){
-//   this.selectedVehicleID = null;
-//   this.selectionEvent.emit(false);
-//   if(this.extraCar){
-//   this.pending.order.extraCarId = null;
-// }else{
-//   this.pending.order.transCarId = null;
-// }
-// }else{
-//   this.selectedVehicleID = vehicleID;
-//   if(this.extraCar){
-//     this.pending.order.extraCarId = vehicleID;
-//   }else{
-//     this.pending.order.transCarId = vehicleID;
-//   }
-//   let vehicle:Vehicle = this.hurtsVehicles.find((val)=>val.vehicleID==vehicleID);
-//   var orderObj = this.extraCar ? this.pending.order.extraCarData : this.pending.order.transCarData;
-//   orderObj['Pickup Location'] = vehicle.location;
-//   orderObj['Type'] = vehicle.type;
-//   orderObj['Make/Model'] = vehicle.year + " " + vehicle.make + " " + vehicle.model;
-//   orderObj['Special Equipment'] = this.specialEquipToString(vehicle.specialEquipment);
-//   orderObj['Cost/Day'] = "$"+vehicle.cost.toFixed(2);
-//   if(this.extraCar){
-//     this.pending.order.extraCarCostPerDay = vehicle.cost;
-//   }else{
-//     this.pending.order.transCarCostPerDay = vehicle.cost;
-//   }
-//   this.selectionEvent.emit(true);
-// }
-// }
   buttonStyle(Id){
     return Id == this.selectedCruise? "bselected" : "bregular";
   }
