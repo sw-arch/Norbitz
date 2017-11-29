@@ -18,14 +18,16 @@ export class HomeComponent implements OnInit {
 
   origin;
   desination;
- 
+  port;
+
   private emptyDate: Date;
   private startDateCF = new FormControl({value: this.emptyDate, disabled: true, required: true});
   private endDateCF = new FormControl({value: this.emptyDate, disabled: true, required: true});
   get startDate(){ return this.startDateCF.value.toISOString().substr(0,19); }
   get endDate(){ return this.endDateCF.value.toISOString().substr(0,19); };
-  
+
   searchFormGroup: FormGroup;
+  cruiseFormGroup: FormGroup;
   reviewFormGroup: FormGroup;
 
   isLinear = true;
@@ -40,17 +42,17 @@ export class HomeComponent implements OnInit {
   extrasCarSelected = false;
   funSelected = false;
   checkoutComplete = false;
-  get transportationFormDone(){ return this.flightSelected || this.transCarSelected; }  
-  get lodgingFormDone(){ return this.hotelSelected || this.roomSelected; }  
-  get extrasFormDone(){ return this.extrasCarSelected || this.funSelected; }  
-  get anyFormDone(){ return this.transportationFormDone || this.lodgingFormDone || this.extrasFormDone; }  
-  
+  get transportationFormDone(){ return this.flightSelected || this.transCarSelected; }
+  get lodgingFormDone(){ return this.hotelSelected || this.roomSelected; }
+  get extrasFormDone(){ return this.extrasCarSelected || this.funSelected; }
+  get anyFormDone(){ return this.transportationFormDone || this.lodgingFormDone || this.extrasFormDone; }
+
   constructor(
     private user: UserService,
     private router: Router,
     private _formBuilder: FormBuilder,
     private pending: PendingorderService,
-    private norbitzPrivate: NorbitzPrivateService,    
+    private norbitzPrivate: NorbitzPrivateService,
   ) { }
 
   ngOnInit() {
@@ -68,6 +70,12 @@ export class HomeComponent implements OnInit {
       'startDate': this.startDateCF,
       'endDate': this.endDateCF,
     });
+    this.cruiseFormGroup = this._formBuilder.group({
+      'port': '',
+      // 'desination': '',
+      // 'startDate': this.startDateCF,
+      // 'endDate': this.endDateCF,
+    });
     this.searchFormGroup.valueChanges.subscribe(data => {
       if(this.showStepper){
         this.search();
@@ -77,8 +85,9 @@ export class HomeComponent implements OnInit {
     //TODO: Remove these placeholder meant for testing
     this.origin = this.possibleLocations[2];
     this.desination = this.possibleLocations[1];
+    this.port = this.possibleLocations[1];
     this.startDateCF.setValue(new Date("2017-12-01T05:00:00.000Z"));
-    this.endDateCF.setValue(new Date("2017-12-03T05:00:00.000Z"));    
+    this.endDateCF.setValue(new Date("2017-12-03T05:00:00.000Z"));
   }
 
   search(){

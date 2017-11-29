@@ -1,31 +1,46 @@
 <h1>Home</h1>
 
-<form [formGroup]="searchFormGroup">    
-  <mat-form-field>
-    <mat-select placeholder="Origin City" [(ngModel)]="origin" formControlName="origin" required>
-      <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<form>
+  <input type="radio" [(ngModel)]="value" name="trip" value="trip" placeholder="Book a Trip"/>
+  <input type="radio" [(ngModel)]="value" name="trip" value="cruise"/>
 
-  <mat-form-field>
-    <mat-select placeholder="Desination City" [(ngModel)]="desination" formControlName="desination" required>
-        <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>        
-    </mat-select>
-  </mat-form-field>
+  
+  <form [formGroup]="searchFormGroup" *ngIf="value == 'trip'" >
+    <mat-form-field>
+      <mat-select placeholder="Origin City" [(ngModel)]="origin" formControlName="origin" required>
+        <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field (click)="pickerStart.open()">
-    <input matInput [matDatepicker]="pickerStart" placeholder="Departure Date" [formControl]="startDateCF" formControlName="startDate" required>
-    <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
-    <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Desination City" [(ngModel)]="desination" formControlName="desination" required>
+          <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field (click)="pickerEnd.open()">
-    <input matInput [matDatepicker]="pickerEnd" placeholder="Return Date" [formControl]="endDateCF" formControlName="endDate" required>
-    <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
-    <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
-  </mat-form-field>
+    <mat-form-field (click)="pickerStart.open()">
+      <input matInput [matDatepicker]="pickerStart" placeholder="Departure Date" [formControl]="startDateCF" formControlName="startDate" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+      <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
+    </mat-form-field>
 
-  <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!this.searchFormGroup.valid">Search</button>
+    <mat-form-field (click)="pickerEnd.open()">
+      <input matInput [matDatepicker]="pickerEnd" placeholder="Return Date" [formControl]="endDateCF" formControlName="endDate" required>
+      <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+      <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
+    </mat-form-field>
+
+    <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!this.searchFormGroup.valid">Search</button>
+  </form>
+
+  <form [formGroup]="cruiseFormGroup" *ngIf="value == 'cruise'">
+    <p>Cruises</p>
+    <mat-form-field>
+      <mat-select placeholder="Port" [(ngModel)]="port" formControlName="port" required>
+        <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
 </form>
 
 <mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper">
@@ -75,7 +90,7 @@
     <br/>
     <br/>
     <div style="text-align: right;" class="formdone">
-      <button mat-button (click)="placeOrder(stepper)" [disabled]="!anyFormDone">Place Order</button>   
+      <button mat-button (click)="placeOrder(stepper)" [disabled]="!anyFormDone">Place Order</button>
     </div>
     <!--Hidden checkbox that will permit the user to continue when checked-->
     <form [formGroup]="reviewFormGroup">
