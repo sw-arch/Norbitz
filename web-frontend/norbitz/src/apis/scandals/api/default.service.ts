@@ -85,7 +85,7 @@ export class DefaultService {
             queryParameters = queryParameters.set('cost', <any>cost);
         }
         if (location !== undefined) {
-            queryParameters = queryParameters.set('Location', <any>location);
+            queryParameters = queryParameters.set('location', <any>location);
         }
         if (endDate !== undefined) {
             queryParameters = queryParameters.set('endDate', <any>endDate);

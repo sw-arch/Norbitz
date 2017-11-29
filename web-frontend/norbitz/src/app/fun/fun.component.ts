@@ -34,7 +34,7 @@ export class FunComponent implements OnInit {
   selectionEvent = new EventEmitter();
 
   ngOnInit() {
-    this.scandals.activityGet()
+    this.scandals.activityGet(null,null,null,this.location)
       .map((data: any) => {
         this.scandalsActivities = new Array<Activity>();
         for (var key in data.activities) {
