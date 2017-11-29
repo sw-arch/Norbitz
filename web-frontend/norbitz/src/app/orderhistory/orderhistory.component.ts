@@ -71,4 +71,8 @@ export class OrderhistoryComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  toDateDisplayString(orgDate){
+    return new Date(orgDate).toLocaleDateString();
+  }
+
 }
