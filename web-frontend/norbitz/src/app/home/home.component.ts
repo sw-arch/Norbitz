@@ -110,6 +110,7 @@ export class HomeComponent implements OnInit {
       stepper.next();
       console.log("TODO: Place order(s)");
       let str:string = this.pending.getString();
+      console.log(str);
       this.finalOrder = JSON.parse(str);
     }, 30);
   }

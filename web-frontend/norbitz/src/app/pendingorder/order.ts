@@ -16,10 +16,15 @@ export class Order {
     extraCarData = {};
     extraCarCostPerDay:number = 0.0;
 
-    funIdsAll: Set<string> = new Set<string>();;
+    funIds: Set<string> = new Set<string>();
     funDataAll: any;
+    funIdsArr: string[] = [];
 
     savedTotalCost: number = 0.0;
+
+    updateFunIdsArr(){
+        this.funIdsArr = Array.from(this.funIds);
+    }
     
     get startDateDate():Date {
         return new Date(this.startDate);
@@ -42,7 +47,7 @@ export class Order {
         if(this.extraCarId){
             total += this.extraCarCostPerDay * this.daysDuration;
         }
-        this.funIdsAll.forEach((activityName)=>{
+        this.funIds.forEach((activityName)=>{
             var funData = this.funDataAll.find((val)=>val.name==activityName);
             total += funData.cost;
         });

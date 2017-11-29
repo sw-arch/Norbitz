@@ -16,9 +16,9 @@
           <b>{{key}}: </b> {{order.extraCarData[key]}}
       </div>
     </div>
-    <div *ngIf="order.funIdsAll.size > 0">
+    <div *ngIf="order.funIdsArr.length > 0">
         <h3>Local Events</h3>
-        <div *ngFor="let activity of order.funIdsAll">
+        <div *ngFor="let activity of order.funIdsArr">
             <b>Activity: </b> {{activity}}<br/>
             <b>Location: </b> {{getActivity(activity).location}}<br/>
             <b>Date/Time: </b> {{toDateTimeDisplayString(getActivity(activity).time)}}<br/>        

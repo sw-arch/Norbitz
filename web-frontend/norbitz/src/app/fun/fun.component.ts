@@ -56,13 +56,17 @@ export class FunComponent implements OnInit {
   selectActivity(activityName){
     if (this.selectedActivityNames.has(activityName)) {
       this.selectedActivityNames.delete(activityName);
-      this.pending.order.funIdsAll = this.selectedActivityNames;      
-      this.selectionEvent.emit(false);
     } else {
       this.selectedActivityNames.add(activityName);
-      this.pending.order.funIdsAll = this.selectedActivityNames;  
-      this.pending.order.funDataAll = this.scandalsActivities;
-      this.selectionEvent.emit(true);
+    }
+    this.pending.order.funDataAll = this.scandalsActivities;      
+    this.pending.order.funIds = this.selectedActivityNames;      
+    this.pending.order.updateFunIdsArr();
+
+    if(this.selectedActivityNames.size > 0){
+      this.selectionEvent.emit(true);      
+    }else{
+      this.selectionEvent.emit(false);
     }
   }
 
