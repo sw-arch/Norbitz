@@ -3,8 +3,7 @@ import six
 
 from swagger_server.models.credential import Credential  # noqa: E501
 from swagger_server.models.user import User  # noqa: E501
-from swagger_server import util
-from swagger_server import mongo_controls
+from swagger_server import util, mongo_controls
 
 
 def login(credentials=None):  # noqa: E501
@@ -26,7 +25,7 @@ def login(credentials=None):  # noqa: E501
     })
 
     if ret is not None:
-        return User(ret['username'], ret['userdata'])
+        return User(ret['username'], ret['orders'])
     else:
         return "Incorrect username or password", 401
 
@@ -43,7 +42,7 @@ def register(credentials=None):  # noqa: E501
     """
     if connexion.request.is_json:
         credentials = Credential.from_dict(connexion.request.get_json())  # noqa: E501
-    user = User(credentials.username, "{}")
+    user = User(credentials.username, [])
 
     ret = mongo_controls.get_db().users.find_one({
         'username': credentials.username
@@ -56,7 +55,7 @@ def register(credentials=None):  # noqa: E501
         {
             'username': credentials.username,
             'password': credentials.password,
-            'userdata': user.userdata
+            'orders': user.orders
         }
     )
 

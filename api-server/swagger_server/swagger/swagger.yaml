@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "1.1.1"
+  version: "1.2.0"
   title: "Norbitz Travel API"
   contact:
     name: "Slack Channel"
@@ -28,7 +28,7 @@ paths:
       - in: "body"
         name: "credentials"
         description: "username and password"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/Credential"
       responses:
@@ -52,7 +52,7 @@ paths:
       - in: "body"
         name: "credentials"
         description: "User to login as"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/Credential"
       responses:
@@ -76,7 +76,7 @@ paths:
       - name: "username"
         in: "query"
         description: "Username"
-        required: false
+        required: true
         type: "string"
       responses:
         200:
@@ -86,26 +86,46 @@ paths:
         400:
           description: "Invalid username"
       x-swagger-router-controller: "swagger_server.controllers.private_controller"
+  /order:
     post:
       tags:
       - "private"
-      summary: "Save user data"
-      description: "Save your data with this endpoint."
+      summary: "Save order data"
+      description: "Save an order data entry with this endpoint."
       operationId: "save"
       produces:
       - "application/json"
       parameters:
       - in: "body"
-        name: "user"
-        description: "User"
-        required: false
+        name: "orderMessage"
+        description: "Order information"
+        required: true
         schema:
-          $ref: "#/definitions/User"
+          $ref: "#/definitions/OrderMessage"
       responses:
         201:
           description: "Saved"
         400:
           description: "Invalid input"
+      x-swagger-router-controller: "swagger_server.controllers.private_controller"
+    delete:
+      tags:
+      - "private"
+      summary: "Delete user's order history"
+      operationId: "delete"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "query"
+        description: "Username"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Deleted"
+        400:
+          description: "Invalid username"
       x-swagger-router-controller: "swagger_server.controllers.private_controller"
 definitions:
   Credential:
@@ -124,16 +144,33 @@ definitions:
       username: "JacobAMason"
   User:
     required:
-    - "userdata"
+    - "orders"
     - "username"
     properties:
       username:
         type: "string"
         example: "JacobAMason"
-      userdata:
+      orders:
+        type: "array"
+        items:
+          type: "string"
+          example: "{...}"
+    example:
+      orders:
+      - "{...}"
+      - "{...}"
+      username: "JacobAMason"
+  OrderMessage:
+    required:
+    - "order"
+    - "username"
+    properties:
+      username:
         type: "string"
-        format: "json"
+        example: "JacobAMason"
+      order:
+        type: "string"
         example: "{...}"
     example:
-      userdata: "{...}"
       username: "JacobAMason"
+      order: "{...}"

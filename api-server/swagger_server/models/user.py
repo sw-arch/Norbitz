@@ -15,26 +15,26 @@ class User(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, username: str=None, userdata: str=None):  # noqa: E501
+    def __init__(self, username: str=None, orders: List[str]=None):  # noqa: E501
         """User - a model defined in Swagger
 
         :param username: The username of this User.  # noqa: E501
         :type username: str
-        :param userdata: The userdata of this User.  # noqa: E501
-        :type userdata: str
+        :param orders: The orders of this User.  # noqa: E501
+        :type orders: List[str]
         """
         self.swagger_types = {
             'username': str,
-            'userdata': str
+            'orders': List[str]
         }
 
         self.attribute_map = {
             'username': 'username',
-            'userdata': 'userdata'
+            'orders': 'orders'
         }
 
         self._username = username
-        self._userdata = userdata
+        self._orders = orders
 
     @classmethod
     def from_dict(cls, dikt) -> 'User':
@@ -71,24 +71,24 @@ class User(Model):
         self._username = username
 
     @property
-    def userdata(self) -> str:
-        """Gets the userdata of this User.
+    def orders(self) -> List[str]:
+        """Gets the orders of this User.
 
 
-        :return: The userdata of this User.
-        :rtype: str
+        :return: The orders of this User.
+        :rtype: List[str]
         """
-        return self._userdata
+        return self._orders
 
-    @userdata.setter
-    def userdata(self, userdata: str):
-        """Sets the userdata of this User.
+    @orders.setter
+    def orders(self, orders: List[str]):
+        """Sets the orders of this User.
 
 
-        :param userdata: The userdata of this User.
-        :type userdata: str
+        :param orders: The orders of this User.
+        :type orders: List[str]
         """
-        if userdata is None:
-            raise ValueError("Invalid value for `userdata`, must not be `None`")  # noqa: E501
+        if orders is None:
+            raise ValueError("Invalid value for `orders`, must not be `None`")  # noqa: E501
 
-        self._userdata = userdata
+        self._orders = orders

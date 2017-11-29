@@ -4,4 +4,5 @@
 from __future__ import absolute_import
 # import models into model package
 from swagger_server.models.credential import Credential
+from swagger_server.models.order_message import OrderMessage
 from swagger_server.models.user import User
