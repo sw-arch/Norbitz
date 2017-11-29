@@ -36,12 +36,11 @@ export class FunComponent implements OnInit {
   ngOnInit() {
     this.scandals.activityGet()
       .map((data: any) => {
-        this.scandalsActivities = data.activities;
-        let arr = new Array<any>();
-        for (var key in this.scandalsActivities) {
-          arr.push(this.scandalsActivities[key]);
+        this.scandalsActivities = new Array<Activity>();
+        for (var key in data.activities) {
+          this.scandalsActivities.push(data.activities[key]);
         }
-        return arr;
+        return this.scandalsActivities;
       })
       .subscribe((data) => {
         this.scandalsDataSource = new MatTableDataSource<Activity>(data);
