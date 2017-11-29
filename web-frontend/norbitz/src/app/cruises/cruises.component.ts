@@ -24,8 +24,12 @@ export class CruisesComponent implements OnInit {
 
   @Input()
   city: string = "Atlanta";
+  @Input()
   state: string = "GA";
-  num: number = 1;
+  @Input()
+  fromDate: string = "2017-12-01T00:00:00";
+  @Input()
+  toDate: string = "2017-12-02T00:00:00";
 
 
   @Output() formDone = new EventEmitter();
@@ -62,6 +66,7 @@ export class CruisesComponent implements OnInit {
       orderObj['Room Capacity'] = cruise.roomCapacity;
       orderObj['Room ID'] = cruise.roomID;
       orderObj['Duration'] = cruise.duration;
+      orderObj['Available'] = cruise.available;
       orderObj['Cost/Day'] = "$"+cruise.price.toFixed(2);
       this.formDone.emit(true);
     }
