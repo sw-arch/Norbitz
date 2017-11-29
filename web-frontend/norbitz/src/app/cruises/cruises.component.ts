@@ -30,7 +30,7 @@ export class CruisesComponent implements OnInit {
   @Output() formDone = new EventEmitter();
 
   ngOnInit() {
-    this.cruises.searchForLocation(this.state, this.city, this.num).subscribe(
+    this.cruises.searchForLocation(this.state, this.city).subscribe(
       (value: any)=>{
         //Success
         console.log("Carnivore search success for "+ this.city + ', ' + this.state);
@@ -52,11 +52,43 @@ export class CruisesComponent implements OnInit {
       this.selectedCruise = null;
       this.formDone.emit(false);
     }else{
-      console.log("User selected vehicle " + cruiseId );
+      console.log("User selected Cruise " + cruiseId );
       this.selectedCruise = cruiseId;
       this.formDone.emit(true);
     }
   }
+
+//
+//   if(vehicleID == this.selectedVehicleID){
+//   this.selectedVehicleID = null;
+//   this.selectionEvent.emit(false);
+//   if(this.extraCar){
+//   this.pending.order.extraCarId = null;
+// }else{
+//   this.pending.order.transCarId = null;
+// }
+// }else{
+//   this.selectedVehicleID = vehicleID;
+//   if(this.extraCar){
+//     this.pending.order.extraCarId = vehicleID;
+//   }else{
+//     this.pending.order.transCarId = vehicleID;
+//   }
+//   let vehicle:Vehicle = this.hurtsVehicles.find((val)=>val.vehicleID==vehicleID);
+//   var orderObj = this.extraCar ? this.pending.order.extraCarData : this.pending.order.transCarData;
+//   orderObj['Pickup Location'] = vehicle.location;
+//   orderObj['Type'] = vehicle.type;
+//   orderObj['Make/Model'] = vehicle.year + " " + vehicle.make + " " + vehicle.model;
+//   orderObj['Special Equipment'] = this.specialEquipToString(vehicle.specialEquipment);
+//   orderObj['Cost/Day'] = "$"+vehicle.cost.toFixed(2);
+//   if(this.extraCar){
+//     this.pending.order.extraCarCostPerDay = vehicle.cost;
+//   }else{
+//     this.pending.order.transCarCostPerDay = vehicle.cost;
+//   }
+//   this.selectionEvent.emit(true);
+// }
+// }
   buttonStyle(Id){
     return Id == this.selectedCruise? "bselected" : "bregular";
   }
