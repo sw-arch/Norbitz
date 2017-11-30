@@ -23,7 +23,7 @@ export class CruisesComponent implements OnInit {
   selectedCruise = null;
 
   @Input()
-  location: string = "Starkville, MS"
+  location: string = "Starkville, MS";
 
   @Input()
   fromDate: string = "2017-12-01T00:00:00";
