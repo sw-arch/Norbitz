@@ -1,6 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import { DevelopersService, CruiseItem, HistoryItem, AdminsService } from '../../apis/carnivore-cruise-lines';
-import { MatTableDataSource, MatTable } from '@angular/material';
+import { DevelopersService, CruiseItem } from '../../apis/carnivore-cruise-lines';
+import { MatTableDataSource } from '@angular/material';
 import { PendingorderService } from '../pendingorder/pendingorder.service'
 
 @Component({
@@ -23,7 +23,7 @@ export class CruisesComponent implements OnInit {
   selectedCruise = null;
 
   @Input()
-  location: string = "Starkville, MS";
+  location: string = "Atlanta, GA";
 
   @Input()
   fromDate: string = "2017-12-01T00:00:00";
@@ -40,7 +40,7 @@ export class CruisesComponent implements OnInit {
         //Success
         console.log("Carnivore search success for "+ this.location);
         console.log(value);
-        this.cruiseItems = value.cruiseItems;
+        this.cruiseItems = value.InventoryArr.data;
         this.cruiseDataSource = new MatTableDataSource<CruiseItem>(this.cruiseItems);
         this.isLoading = false;
       },
@@ -67,7 +67,7 @@ export class CruisesComponent implements OnInit {
       orderObj['Room ID'] = cruise.roomID;
       orderObj['Duration'] = cruise.duration;
       orderObj['Available'] = cruise.available;
-      orderObj['Cost/Day'] = "$"+cruise.price.toFixed(2);
+      orderObj['Price'] = "$"+cruise.price.toFixed(2);
       this.formDone.emit(true);
     }
   }

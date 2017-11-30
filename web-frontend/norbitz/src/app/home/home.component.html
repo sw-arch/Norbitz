@@ -5,7 +5,7 @@
       &nbsp;
       <mat-radio-button value="cruise" (click)="bookTypeChange('cruise')">Book a cruise</mat-radio-button>
   </mat-radio-group>
-  
+
   <form [formGroup]="searchFormGroup">
     <mat-form-field *ngIf="booktype == 'trip'" >
       <mat-select placeholder="Origin City" [(ngModel)]="origin" formControlName="origin" required>
@@ -38,7 +38,7 @@
     </mat-form-field>
 
     <button type="submit" class="btn btn-success" (click)="search()" *ngIf="booktype == 'trip'" [disabled]="!this.searchFormGroup.valid">Search</button>
-    <button type="submit" class="btn btn-success" (click)="search()" *ngIf="booktype == 'cruise'" [disabled]="!port">Search</button> 
+    <button type="submit" class="btn btn-success" (click)="search()" *ngIf="booktype == 'cruise'" [disabled]="!port">Search</button>
   </form>
 
 <mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper && booktype=='trip'">
@@ -99,16 +99,16 @@
     <h2>Order Complete</h2>
     <app-orderdisplay [order]="finalOrder" [usedSavedTotals]="true"></app-orderdisplay>
     <div style="text-align: right;" class="formdone">
-      <button mat-button (click)="viewPastOrders()">View Past Orders</button>   
+      <button mat-button (click)="viewPastOrders()">View Past Orders</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
 
 
-<mat-horizontal-stepper #stepper2 [linear]="isLinear" *ngIf="showStepper && booktype=='cruise'">    
+<mat-horizontal-stepper #stepper2 [linear]="isLinear" *ngIf="showStepper && booktype=='cruise'">
   <mat-step label="Select Cruise" [editable]="!checkoutComplete">
     <h2>Select Cruise</h2>
-    <app-cruises [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="cruiseSelected = $event"></app-cruises>
+    <app-cruises [location]="port" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="cruiseSelected = $event"></app-cruises>
   </mat-step>
   <mat-step label="Review" [stepControl]="reviewFormGroup" [editable]="!checkoutComplete">
     <h2>Review Order</h2>
@@ -130,7 +130,7 @@
     <h2>Order Complete</h2>
     <app-orderdisplay [order]="finalOrder" [usedSavedTotals]="true"></app-orderdisplay>
     <div style="text-align: right;" class="formdone">
-      <button mat-button (click)="viewPastOrders()">View Past Orders</button>   
+      <button mat-button (click)="viewPastOrders()">View Past Orders</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
