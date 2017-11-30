@@ -5,6 +5,8 @@ export class Order {
     desination: string;
     startDate: string;
     endDate: string;
+    port: string;
+    bookingType: string;
 
     transCarId: any;
     transCarData = {};

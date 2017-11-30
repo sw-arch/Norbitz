@@ -15,10 +15,12 @@
     <mat-expansion-panel *ngFor="let order of orders">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            Trip to {{order.origin}} on {{toDateDisplayString(order.startDate)}}
+            <span *ngIf="order.bookingType == 'trip'">Trip to {{order.origin}} on {{toDateDisplayString(order.startDate)}}</span>
+            <span *ngIf="order.bookingType == 'cruise'">Cruise out of {{order.port}} on {{toDateDisplayString(order.startDate)}}</span>            
           </mat-panel-title>
           <mat-panel-description>
-            Desination: {{order.desination}} - Total Cost: ${{order.savedTotalCost.toFixed(2)}}
+              <span *ngIf="order.bookingType == 'trip'">Desination: {{order.desination}} - Total Cost: ${{order.savedTotalCost.toFixed(2)}}</span>
+              <span *ngIf="order.bookingType == 'cruise'">Cruise: {{order.selectedCruiseData.Name}} - Cost: ${{order.savedTotalCost.toFixed(2)}}</span>
           </mat-panel-description>
         </mat-expansion-panel-header>
       

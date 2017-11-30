@@ -101,11 +101,20 @@ export class HomeComponent implements OnInit {
     this.checkoutComplete = false;
 
     this.pending.clearOrder();
-    this.pending.order.origin = this.origin;
-    this.pending.order.desination = this.desination;
+
     this.pending.order.startDate = this.startDate;
     this.pending.order.endDate = this.endDate;
-
+    this.pending.order.bookingType = this.booktype;
+    switch(this.booktype){
+      case 'trip':
+        this.pending.order.origin = this.origin;
+        this.pending.order.desination = this.desination;
+        break;
+      case 'cruise':
+        this.pending.order.port = this.port;
+        break;
+    }
+    
     setTimeout(() => {
       this.showStepper = true;
     }, 100);

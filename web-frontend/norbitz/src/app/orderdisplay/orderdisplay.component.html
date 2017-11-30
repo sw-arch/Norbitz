@@ -1,6 +1,8 @@
 <div class="order">
-    <b>Origin: </b>{{order.origin}}<br/>
-    <b>Desination: </b>{{order.desination}}<br/>
+    
+    <span *ngIf="order.bookingType == 'trip'"><b>Origin: </b>{{order.origin}}<br/></span>
+    <span *ngIf="order.bookingType == 'trip'"><b>Desination: </b>{{order.desination}}<br/></span>
+    <span *ngIf="order.bookingType == 'cruise'"><b>Port: </b>{{order.port}}<br/></span>
     <b>Departure Date: </b>{{toDateDisplayString(order.startDate)}}<br/>
     <b>Return Date: </b>{{toDateDisplayString(order.endDate)}}<br/>
     <br/>
