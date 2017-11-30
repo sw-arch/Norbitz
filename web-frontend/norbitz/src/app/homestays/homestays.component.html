@@ -10,7 +10,9 @@
     <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button type="submit" class="btn btn-success">Select</button>
+          <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element)" (click)="selectListing(element)">
+              {{element == selectedListing ? "Remove": "Select"}}
+          </button>
         </mat-cell>
       </ng-container>
   
@@ -31,7 +33,12 @@
 
     <ng-container matColumnDef="cost">
         <mat-header-cell *matHeaderCellDef>Cost</mat-header-cell>
-        <mat-cell *matCellDef="let element">${{element.pricing.cost}}</mat-cell>
+        <mat-cell *matCellDef="let element">${{element.pricing.cost.toFixed(2)}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stars">
+        <mat-header-cell *matHeaderCellDef>Rating</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.details.starRating}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import { AdminsService as AirdndService, Listing, LocationListings, ListingDetails } from '../../apis/airdnd';
+import { PendingorderService } from '../pendingorder/pendingorder.service';
 
 @Component({
   selector: 'app-homestays',
@@ -12,11 +13,13 @@ export class HomestaysComponent implements OnInit {
 
   isLoading: boolean = true;
   listings: Array<Listing>;
+  selectedListing: Listing;
   listingDataSource: MatTableDataSource<Listing>; 
-  displayedColumns = ['select', 'name', 'neighborhood', 'location', 'cost'];  
+  displayedColumns = ['select', 'name', 'neighborhood', 'location', 'cost', 'stars'];  
 
   constructor(
     private airdnd: AirdndService,
+    private pending: PendingorderService
   ) { }
 
   @Input()
@@ -42,4 +45,25 @@ export class HomestaysComponent implements OnInit {
       });
   }
 
+  buttonStyle(e){
+    return e == this.selectedListing ? "buttonselected" : "buttonregular";
+  }
+
+  selectListing(listing){
+    if (this.selectedListing == listing) {
+      this.selectedListing = null;
+      this.selectionEvent.emit(false);
+      this.pending.order.homestayId = this.selectedListing.details.id;
+      this.pending.order.homestayData = {
+        name: this.selectedListing.details.name,
+        neighborhood: this.selectedListing.details.neighborhood,
+        location: this.selectedListing.details.location,
+        cost: '$' + this.selectedListing.pricing.cost.toFixed(2),
+      }
+      this.pending.order.homestayCost = this.selectedListing.pricing.cost;
+    } else {
+      this.selectedListing = listing;
+      this.selectionEvent.emit(true);
+    }
+  }
 }
