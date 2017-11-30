@@ -49,7 +49,7 @@
     <h2>Transportation</h2>
     <br/>
     <h3>Flights <i>from Delter</i></h3>
-    <app-flights [origin]="origin" [destination]="destination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="flightSelected = $event"></app-flights>
+    <app-flights [origin]="origin" [destination]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="flightSelected = $event"></app-flights>
     <br/>
     <hr/>
     <h3>Cars <i>from Hurts</i></h3>
@@ -64,8 +64,9 @@
       <app-hotel></app-hotel>
       <br/>
       <hr/>
-      <h3>Homestays <i>from AirD&amp;D</i></h3>
-      <app-homestays></app-homestays>
+      <h3>Homestays <i>from AirDnD</i></h3>
+      <!--[fromDate]="startDate" [toDate]="endDate"-->
+      <app-homestays [location]="desination" (selectionEvent)="homestaySelected = $event"></app-homestays>
   </mat-step>
   <mat-step label="Extras" [editable]="!checkoutComplete">
     <span class="skip-button" [ngClass]="extrasFormDone ? 'formdone' : ''">

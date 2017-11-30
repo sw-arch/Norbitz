@@ -28,7 +28,6 @@ export class Order {
     selectedCruiseData = {};
     selectedCruisePrice: number = 0.0;
 
-
     get startDateDate():Date {
         return new Date(this.startDate);
     }
@@ -54,6 +53,12 @@ export class Order {
             var funData = this.funDataAll.find((val)=>val.name==activityName);
             total += funData.cost;
         });
+        if(this.selectedCruiseId){
+            total += this.selectedCruisePrice;
+        }
+        if(this.homestayId){
+            total += this.homestayCost * this.daysDuration;
+        }
         this.savedTotalCost = total;
         return total;
     }

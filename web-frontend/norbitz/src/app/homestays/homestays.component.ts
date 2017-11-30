@@ -31,7 +31,7 @@ export class HomestaysComponent implements OnInit {
   @Input()
   toDate: string = "2018-12-31T00:00:00";
 
-  //Output an event when a car is selected/deselected
+  //Output an event when a homestay is selected/deselected
   @Output()
   selectionEvent = new EventEmitter();
 
@@ -58,10 +58,10 @@ export class HomestaysComponent implements OnInit {
 
       this.pending.order.homestayId = this.selectedListing.details.id;
       this.pending.order.homestayData = {
-        name: this.selectedListing.details.name,
-        neighborhood: this.selectedListing.details.neighborhood,
-        location: this.selectedListing.details.location,
-        cost: '$' + this.selectedListing.pricing.cost.toFixed(2),
+        Name: this.selectedListing.details.name,
+        Neighborhood: this.selectedListing.details.neighborhood,
+        Location: this.selectedListing.details.location,
+        Cost: '$' + this.selectedListing.pricing.cost.toFixed(2),
       }
       this.pending.order.homestayCost = this.selectedListing.pricing.cost;
 

@@ -38,13 +38,13 @@ export class HomeComponent implements OnInit {
   flightSelected = false;
   transCarSelected = false;
   hotelSelected = false;
-  roomSelected = false;
+  homestaySelected = false;
   extrasCarSelected = false;
   funSelected = false;
   cruiseSelected = false;
   checkoutComplete = false;
   get transportationFormDone(){ return this.flightSelected || this.transCarSelected; }
-  get lodgingFormDone(){ return this.hotelSelected || this.roomSelected; }
+  get lodgingFormDone(){ return this.hotelSelected || this.homestaySelected; }
   get extrasFormDone(){ return this.extrasCarSelected || this.funSelected; }
   get anyFormDone(){ return this.transportationFormDone || this.lodgingFormDone || this.extrasFormDone; }
 
@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
     this.flightSelected = false;
     this.transCarSelected = false;
     this.hotelSelected = false;
-    this.roomSelected = false;
+    this.homestaySelected = false;
     this.extrasCarSelected = false;
     this.funSelected = false;
     this.cruiseSelected = false;

@@ -26,6 +26,18 @@
             <br/>
         </div>
     </div>
+    <div *ngIf="order.selectedCruiseId">
+        <h3>Cruises</h3>
+        <div *ngFor="let key of getKeys(order.selectedCruiseData)">
+            <b>{{key}}: </b> {{order.selectedCruiseData[key]}}
+        </div>
+    </div>
+    <div *ngIf="order.homestayId">
+        <h3>Homestay</h3>
+        <div *ngFor="let key of getKeys(order.homestayData)">
+            <b>{{key}}: </b> {{order.homestayData[key]}}
+        </div>
+    </div>
     <br/>
     <br/>
     <b>GRAND TOTAL:</b> ${{usedSavedTotals ? order.savedTotalCost.toFixed(2) : order.calculatedTotalCost.toFixed(2)}}
