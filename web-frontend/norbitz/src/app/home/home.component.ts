@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   roomSelected = false;
   extrasCarSelected = false;
   funSelected = false;
+  cruiseSelected = false;
   checkoutComplete = false;
   get transportationFormDone(){ return this.flightSelected || this.transCarSelected; }
   get lodgingFormDone(){ return this.hotelSelected || this.roomSelected; }
@@ -100,6 +101,7 @@ export class HomeComponent implements OnInit {
     this.roomSelected = false;
     this.extrasCarSelected = false;
     this.funSelected = false;
+    this.cruiseSelected = false;
 
     this.reviewOk = false;
     this.checkoutComplete = false;
@@ -148,6 +150,11 @@ export class HomeComponent implements OnInit {
 
   viewPastOrders(){
     this.router.navigateByUrl('/orders');
+  }
+
+  bookTypeChange(newType:string):boolean {
+    this.showStepper = false;
+    return true;
   }
 
 }

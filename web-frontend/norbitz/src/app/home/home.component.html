@@ -1,9 +1,9 @@
 <h1>Book</h1>
 
   <mat-radio-group [(ngModel)]="booktype">
-      <mat-radio-button value="trip">Book a trip</mat-radio-button>
+      <mat-radio-button value="trip" (click)="bookTypeChange('trip')">Book a trip</mat-radio-button>
       &nbsp;
-      <mat-radio-button value="cruise">Book a cruise</mat-radio-button>
+      <mat-radio-button value="cruise" (click)="bookTypeChange('cruise')">Book a cruise</mat-radio-button>
   </mat-radio-group>
   
   <form [formGroup]="searchFormGroup" *ngIf="booktype == 'trip'" >
@@ -35,16 +35,17 @@
   </form>
 
   <form [formGroup]="cruiseFormGroup" *ngIf="booktype == 'cruise'">
-    <p>Cruises</p>
     <mat-form-field>
       <mat-select placeholder="Port" [(ngModel)]="port" formControlName="port" required>
         <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
       </mat-select>
     </mat-form-field>
+
+    <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!port">Search</button>    
   </form>
 
 
-<mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper">
+<mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper && booktype=='trip'">
   <mat-step label="Transportation" [editable]="!checkoutComplete">
     <span class="skip-button" [ngClass]="transportationFormDone ? 'formdone' : ''">
       <button mat-button matStepperNext>{{transportationFormDone ? "Next" : "Skip"}} <i class="material-icons">navigate_next</i></button>
@@ -106,3 +107,38 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+
+
+<mat-horizontal-stepper #stepper2 [linear]="isLinear" *ngIf="showStepper && booktype=='cruise'">    
+  <mat-step label="Select Cruise" [editable]="!checkoutComplete">
+    <h2>Select Cruise</h2>
+    <app-cruises [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="cruiseSelected = $event"></app-cruises>
+  </mat-step>
+  <mat-step label="Review" [stepControl]="reviewFormGroup" [editable]="!checkoutComplete">
+    <h2>Review Order</h2>
+    <p *ngIf="!anyFormDone">No items have been selected</p>
+    <div *ngIf="anyFormDone">
+        <app-orderdisplay [order]="pending.order"></app-orderdisplay>
+    </div>
+    <br/>
+    <br/>
+    <div style="text-align: right;" class="formdone">
+      <button mat-button (click)="placeOrder(stepper)" [disabled]="!cruiseSelected">Place Order</button>
+    </div>
+    <!--Hidden checkbox that will permit the user to continue when checked-->
+    <form [formGroup]="reviewFormGroup">
+        <mat-checkbox class="hidden" formControlName="cbCtrl" [(ngModel)]="reviewOk" required></mat-checkbox>
+    </form>
+  </mat-step>
+  <mat-step label="Finish" [stepControl]="false">
+    <h2>Order Complete</h2>
+    <app-orderdisplay [order]="finalOrder" [usedSavedTotals]="true"></app-orderdisplay>
+    <div style="text-align: right;" class="formdone">
+      <button mat-button (click)="viewPastOrders()">View Past Orders</button>   
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+
+<br/>
+<br/>
+<br/>
