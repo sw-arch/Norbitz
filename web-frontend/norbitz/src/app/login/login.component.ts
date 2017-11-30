@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  hide = true;
   username = "";
   password = "";
   loginError = false;
