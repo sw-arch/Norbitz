@@ -25,13 +25,13 @@
         </mat-select>
     </mat-form-field>
 
-    <mat-form-field (click)="pickerStart.open()">
+    <mat-form-field *ngIf="booktype == 'trip'" (click)="pickerStart.open()">
       <input matInput [matDatepicker]="pickerStart" placeholder="Departure Date" [formControl]="startDateCF" formControlName="startDate" required>
       <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
       <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field (click)="pickerEnd.open()">
+    <mat-form-field *ngIf="booktype == 'trip'" (click)="pickerEnd.open()">
       <input matInput [matDatepicker]="pickerEnd" placeholder="Return Date" [formControl]="endDateCF" formControlName="endDate" required>
       <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
       <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
@@ -108,6 +108,9 @@
 
 <mat-horizontal-stepper #stepper2 [linear]="isLinear" *ngIf="showStepper && booktype=='cruise'">
   <mat-step label="Select Cruise" [editable]="!checkoutComplete">
+    <span class="skip-button formdone" *ngIf="cruiseSelected">
+      <button mat-button matStepperNext>Next <i class="material-icons">navigate_next</i></button>
+    </span>
     <h2>Select Cruise</h2>
     <app-cruises [location]="port" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="cruiseSelected = $event"></app-cruises>
   </mat-step>

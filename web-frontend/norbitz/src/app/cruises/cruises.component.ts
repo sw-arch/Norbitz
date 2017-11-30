@@ -71,6 +71,8 @@ export class CruisesComponent implements OnInit {
       orderObj['Duration'] = cruise.duration;
       orderObj['Available'] = cruise.available;
       orderObj['Price'] = "$"+cruise.cost.toFixed(2);
+      this.pending.order.startDate = cruise.departureDate;
+      this.pending.order.endDate = cruise.returnDate;
       this.selectionEvent.emit(true);
     }
   }
