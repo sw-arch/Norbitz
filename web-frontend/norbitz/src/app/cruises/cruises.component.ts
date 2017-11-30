@@ -20,7 +20,7 @@ export class CruisesComponent implements OnInit {
                       'roomCapacity', 'roomID', 'depart', 'return'];
   cruiseDataSource;
   cruiseItems;
-  selectedCruise = null;
+  selectedCruiseID = null;
 
   @Input()
   location: string = "Atlanta, GA";
@@ -52,16 +52,16 @@ export class CruisesComponent implements OnInit {
     );
   }
 
-  selectCruise(cruiseId){
-    if(cruiseId == this.selectedCruise){
-      this.selectedCruise = null;
+  selectCruise(itemID){
+    if(itemID == this.selectedCruiseID){
+      this.selectedCruiseID = null;
       this.formDone.emit(false);
     }else{
-      console.log("User selected Cruise " + cruiseId );
-      this.selectedCruise = cruiseId;
-      let cruise:CruiseItem = this.cruiseItems.find((val)=>val.cruiseLinerID==cruiseId);
+      console.log("User selected Cruise " + itemID );
+      this.selectedCruiseID = itemID;
+      let cruise:CruiseItem = this.cruiseItems.find((val)=>val.itemID==itemID);
       this.pending.order.selectedCruisePrice = cruise.price;
-      this.pending.order.selectedCruiseId = cruiseId;
+      this.pending.order.selectedCruiseId = itemID;
       var orderObj = this.pending.order.selectedCruiseData;
       orderObj['Port'] = cruise.fromLocation;
       orderObj['Name'] = cruise.name;
@@ -74,8 +74,8 @@ export class CruisesComponent implements OnInit {
     }
   }
 
-  buttonStyle(Id){
-    return Id == this.selectedCruise? "bselected" : "bregular";
+  buttonStyle(cId){
+    return cId == this.selectedCruiseID? "bselected" : "bregular";
   }
 
 }

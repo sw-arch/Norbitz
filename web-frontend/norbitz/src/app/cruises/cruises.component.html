@@ -13,9 +13,9 @@
       <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.cruiseId)"
-                  (click)="selectCruise(element.cruiseId)">
-            {{element.cruiseId == selectedCruise? "Remove": "Select"}}
+          <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.itemID)"
+                  (click)="selectCruise(element.itemID)">
+            {{element.itemID == selectedCruiseID? "Remove": "Select"}}
           </button>
         </mat-cell>
       </ng-container>
