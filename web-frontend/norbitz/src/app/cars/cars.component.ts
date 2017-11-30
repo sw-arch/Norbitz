@@ -39,17 +39,14 @@ export class CarsComponent implements OnInit {
   selectionEvent = new EventEmitter();
 
   ngOnInit() {
-    this.hurts.getVehicleByLocation(this.location).subscribe(
-      (value: any)=>{
-        //Success
-        //console.log("Hurts search success for "+this.location)
-        //console.log(value)
+    this.hurts.getVehicleByLocation(this.location, this.fromDate, this.toDate).subscribe(
+      (value: any) => {
         this.hurtsVehicles = value.vehicles;
+        console.log(this.hurtsVehicles)
         this.hurtsDataSource = new MatTableDataSource<Vehicle>(this.hurtsVehicles); 
         this.isLoading = false;
       },
-      (error)=>{
-        //Error
+      (error) => {
         console.log("Hurts search error for "+this.location)
         console.log(error)
       }
