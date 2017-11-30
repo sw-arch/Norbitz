@@ -37,7 +37,7 @@ export class CruisesComponent implements OnInit {
 
   ngOnInit() {
     this.cruises.searchForLocation(this.location).subscribe(
-      (value: any) => {
+      (value) => {
         //Success
         console.log("Carnivore search success for "+ this.location);
         console.log(value);

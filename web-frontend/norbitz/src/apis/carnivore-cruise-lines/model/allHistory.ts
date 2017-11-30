@@ -9,8 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
-import { HistoryItem } from './historyItem';
+import { History } from './history';
 
 
-export interface History extends Array<HistoryItem> {
+export interface AllHistory {
+    history: History;
 }
