@@ -27,7 +27,7 @@
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
-        <mat-cell *matCellDef="let element">${{element.cost}}.00</mat-cell>
+        <mat-cell *matCellDef="let element">${{element.cost.toFixed(2)}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="name">

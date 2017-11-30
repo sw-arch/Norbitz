@@ -8,7 +8,9 @@
 
 .login-error {
     color: red;
-    font-size: 18px;
+    font-size: 17px;
+    text-align: center;
+    width: 100%;
 }
 
 h1 {
@@ -16,8 +18,31 @@ h1 {
 }
 
 form {
-  max-width: 300px;
+  max-width: 230px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.signupbutton {
+  background-color: #4cae4c;
+  color: white;
+  float:right;
+}
+
+.signupbutton:disabled {
+  background-color: #eee;
+  color: #aaa;
+}
+
+input {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.topmsg{
+  text-align: center;
 }

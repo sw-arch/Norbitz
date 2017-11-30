@@ -13,7 +13,8 @@ export class SignupComponent implements OnInit {
   hide = true;
   username = "";
   password = "";
-  signupErr = false;
+  signupError = false;
+  submittedusername = "";
 
   constructor(
     private user: UserService,
@@ -25,6 +26,8 @@ export class SignupComponent implements OnInit {
   }
 
   signUp() {
+    this.submittedusername = this.username;
+    this.signupError = false;
     this.norbitz.register({
       username: this.username,
       password: this.password,
@@ -33,8 +36,18 @@ export class SignupComponent implements OnInit {
         this.user.login(data);
       },
       (err) => {
-        this.signupErr = true;
+        if(err.status==401){
+          this.signupError = true;
+        }
       })
+  }
+
+  goToLogin(){
+    this.router.navigateByUrl('/login');
+  }
+
+  get validUsername(){
+    return /^[a-z]+$/i.test(this.username);
   }
 
 }

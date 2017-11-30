@@ -1,14 +1,16 @@
 <h1>Sign Up</h1>
 
 <form>
-
+    <p *ngIf="signupError" class="login-error">The username "{{submittedusername}}" already exists</p>    
+  <p class="topmsg">Usersnames must consist of lowercase letters a-z.</p>
   <mat-form-field>
     <input matInput [(ngModel)]="username" name="username" placeholder="Enter a username" required>
   </mat-form-field>
   <mat-form-field>
-      <input matInput required [(ngModel)]="password" name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+      <input matInput required [(ngModel)]="password" name="password" placeholder="Enter a password" [type]="hide ? 'password' : 'text'">
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="signUp()">Sign Up</button>
-
+  <br/>
+  <button mat-raised-button color="primary" (click)="signUp()" class="signupbutton" [disabled]="!username || !password || !validUsername">Sign Up</button>
+  <button mat-raised-button color="primary" (click)="goToLogin()">Have an account?</button>  
 </form>

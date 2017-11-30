@@ -1,6 +1,7 @@
 .login-error {
     color: red;
-    font-size: 18px;
+    font-size: 17px;
+    text-align: center;
 }
 
 h1 {
@@ -8,7 +9,7 @@ h1 {
 }
 
 form {
-  max-width: 300px;
+  max-width: 230px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -20,4 +21,22 @@ form {
 
 .ng-invalid:not(form) {
   border-left: none;
+}
+
+.loginbutton {
+  background-color: #4cae4c;
+  color: white;
+}
+
+.loginbutton:disabled {
+  background-color: #eee;
+  color: #aaa;
+}
+
+input {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
 }
