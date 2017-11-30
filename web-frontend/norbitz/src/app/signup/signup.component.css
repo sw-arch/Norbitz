@@ -1,0 +1,23 @@
+.ng-valid[required], .ng-valid.required {
+    border-left: none;
+}
+
+.ng-invalid:not(form) {
+    border-left: none;
+}
+
+.login-error {
+    color: red;
+    font-size: 18px;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
