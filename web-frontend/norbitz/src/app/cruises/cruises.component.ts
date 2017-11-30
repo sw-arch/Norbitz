@@ -31,8 +31,9 @@ export class CruisesComponent implements OnInit {
   @Input()
   toDate: string = "2017-12-02T00:00:00";
 
-
-  @Output() formDone = new EventEmitter();
+  //Output an event when a cruise is selected/deselected
+  @Output()
+  selectionEvent = new EventEmitter();
 
   ngOnInit() {
     this.cruises.searchForLocation(this.location).subscribe(
@@ -55,12 +56,12 @@ export class CruisesComponent implements OnInit {
   selectCruise(itemID){
     if(itemID == this.selectedCruiseID){
       this.selectedCruiseID = null;
-      this.formDone.emit(false);
+      this.selectionEvent.emit(false);
     }else{
       console.log("User selected Cruise " + itemID);
       this.selectedCruiseID = itemID;
-      let cruise:CruiseItem = this.cruiseItems.find((val)=>val.itemID==itemID);
-      this.pending.order.selectedCruisePrice = cruise.price;
+      let cruise:any = this.cruiseItems.find((val)=>val.itemID==itemID);
+      this.pending.order.selectedCruisePrice = cruise.cost;
       this.pending.order.selectedCruiseId = itemID;
       var orderObj = this.pending.order.selectedCruiseData;
       orderObj['Port'] = cruise.fromLocation;
@@ -69,13 +70,17 @@ export class CruisesComponent implements OnInit {
       orderObj['Room ID'] = cruise.roomID;
       orderObj['Duration'] = cruise.duration;
       orderObj['Available'] = cruise.available;
-      orderObj['Price'] = "$"+cruise.price.toFixed(2);
-      this.formDone.emit(true);
+      orderObj['Price'] = "$"+cruise.cost.toFixed(2);
+      this.selectionEvent.emit(true);
     }
   }
 
   buttonStyle(cId){
     return cId == this.selectedCruiseID? "bselected" : "bregular";
+  }
+
+  toDateDisplayString(orgDate){
+    return new Date(orgDate).toLocaleDateString();
   }
 
 }

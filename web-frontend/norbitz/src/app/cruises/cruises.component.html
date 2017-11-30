@@ -57,12 +57,12 @@
 
       <ng-container matColumnDef="depart">
         <mat-header-cell *matHeaderCellDef>Departure Date</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.departureDate}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{toDateDisplayString(element.departureDate)}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="return">
         <mat-header-cell *matHeaderCellDef>Return Date</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.returnDate}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{toDateDisplayString(element.returnDate)}}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

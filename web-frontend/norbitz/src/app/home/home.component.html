@@ -113,14 +113,14 @@
   </mat-step>
   <mat-step label="Review" [stepControl]="reviewFormGroup" [editable]="!checkoutComplete">
     <h2>Review Order</h2>
-    <p *ngIf="!anyFormDone">No items have been selected</p>
-    <div *ngIf="anyFormDone">
+    <p *ngIf="!cruiseSelected">No items have been selected</p>
+    <div *ngIf="cruiseSelected">
         <app-orderdisplay [order]="pending.order"></app-orderdisplay>
     </div>
     <br/>
     <br/>
     <div style="text-align: right;" class="formdone">
-      <button mat-button (click)="placeOrder(stepper)" [disabled]="!cruiseSelected">Place Order</button>
+      <button mat-button (click)="placeOrder(stepper2)" [disabled]="!cruiseSelected">Place Order</button>
     </div>
     <!--Hidden checkbox that will permit the user to continue when checked-->
     <form [formGroup]="reviewFormGroup">
