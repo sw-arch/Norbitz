@@ -14,6 +14,10 @@ export class Order {
     extraCarData = {};
     extraCarCostPerDay:number = 0.0;
 
+    homestayId: string;
+    homestayData = {};
+    homestayCost: number;
+
     funIds: Set<string> = new Set<string>();
     funDataAll: any;
     funIdsArr: string[] = [];
