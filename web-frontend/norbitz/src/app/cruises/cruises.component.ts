@@ -57,7 +57,7 @@ export class CruisesComponent implements OnInit {
       this.selectedCruiseID = null;
       this.formDone.emit(false);
     }else{
-      console.log("User selected Cruise " + itemID );
+      console.log("User selected Cruise " + itemID);
       this.selectedCruiseID = itemID;
       let cruise:CruiseItem = this.cruiseItems.find((val)=>val.itemID==itemID);
       this.pending.order.selectedCruisePrice = cruise.price;

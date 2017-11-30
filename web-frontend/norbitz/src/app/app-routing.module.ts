@@ -10,11 +10,13 @@ import { CruisesComponent } from './cruises/cruises.component';
 import { CarsComponent } from './cars/cars.component';
 import { FunComponent } from './fun/fun.component';
 import { FlightsComponent } from './flights/flights.component';
+import {SignupComponent} from "./signup/signup.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'home',  component: HomeComponent },
   { path: 'login',  component: LoginComponent },
+  { path: 'signup',  component: SignupComponent },
   { path: 'orders',  component: OrderhistoryComponent },
   { path: 'book/homestays',  component: HomestaysComponent },
   { path: 'book/cars',  component: CarsComponent },
