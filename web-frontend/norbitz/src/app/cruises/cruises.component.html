@@ -3,10 +3,10 @@
   <p>Loading...</p>
 </div>
 <div *ngIf="!isLoading && !cruiseItems">
-  No cruises could be found for  {{city + state}}
+  No cruises could be found for {{location}}
 </div>
 <div *ngIf="!isLoading && cruiseItems">
-  <b>Cruises avalible for {{city + state}}</b>
+  <b>Cruises avalible for {{location}}</b>
   <div id="carnivoretable">
     <mat-table #table [dataSource]="cruiseDataSource">
 

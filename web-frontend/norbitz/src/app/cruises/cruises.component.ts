@@ -23,11 +23,11 @@ export class CruisesComponent implements OnInit {
   selectedCruise = null;
 
   @Input()
-  city: string = "Atlanta";
-  @Input()
-  state: string = "GA";
+  location: string = "Starkville, MS"
+
   @Input()
   fromDate: string = "2017-12-01T00:00:00";
+
   @Input()
   toDate: string = "2017-12-02T00:00:00";
 
@@ -35,10 +35,10 @@ export class CruisesComponent implements OnInit {
   @Output() formDone = new EventEmitter();
 
   ngOnInit() {
-    this.cruises.searchForLocation(this.state, this.city).subscribe(
+    this.cruises.searchForLocation(this.location).subscribe(
       (value: any)=>{
         //Success
-        console.log("Carnivore search success for "+ this.city + ', ' + this.state);
+        console.log("Carnivore search success for "+ this.location);
         console.log(value);
         this.cruiseItems = value.cruiseItems;
         this.cruiseDataSource = new MatTableDataSource<CruiseItem>(this.cruiseItems);
@@ -46,7 +46,7 @@ export class CruisesComponent implements OnInit {
       },
       (error)=>{
         //Error
-        console.log("Carnivore search success for "+ this.city + ', ' + this.state);
+        console.log("Carnivore search success for "+ this.location);
         console.log(error)
       }
     );
