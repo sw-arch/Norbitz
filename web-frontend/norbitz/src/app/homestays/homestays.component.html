@@ -1,1 +1,40 @@
-<p>Homestays Here</p>
+<div *ngIf="isLoading">
+  <p>Loading...</p>
+</div>
+<div *ngIf="!isLoading && !listings">
+  No rooms could be found for {{location}}
+</div>
+<div *ngIf="!isLoading && listings">
+  <b>Rooms avalible for {{location}}</b>
+  <mat-table #table [dataSource]="listingDataSource">
+    <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button type="submit" class="btn btn-success">Select</button>
+        </mat-cell>
+      </ng-container>
+  
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.details.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="neighborhood">
+        <mat-header-cell *matHeaderCellDef>Neighborhood</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.details.neighborhood}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef>Location</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.details.location}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cost">
+        <mat-header-cell *matHeaderCellDef>Cost</mat-header-cell>
+        <mat-cell *matCellDef="let element">${{element.pricing.cost}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
