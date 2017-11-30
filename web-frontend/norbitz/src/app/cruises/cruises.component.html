@@ -22,12 +22,12 @@
 
       <ng-container matColumnDef="available">
         <mat-header-cell *matHeaderCellDef>Tickets</mat-header-cell>
-        <mat-cell *matCellDef="let element">${{element.avalible}}</mat-cell>
+        <mat-cell *matCellDef="let element">{{element.available}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="cost">
-        <mat-header-cell *matHeaderCellDef>Cost</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{element.cost}}.00</mat-cell>
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+        <mat-cell *matCellDef="let element">${{element.cost}}.00</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="name">
@@ -51,17 +51,17 @@
       </ng-container>
 
       <ng-container matColumnDef="roomID">
-        <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Room ID</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.roomID}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="depart">
-        <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Departure Date</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.departureDate}}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="return">
-        <mat-header-cell *matHeaderCellDef>Extras</mat-header-cell>
+        <mat-header-cell *matHeaderCellDef>Return Date</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.returnDate}}</mat-cell>
       </ng-container>
 

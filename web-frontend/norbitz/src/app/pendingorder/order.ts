@@ -26,9 +26,9 @@ export class Order {
 
     selectedCruiseId: any;
     selectedCruiseData = {};
-    cruiseCostPerDay: number = 0.0;
+    selectedCruisePrice: number = 0.0;
 
-  
+
     get startDateDate():Date {
         return new Date(this.startDate);
     }

@@ -16,7 +16,7 @@ export class CruisesComponent implements OnInit {
   ) { }
 
   isLoading = true;
-  displayedColumns = ['select','available','cost','name','duration','port',
+  displayedColumns = ['select','available','price','name','duration','port',
                       'roomCapacity', 'roomID', 'depart', 'return'];
   cruiseDataSource;
   cruiseItems;
@@ -60,7 +60,9 @@ export class CruisesComponent implements OnInit {
       console.log("User selected Cruise " + cruiseId );
       this.selectedCruise = cruiseId;
       let cruise:CruiseItem = this.cruiseItems.find((val)=>val.cruiseLinerID==cruiseId);
-      var orderObj = this.pending.order.selectedCruiseId;
+      this.pending.order.selectedCruisePrice = cruise.price;
+      this.pending.order.selectedCruiseId = cruiseId;
+      var orderObj = this.pending.order.selectedCruiseData;
       orderObj['Port'] = cruise.fromLocation;
       orderObj['Name'] = cruise.name;
       orderObj['Room Capacity'] = cruise.roomCapacity;
