@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
-import { MatTableDataSource, MatTable } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 import { PendingorderService } from '../pendingorder/pendingorder.service'
 import { DefaultService as ScandalsService, Activity } from '../../apis/scandals';
 
