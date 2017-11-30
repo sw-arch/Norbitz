@@ -82,8 +82,8 @@ export class HomeComponent implements OnInit {
     this.origin = this.possibleLocations[2];
     this.desination = this.possibleLocations[1];
     this.port = this.possibleLocations[1];
-    this.startDateCF.setValue(new Date("2017-12-01T05:00:00.000Z"));
-    this.endDateCF.setValue(new Date("2017-12-03T05:00:00.000Z"));
+    this.startDateCF.setValue(new Date("2017-12-01T06:00:00.000Z"));
+    this.endDateCF.setValue(new Date("2017-12-03T06:00:00.000Z"));
   }
 
   search(){
