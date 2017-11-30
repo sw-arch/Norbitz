@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   get endDate(){ return this.endDateCF.value.toISOString().substr(0,19); };
 
   searchFormGroup: FormGroup;
-  cruiseFormGroup: FormGroup;
   reviewFormGroup: FormGroup;
 
   isLinear = true;
@@ -69,14 +68,9 @@ export class HomeComponent implements OnInit {
     this.searchFormGroup = this._formBuilder.group({
       'origin': '',
       'desination': '',
+      'port': {required: false},
       'startDate': this.startDateCF,
       'endDate': this.endDateCF,
-    });
-    this.cruiseFormGroup = this._formBuilder.group({
-      'port': '',
-      // 'desination': '',
-      // 'startDate': this.startDateCF,
-      // 'endDate': this.endDateCF,
     });
     this.searchFormGroup.valueChanges.subscribe(data => {
       if(this.showStepper){

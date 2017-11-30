@@ -6,17 +6,23 @@
       <mat-radio-button value="cruise" (click)="bookTypeChange('cruise')">Book a cruise</mat-radio-button>
   </mat-radio-group>
   
-  <form [formGroup]="searchFormGroup" *ngIf="booktype == 'trip'" >
-    <mat-form-field>
+  <form [formGroup]="searchFormGroup">
+    <mat-form-field *ngIf="booktype == 'trip'" >
       <mat-select placeholder="Origin City" [(ngModel)]="origin" formControlName="origin" required>
         <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field *ngIf="booktype == 'trip'" >
       <mat-select placeholder="Desination City" [(ngModel)]="desination" formControlName="desination" required>
           <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="booktype == 'cruise'">
+        <mat-select placeholder="Port" [(ngModel)]="port" formControlName="port" required>
+          <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
+        </mat-select>
     </mat-form-field>
 
     <mat-form-field (click)="pickerStart.open()">
@@ -31,19 +37,9 @@
       <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
     </mat-form-field>
 
-    <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!this.searchFormGroup.valid">Search</button>
+    <button type="submit" class="btn btn-success" (click)="search()" *ngIf="booktype == 'trip'" [disabled]="!this.searchFormGroup.valid">Search</button>
+    <button type="submit" class="btn btn-success" (click)="search()" *ngIf="booktype == 'cruise'" [disabled]="!port">Search</button> 
   </form>
-
-  <form [formGroup]="cruiseFormGroup" *ngIf="booktype == 'cruise'">
-    <mat-form-field>
-      <mat-select placeholder="Port" [(ngModel)]="port" formControlName="port" required>
-        <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!port">Search</button>    
-  </form>
-
 
 <mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper && booktype=='trip'">
   <mat-step label="Transportation" [editable]="!checkoutComplete">
