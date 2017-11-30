@@ -53,6 +53,9 @@ export class HomestaysComponent implements OnInit {
     if (this.selectedListing == listing) {
       this.selectedListing = null;
       this.selectionEvent.emit(false);
+    } else {
+      this.selectedListing = listing;
+
       this.pending.order.homestayId = this.selectedListing.details.id;
       this.pending.order.homestayData = {
         name: this.selectedListing.details.name,
@@ -61,8 +64,7 @@ export class HomestaysComponent implements OnInit {
         cost: '$' + this.selectedListing.pricing.cost.toFixed(2),
       }
       this.pending.order.homestayCost = this.selectedListing.pricing.cost;
-    } else {
-      this.selectedListing = listing;
+
       this.selectionEvent.emit(true);
     }
   }
