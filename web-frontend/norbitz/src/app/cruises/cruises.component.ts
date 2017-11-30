@@ -37,15 +37,15 @@ export class CruisesComponent implements OnInit {
 
   ngOnInit() {
     this.cruises.searchForLocation(this.location).subscribe(
-      (value: any)=>{
+      (value: any) => {
         //Success
         console.log("Carnivore search success for "+ this.location);
         console.log(value);
-        this.cruiseItems = value.InventoryArr.data;
+        this.cruiseItems = value.inventory;
         this.cruiseDataSource = new MatTableDataSource<CruiseItem>(this.cruiseItems);
         this.isLoading = false;
       },
-      (error)=>{
+      (error) => {
         //Error
         console.log("Carnivore search success for "+ this.location);
         console.log(error)

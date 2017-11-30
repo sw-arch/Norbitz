@@ -9,19 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { CruiseItem } from './cruiseItem';
 
 
-export interface CruiseItem {
-    itemID: string;
-    cruiseLinerID: string;
-    roomID: number;
-    available: boolean;
-    cost: number;
-    name: string;
-    description: string;
-    roomCapacity: number;
-    fromLocation: string;
-    departureDate: string;
-    returnDate: string;
-    duration: number;
+export interface Inventory extends Array<CruiseItem> {
 }
