@@ -42,7 +42,6 @@ export class CarsComponent implements OnInit {
     this.hurts.getVehicleByLocation(this.location, this.fromDate, this.toDate).subscribe(
       (value: any) => {
         this.hurtsVehicles = value.vehicles;
-        console.log(this.hurtsVehicles)
         this.hurtsDataSource = new MatTableDataSource<Vehicle>(this.hurtsVehicles); 
         this.isLoading = false;
       },

@@ -9,10 +9,9 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Vehicle } from './vehicle';
 
 
-export interface PurchasedVehicle {
-    vehicleID: number;
-    startDate: string;
-    endDate: string;
+export interface PostVehicles {
+    vehicles: Array<Vehicle>;
 }
