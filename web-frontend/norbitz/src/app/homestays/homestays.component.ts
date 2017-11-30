@@ -38,7 +38,6 @@ export class HomestaysComponent implements OnInit {
   ngOnInit() {
     this.airdnd.controllersAdminsControllerSearchListing(this.location, this.fromDate, this.toDate)
       .subscribe((data) => {
-        console.log(data);
         this.listings = data;
         this.listingDataSource = new MatTableDataSource<Listing>(data);
         this.isLoading = false;
