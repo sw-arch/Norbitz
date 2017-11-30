@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   reviewOk = false;
   showStepper = false;
   finalOrder:Order = new Order();
+  booktype = "trip";
 
   flightSelected = false;
   transCarSelected = false;

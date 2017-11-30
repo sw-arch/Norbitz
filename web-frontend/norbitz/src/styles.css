@@ -8,6 +8,14 @@ body {
   margin-right: auto;
 }
 
+mat-radio-group .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #4cae4c;
+}
+
+mat-radio-group .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #4cae4c;
+}
+
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');

@@ -1,11 +1,12 @@
-<h1>Home</h1>
+<h1>Book</h1>
 
-<form>
-  <input type="radio" [(ngModel)]="value" name="trip" value="trip" placeholder="Book a Trip"/>
-  <input type="radio" [(ngModel)]="value" name="trip" value="cruise"/>
-
+  <mat-radio-group [(ngModel)]="booktype">
+      <mat-radio-button value="trip">Book a trip</mat-radio-button>
+      &nbsp;
+      <mat-radio-button value="cruise">Book a cruise</mat-radio-button>
+  </mat-radio-group>
   
-  <form [formGroup]="searchFormGroup" *ngIf="value == 'trip'" >
+  <form [formGroup]="searchFormGroup" *ngIf="booktype == 'trip'" >
     <mat-form-field>
       <mat-select placeholder="Origin City" [(ngModel)]="origin" formControlName="origin" required>
         <mat-option *ngFor="let loc of possibleLocations" value="{{loc}}">{{loc}}</mat-option>
@@ -33,7 +34,7 @@
     <button type="submit" class="btn btn-success" (click)="search()" [disabled]="!this.searchFormGroup.valid">Search</button>
   </form>
 
-  <form [formGroup]="cruiseFormGroup" *ngIf="value == 'cruise'">
+  <form [formGroup]="cruiseFormGroup" *ngIf="booktype == 'cruise'">
     <p>Cruises</p>
     <mat-form-field>
       <mat-select placeholder="Port" [(ngModel)]="port" formControlName="port" required>
@@ -41,7 +42,7 @@
       </mat-select>
     </mat-form-field>
   </form>
-</form>
+
 
 <mat-horizontal-stepper #stepper [linear]="isLinear" *ngIf="showStepper">
   <mat-step label="Transportation" [editable]="!checkoutComplete">

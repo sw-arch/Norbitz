@@ -14,6 +14,7 @@ import {
   MatIconModule,
   MatCheckboxModule,
   MatExpansionModule,
+  MatRadioModule,
 } from '@angular/material';
 
 import { ApiModule as NorbitzModule } from '../apis/norbitz';
@@ -83,6 +84,7 @@ import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
     MatIconModule,
     MatCheckboxModule,
     MatExpansionModule,
+    MatRadioModule,
   ],
   providers: [
     UserService,
