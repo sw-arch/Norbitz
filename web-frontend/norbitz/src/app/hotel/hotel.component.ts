@@ -14,11 +14,16 @@ export class HotelComponent implements OnInit {
   ) {}
 
   id = 1;
-  isLoading = false;
+  isLoading = true;
   displayedColumns = ['select','number','type','cost',"location",'status'];
   roomDataSource;
 
   ngOnInit() {
+    //TODO: Enable once ready for hotel intigration
+    //this.getData();
+  }
+
+  getData(){
     this.rooms.getroomById(this.id).subscribe(
       (value: any)=>{
         //Success

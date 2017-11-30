@@ -36,6 +36,11 @@ export class FlightsComponent implements OnInit {
   selectionEvent = new EventEmitter();
 
   ngOnInit() {
+    //TODO: Enable once ready for hotel intigration
+    //this.getData();
+  }
+
+  getData(){
     this.delter.fromLocationToLocationStartDateEndDate(this.origin, this.destination, this.fromDate, this.toDate)
     .subscribe(/*Waiting on https://github.com/henryjr1/DelterAirlinesTeam3/issues/4 */);
   }
