@@ -10,10 +10,10 @@ import { FlightsService, Path, Flight } from '../../apis/delter-airlines'
 })
 export class FlightsComponent implements OnInit {
   isLoading: boolean = true;
-  delterFlights: Array<Flight>;
+  delterFlights;
   delterDataSource;
-  displayedColumns = ['select', 'name'];
-  selectedFlight: Flight;
+  displayedColumns = ['select', 'name', 'from', 'to', 'depart', 'return'];
+  selectedFlight;
 
   constructor(
     private delter: FlightsService,
@@ -36,13 +36,12 @@ export class FlightsComponent implements OnInit {
   selectionEvent = new EventEmitter();
 
   ngOnInit() {
-    //TODO: Enable once ready for hotel intigration
-    this.getData();
-
-  }
-
-  getData(){
-    this.delter.fromLocationToLocationStartDateEndDate(this.origin, this.destination, this.fromDate, this.toDate)
+ 
+    this.delter.fromLocationToLocationStartDateEndDate(
+       this.origin,
+       this.destination,
+       this.fromDate.substring(0,10),
+       this.toDate.substring(0,10))
     .subscribe((value) => {
       //Success
       console.log("Delter search success for " + this.origin + " " + this.destination);
@@ -53,9 +52,37 @@ export class FlightsComponent implements OnInit {
     },
     (error) => {
       //Error
-      console.log("Delter search success for "+ this.origin + " " + this.destination);
+      console.log("Delter search success for " + this.origin + " " + this.destination);
       console.log(error)
     }
   );
+  }
+
+  selectFlight(id){
+    if(id == this.selectedFlight){
+      this.selectedFlight = null;
+      this.selectionEvent.emit(false);
+    }else{
+      console.log("User selected Cruise " + id);
+      this.selectedFlight = id;
+      let flight:any = this.delterFlights.find((val)=>val.id==id);
+      this.pending.order.selectedFlightId = id;
+      var orderObj = this.pending.order.selectedFlightData;
+      orderObj['Name'] = flight.plane.flight_number;
+      orderObj['From'] = flight.fromLocation;
+      orderObj['To'] = flight.toLocation;
+      orderObj['Depart'] = flight.startDate;
+      orderObj['Return'] = flight.endDate;
+      this.pending.order.startDate = flight.startDate;
+      this.pending.order.endDate = flight.endDate;
+      this.selectionEvent.emit(true);
+    }
+  }
+  buttonStyle(cId){
+    return cId == this.selectedFlight? "bselected" : "bregular";
+  }
+
+  toDateDisplayString(orgDate){
+    return new Date(orgDate).toLocaleDateString();
   }
 }

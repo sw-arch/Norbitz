@@ -1,9 +1,52 @@
 <div *ngIf="isLoading">
   <p>Flights coming soon!</p>
 </div>
-<div *ngIf="!isLoading && !flights">
+<div *ngIf="!isLoading && !delterFlights">
 No flights could be found for {{origin}} to {{destination}}
 </div>
-<div *ngIf="!isLoading && flights">
+<div *ngIf="!isLoading && delterFlights">
   <b>Flights avalible for {{origin}} to {{destination}}</b>
+  <div id="deltertable">
+    <mat-table #table [dataSource]="delterDataSource">
+
+      <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.id)"
+                  (click)="selectFlight(element.id)">
+            {{element.id == selectedFlight? "Remove": "Select"}}
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.plane.flight_number}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="from">
+        <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.fromLocation}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="to">
+        <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.toLocation}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="depart">
+        <mat-header-cell *matHeaderCellDef>Depart Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{toDateDisplayString(element.startDate)}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="return">
+        <mat-header-cell *matHeaderCellDef>Return Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{toDateDisplayString(element.endDate)}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
 </div>
+

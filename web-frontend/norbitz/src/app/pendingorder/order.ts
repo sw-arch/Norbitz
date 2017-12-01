@@ -30,6 +30,9 @@ export class Order {
     funIdsArr: string[] = [];
     funComplete:OrderStatus = OrderStatus.pending;
 
+    selectedFlightId: any;
+    selectedFlightData = {};
+
     savedTotalCost: number = 0.0;
 
     selectedCruiseId: any;
