@@ -16,6 +16,8 @@ export class FlightsComponent implements OnInit {
   delterDataSource;
   displayedColumns = ['select', 'name', 'from', 'to', 'depart', 'return'];
   selectedFlight;
+  returnedTickets;
+  orderObj;
 
   constructor(
     private delter: FlightsService,
@@ -72,13 +74,13 @@ export class FlightsComponent implements OnInit {
       this.selectedFlight = id;
       let flight:any = this.delterFlights.find((val)=>val.id==id);
       this.pending.order.selectedFlightId = id;
-      var orderObj = this.pending.order.selectedFlightData;
+      this.orderObj = this.pending.order.selectedFlightData;
       this.tickets = flight.tickets;
-      orderObj['Name'] = flight.plane.flight_number;
-      orderObj['From'] = flight.fromLocation;
-      orderObj['To'] = flight.toLocation;
-      orderObj['Depart'] = flight.startDate;
-      orderObj['Return'] = flight.endDate;
+      this.orderObj['Name'] = flight.plane.flight_number;
+      this.orderObj['From'] = flight.fromLocation;
+      this.orderObj['To'] = flight.toLocation;
+      this.orderObj['Depart'] = flight.startDate;
+      this.orderObj['Return'] = flight.endDate;
       this.pending.order.startDate = flight.startDate;
       this.pending.order.endDate = flight.endDate;
       this.selectionEvent.emit(true);
@@ -100,7 +102,15 @@ export class FlightsComponent implements OnInit {
       data: {
         tickets: this.tickets,
       }, height: '500px',
-      width: '800px',
+         width: '800px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.returnedTickets = result;
+      this.orderObj['Id'] = this.returnedTickets.id;
+      this.orderObj['Price'] = this.returnedTickets.price;
+      this.orderObj['Seat'] = this.returnedTickets.seat_number;
+      console.log("Order: " + this.orderObj['Price']);
     });
   }
 }

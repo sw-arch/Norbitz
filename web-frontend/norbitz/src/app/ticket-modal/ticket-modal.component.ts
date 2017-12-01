@@ -13,6 +13,7 @@ export class TicketModalComponent implements OnInit {
   selectedTicket;
   dataSource: MatTableDataSource<any>;
   displayedColumns = ['select', 'id', 'seat', 'price'];
+  orderObj;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -34,17 +35,18 @@ export class TicketModalComponent implements OnInit {
       this.selectedTicket = null;
       this.selectionEvent.emit(false);
     }else{
-      console.log("User selected Flight " + id);
+      console.log("User selected Ticket " + id);
       this.selectedTicket = id;
+      this.orderObj = this.pending.order.selectedFlightData;
       let ticket:any = this.tickets.find((val)=>val.id==id);
       this.pending.order.selectedTicketId = id;
-      this.pending.order.selectedTicketPrice = ticket.price;
-      var orderObj = this.pending.order.selectedTicketData;
+      this.pending.order.selectedFlightPrice = ticket.price;
       this.tickets = ticket.tickets;
-      orderObj['Id'] = ticket.id;
-      orderObj['Price'] = ticket.price;
-      orderObj['Seat'] = ticket.seat_number;
-      this.selectionEvent.emit(true);
+      this.orderObj['Id'] = ticket.id;
+      this.orderObj['Price'] = ticket.price;
+      this.orderObj['Seat'] = ticket.seat_number;
+      this.selectionEvent.emit(true);   
+      console.log(this.pending.order.selectedFlightPrice);
     }
   }
 

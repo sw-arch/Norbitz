@@ -6,7 +6,7 @@
         <ng-container matColumnDef="select">
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let element">
-            <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.id)"
+            <button [mat-dialog-close]="element" type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.id)"
                     (click)="selectTicket(element.id)">
               {{element.id == selectedTicket? "Remove": "Select"}}
             </button>
