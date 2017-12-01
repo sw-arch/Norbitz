@@ -1,8 +1,8 @@
 <div *ngIf="isLoading">
-  <p>Flights coming soon!</p>
+  <p>Loading...</p>
 </div>
 <div *ngIf="!isLoading && delterFlights.length <= 0">
-No flights could be found for {{origin}} to {{destination}}
+  No flights could be found for {{origin}} to {{destination}}
 </div>
 <div *ngIf="!isLoading && delterFlights.length > 0">
   <b>Flights avalible for {{origin}} to {{destination}}</b>
