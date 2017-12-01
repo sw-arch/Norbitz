@@ -14,7 +14,6 @@ export class FlightsComponent implements OnInit {
   delterFlights = Array<Flight>();
   tickets;
   delterDataSource;
-  ticketDataSource;
   displayedColumns = ['select', 'name', 'from', 'to', 'depart', 'return'];
   selectedFlight;
 
@@ -28,18 +27,20 @@ export class FlightsComponent implements OnInit {
   origin: string = "Starkville, MS";
 
   @Input()
-  destination: string = "Huntsville, AL";
+  destination: string = "Atlanta, GA";
 
   @Input()
-  fromDate: string = "2017-12-01T00:00:00";
+  fromDate: string = "2017-12-28";
 
   @Input()
-  toDate: string = "2017-12-02T00:00:00";
+  toDate: string = "2017-12-29";
 
   @Output()
   selectionEvent = new EventEmitter();
 
   ngOnInit() {
+    console.log(this.fromDate.substring(0,10));
+    console.log(this.toDate.substring(0,10));
  
     this.delter.fromLocationToLocationStartDateEndDate(
        this.origin,
@@ -53,7 +54,6 @@ export class FlightsComponent implements OnInit {
         this.delterFlights = value.flights;
         this.tickets = value.flights.tickets;
         this.delterDataSource = new MatTableDataSource<Flight>(this.delterFlights);
-        this.ticketDataSource = new MatTableDataSource<Flight>(this.tickets);
         this.isLoading = false;
       },
       (error) => {
@@ -93,9 +93,10 @@ export class FlightsComponent implements OnInit {
   }
 
   openDialog() {
+    console.log(this.tickets)
     const dialogRef = this.dialog.open(TicketModalComponent, {
       data: {
-        tickets: this.ticketDataSource,
+        tickets: this.tickets,
       }
     });
   }
