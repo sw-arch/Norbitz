@@ -76,8 +76,8 @@ export class FlightsComponent implements OnInit {
       this.orderObj['Name'] = flight.plane.flight_number;
       this.orderObj['From'] = flight.fromLocation;
       this.orderObj['To'] = flight.toLocation;
-      this.orderObj['Depart'] = flight.startDate;
-      this.orderObj['Return'] = flight.endDate;
+      this.orderObj['Depart'] = this.toDateDisplayString(flight.startDate);
+      this.orderObj['Return'] = this.toDateDisplayString(flight.endDate);
       this.pending.order.startDate = flight.startDate;
       this.pending.order.endDate = flight.endDate;
       this.selectionEvent.emit(true);
@@ -105,7 +105,7 @@ export class FlightsComponent implements OnInit {
       console.log('The dialog was closed');
       this.returnedTickets = result;
       this.orderObj['Id'] = this.returnedTickets.id;
-      this.orderObj['Price'] = this.returnedTickets.price;
+      this.orderObj['Price'] = "$"+this.returnedTickets.price.toFixed(2);
       this.orderObj['Seat'] = this.returnedTickets.seat_number;
       console.log("Order: " + this.orderObj['Price']);
     });

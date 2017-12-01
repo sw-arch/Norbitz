@@ -43,7 +43,7 @@ export class TicketModalComponent implements OnInit {
       this.pending.order.selectedFlightPrice = ticket.price;
       this.tickets = ticket.tickets;
       this.orderObj['Id'] = ticket.id;
-      this.orderObj['Price'] = ticket.price;
+      this.orderObj['Price'] = "$"+ticket.price.toFixed(2);
       this.orderObj['Seat'] = ticket.seat_number;
       this.selectionEvent.emit(true);   
       console.log(JSON.stringify(this.pending.order.selectedFlightData));
