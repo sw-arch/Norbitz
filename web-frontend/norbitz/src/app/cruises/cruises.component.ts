@@ -47,7 +47,7 @@ export class CruisesComponent implements OnInit {
       },
       (error) => {
         //Error
-        console.log("Carnivore search success for "+ this.location);
+        console.log("Carnivore search error for "+ this.location);
         console.log(error)
       }
     );
