@@ -1,7 +1,10 @@
 <div *ngIf="isLoading">
   <p>Hotels coming soon!</p>
 </div>
-<div *ngIf="!isLoading">
+<div *ngIf="!isLoading && !listings">
+    No rooms could be found for {{location}}
+</div>
+<div *ngIf="!isLoading && listings">
   <b>Rooms available for {{id}}</b>
   <div id="hilbunTable">
     <mat-table #table [dataSource]="roomDataSource">

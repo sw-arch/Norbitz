@@ -13,28 +13,22 @@ export class HotelComponent implements OnInit {
     private rooms: RoomService,
   ) {}
 
-  id = 1;
   isLoading = true;
   displayedColumns = ['select','number','type','cost',"location",'status'];
   roomDataSource;
 
   ngOnInit() {
-    //TODO: Enable once ready for hotel intigration
-    //this.getData();
-  }
-
-  getData(){
-    this.rooms.getroomById(this.id).subscribe(
-      (value: any)=>{
+    this.rooms.getroomById(1).subscribe(
+      (value) => {
         //Success
-        console.log("Search success for Hilbun Rooms "+ this.id)
+        console.log("Search success for Hilbun Rooms " + 1)
         console.log(value)
-        this.roomDataSource = new MatTableDataSource<Room>(value.rooms);
+        // this.roomDataSource = new MatTableDataSource<Room>(value);
         this.isLoading = false;
       },
-      (error)=>{
+      (error) => {
         //Error
-        console.log("Hilbun search error for "+this.id);
+        console.log("Hilbun search error for " + 1);
         console.log(error);
       }
     );
