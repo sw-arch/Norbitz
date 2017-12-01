@@ -26,17 +26,13 @@ export class OrderhistoryComponent implements OnInit {
 
   loadOrders(){
     this.norbitzPrivate.load(this.user.username.getValue()).subscribe(
-      (data)=>{
-        //Success
-        console.log("Save load success")
-        console.log(data)
+      (data) => {
         data.orders.forEach((orderStr) => {
           this.orders.push(JSON.parse(orderStr));
         });
         this.ordersLoaded = true;
       },
-      (error)=>{
-        //Error
+      (error) => {
         console.log("Save load failure!")
         console.log(error)
         this.ordersLoaded = true;        
@@ -47,22 +43,13 @@ export class OrderhistoryComponent implements OnInit {
   clearOrderHistory(){
     this.ordersLoaded = false;
     this.norbitzPrivate._delete(this.user.username.getValue()).subscribe(
-      (data)=>{
-        //Success
-        console.log("Orders deleted")
+      (data) => {
         this.ordersLoaded = true;
         this.orders = new Array<Order>();
       },
-      (error)=>{
-        //Error
-        if(error && error.status == 200){
-          console.log("Orders deleted")
-          this.ordersLoaded = true;
-          this.orders = new Array<Order>();
-        }else{
-          console.log("Failure clearning orders!")
-          console.log(error);
-        }
+      (error) => {
+        console.log("Failure clearning orders!")
+        console.log(error);
       }
     );
   }
