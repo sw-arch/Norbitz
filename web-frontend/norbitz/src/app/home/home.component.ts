@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
   private emptyDate: Date;
   private startDateCF = new FormControl({value: this.emptyDate, disabled: true, required: true});
   private endDateCF = new FormControl({value: this.emptyDate, disabled: true, required: true});
-  get startDate(){ return this.startDateCF.value.toISOString().substr(0,19); }
-  get endDate(){ return this.endDateCF.value.toISOString().substr(0,19); };
+  get startDate(){ return this.startDateCF.value.toISOString().substr(0,10) + "T00:00:00"; };
+  get endDate(){ return this.endDateCF.value.toISOString().substr(0,10) + "T00:00:00"; };
 
   searchFormGroup: FormGroup;
   reviewFormGroup: FormGroup;
@@ -77,6 +77,11 @@ export class HomeComponent implements OnInit {
         this.search();
       }
     });
+    this.startDateCF.valueChanges.subscribe(() => {
+      var newDate:Date = new Date(this.startDateCF.value);
+      newDate.setDate(newDate.getDate() + 2);
+      this.endDateCF.setValue(newDate);
+    })
 
     //TODO: Remove these placeholder meant for testing
     this.origin = this.possibleLocations[2];
