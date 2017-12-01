@@ -11,8 +11,14 @@
  */
 
 
-export interface Path {
-    ticketID?: number;
-    username?: string;
-    name?: string;
+export interface Flight {
+    id: number;
+    source: string;
+    destination: string;
+    planeId: number;
+    departureTime: string;
+    departureZipCode: number;
+    arrivalTime: string;
+    arrivalZipCode: number;
+    locale: string;
 }
