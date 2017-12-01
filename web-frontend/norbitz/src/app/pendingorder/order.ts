@@ -76,6 +76,9 @@ export class Order {
         if(this.homestayId){
             total += this.homestayCost * this.daysDuration;
         }
+        if(this.selectedFlightId) {
+            total += this.selectedFlightPrice;
+        }
         this.savedTotalCost = total;
         return total;
     }
