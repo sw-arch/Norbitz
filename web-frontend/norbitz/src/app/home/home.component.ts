@@ -125,7 +125,7 @@ export class HomeComponent implements OnInit {
     this.checkoutComplete = true;
     setTimeout(() => {
       stepper.next();
-      console.log("TODO: Place order(s)");
+      this.pending.submitOrderToThirdPartyServers();
       this.saveOrderToServer()
       let str:string = this.pending.getString();
       console.log(str);

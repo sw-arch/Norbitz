@@ -8,11 +8,15 @@ export class PendingorderService {
 
   order: Order = new Order();
 
-  clearOrder(){
+  submitOrderToThirdPartyServers() {
+    console.log("submit order to 3rd party servers")
+  }
+
+  clearOrder() {
     this.order = new Order();
   }
 
-  getString(){
+  getString() {
     return JSON.stringify(this.order);
   }
 }
