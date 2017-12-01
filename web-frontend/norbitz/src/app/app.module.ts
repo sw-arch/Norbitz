@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatSelectModule } from '@angular/material/select';
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -14,9 +13,11 @@ import {
   MatIconModule,
   MatCheckboxModule,
   MatExpansionModule,
+  MatSelectModule,
   MatRadioModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
+  MatDialogModule,
 } from '@angular/material';
 
 import { ApiModule as NorbitzModule, BASE_PATH as NorbitzBasePath } from '../apis/norbitz';
@@ -45,6 +46,7 @@ import { OrderdisplayComponent } from './orderdisplay/orderdisplay.component';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { SignupComponent } from './signup/signup.component';
 import { StatusdisplayComponent } from './statusdisplay/statusdisplay.component';
+import { TicketModalComponent } from './ticket-modal/ticket-modal.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { StatusdisplayComponent } from './statusdisplay/statusdisplay.component'
     OrderhistoryComponent,
     SignupComponent,
     StatusdisplayComponent,
+    TicketModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +96,7 @@ import { StatusdisplayComponent } from './statusdisplay/statusdisplay.component'
     MatRadioModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatDialogModule,
   ],
   providers: [
     UserService,

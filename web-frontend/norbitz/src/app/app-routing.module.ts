@@ -11,6 +11,7 @@ import { CarsComponent } from './cars/cars.component';
 import { FunComponent } from './fun/fun.component';
 import { FlightsComponent } from './flights/flights.component';
 import {SignupComponent} from "./signup/signup.component";
+import { TicketModalComponent } from './ticket-modal/ticket-modal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'book/cruises', component: CruisesComponent },
   { path: 'book/fun', component: FunComponent },
   { path: 'book/flights', component: FlightsComponent },
+  { path: 'book/tickets', component: TicketModalComponent },
 ];
 
 @NgModule({

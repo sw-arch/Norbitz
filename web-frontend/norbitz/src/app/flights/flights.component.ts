@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { MatTableDataSource, MatTable } from '@angular/material';
+import { MatTableDataSource, MatTable, MatDialog } from '@angular/material';
 import { PendingorderService } from '../pendingorder/pendingorder.service'
 import { FlightsService, Path, Flight } from '../../apis/delter-airlines'
+import { TicketModalComponent } from '../ticket-modal/ticket-modal.component';
 
 @Component({
   selector: 'app-flights',
@@ -18,7 +19,8 @@ export class FlightsComponent implements OnInit {
   constructor(
     private delter: FlightsService,
     private pending: PendingorderService,   
-  ) { }
+    public dialog: MatDialog,
+  ) {}
 
   @Input()
   origin: string = "Starkville, MS";
@@ -84,5 +86,12 @@ export class FlightsComponent implements OnInit {
 
   toDateDisplayString(orgDate){
     return new Date(orgDate).toLocaleDateString();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(TicketModalComponent, {
+      height: '350px',
+      width: '1000px',
+    });
   }
 }
