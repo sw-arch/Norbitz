@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Order, OrderStatus } from './order'
 import { DevelopersService as CruiseDevloperService, CruiseItem } from '../../apis/carnivore-cruise-lines';
 import { UserService as HurtsService, Vehicle, SpecialEquipment } from '../../apis/hurts-car-rental';
+import { DefaultService as ScandalsService, Activity } from '../../apis/scandals';
 
 @Injectable()
 export class PendingorderService {
@@ -9,6 +10,7 @@ export class PendingorderService {
   constructor(
     private cruises:CruiseDevloperService,
     private cars:HurtsService,
+    private fun:ScandalsService,
   ) { }
 
   order: Order = new Order();
@@ -34,6 +36,9 @@ export class PendingorderService {
     if(this.order.extraCarId){
       this.orderCar(false);
     }
+    if(this.order.funIds.size > 0){
+      this.orderFun();
+    }
   }
 
   orderCruise(){
@@ -52,9 +57,9 @@ export class PendingorderService {
 
   orderCar(trans:boolean){
     if(trans){
-      this.order.transCarComplete = OrderStatus.pending;
+      this.order.transCarComplete = OrderStatus.sent;
     } else {
-      this.order.extraCarComplete = OrderStatus.pending;
+      this.order.extraCarComplete = OrderStatus.sent;
     } 
     let vid = trans ? this.order.transCarId : this.order.extraCarId;
     this.cars.purchaseVehicle(vid, this.order.startDate, this.order.endDate).subscribe(
@@ -79,6 +84,24 @@ export class PendingorderService {
         }        
       }
     );
+  }
+
+  orderFun(){
+    for(let i in this.order.funIdsArr){
+      let activityId:string = this.order.funIdsArr[i];
+      this.order.funCompleteKV[activityId] = OrderStatus.sent;
+      this.fun.activityNamePurchaseGet(activityId,1).subscribe(
+        (value) => {
+          //Success
+          console.log("Fun order success for "+ activityId); 
+          this.order.funCompleteKV[activityId] = OrderStatus.success;
+        },
+        (error) => {
+          //Error
+          console.log("Fun order failure for "+ activityId);
+          this.order.funCompleteKV[activityId] = OrderStatus.error;   
+        });
+    }
   }
 }
 

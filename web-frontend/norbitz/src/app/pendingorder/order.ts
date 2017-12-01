@@ -28,7 +28,7 @@ export class Order {
     funIds: Set<string> = new Set<string>();
     funDataAll: any;
     funIdsArr: string[] = [];
-    funComplete:OrderStatus = OrderStatus.pending;
+    funCompleteKV = {};
 
     selectedFlightId: any;
     selectedFlightData = {};
@@ -79,9 +79,16 @@ export class Order {
         return Math.ceil(seconds/1000/60/60/24);
     }
 
-
     public updateFunIdsArr(){
         this.funIdsArr = Array.from(this.funIds);
+    }
+
+    public isFunIdComplete(id){
+        if(this.funCompleteKV[id]){
+            return this.funCompleteKV[id];
+        }else{
+            return OrderStatus.pending;
+        }
     }
 
 }

@@ -19,9 +19,10 @@
       </div>
     </div>
     <div *ngIf="order.funIdsArr && order.funIdsArr.length > 0">
-        <h3>Local Events</h3><app-statusdisplay [status]="order.funComplete" *ngIf="displayStatus"></app-statusdisplay>
+        <h3>Local Events</h3>
         <div *ngFor="let activity of order.funIdsArr">
-            <b>Activity: </b> {{activity}}<br/>
+            <b>Activity: </b> {{activity}} <app-statusdisplay [status]="order.isFunIdComplete(activity)" *ngIf="displayStatus"></app-statusdisplay>
+            <br/>
             <b>Location: </b> {{getActivity(activity).location}}<br/>
             <b>Date/Time: </b> {{toDateTimeDisplayString(getActivity(activity).time)}}<br/>        
             <b>Cost: </b> ${{getActivity(activity).cost.toFixed(2)}}<br/>
