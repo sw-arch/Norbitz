@@ -40,17 +40,10 @@ export class PendingorderService {
     this.order.cruiseComplete = OrderStatus.sent;    
     this.cruises.selectItem(this.order.selectedCruiseId).subscribe(
       (value) => {
-        //"Success"
-        if(value.status == "Item you tried to purchase an unavailable item"){
-          console.log("Carnivore order failure becaue no items remaining for "+ this.order.selectedCruiseId);          
-          this.order.cruiseComplete = OrderStatus.error;
-        }else{
-          console.log("Carnivore order success for "+ this.order.selectedCruiseId);
-          this.order.cruiseComplete = OrderStatus.success;
-        }
+        console.log("Carnivore order success for "+ this.order.selectedCruiseId);
+        this.order.cruiseComplete = OrderStatus.success;
       },
       (error) => {
-        //Error
         console.log("Carnivore order error for "+ this.order.selectedCruiseId);
         this.order.cruiseComplete = OrderStatus.error;        
       }
