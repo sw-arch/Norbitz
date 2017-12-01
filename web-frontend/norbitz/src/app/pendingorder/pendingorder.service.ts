@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Order, OrderStatus } from './order'
 import { DevelopersService as CruiseDevloperService, CruiseItem } from '../../apis/carnivore-cruise-lines';
-import { UserService as HurtsService, Vehicle, SpecialEquipment } from '../../apis/hurts-car-rental';
+import { UserService as HurtsService, Vehicle, SpecialEquipment, AdminService } from '../../apis/hurts-car-rental';
 import { DefaultService as ScandalsService, Activity } from '../../apis/scandals';
+import { AdminsService as AirdndService, Listing, LocationListings, ListingDetails } from '../../apis/airdnd';
 
 @Injectable()
 export class PendingorderService {
@@ -11,6 +12,7 @@ export class PendingorderService {
     private cruises:CruiseDevloperService,
     private cars:HurtsService,
     private fun:ScandalsService,
+    private homestays:AirdndService,
   ) { }
 
   order: Order = new Order();
@@ -38,6 +40,9 @@ export class PendingorderService {
     }
     if(this.order.funIds.size > 0){
       this.orderFun();
+    }
+    if(this.order.homestayId){
+      this.orderHomestay();
     }
   }
 
@@ -102,6 +107,32 @@ export class PendingorderService {
           this.order.funCompleteKV[activityId] = OrderStatus.error;   
         });
     }
+  }
+
+  orderHomestay(){
+    this.order.homestayComplete = OrderStatus.sent;    
+    this.homestays.controllersAdminsControllerAddReservation(this.order.homestayId,{
+      reservationId: "reservationId-here",
+      dates: [this.order.startDate, this.order.endDate],
+      available: false,
+    }).subscribe(
+      (value) => {
+        //Success
+        console.log("Homestay order success for "+ this.order.homestayId);
+        console.log(value); 
+        this.order.homestayComplete = OrderStatus.success;
+      },
+      (error) => {
+        //Error
+        if(error.status && error.status == 201){
+          console.log("Homestay order success for "+ this.order.homestayId);
+          this.order.homestayComplete = OrderStatus.success;
+        }else{
+          console.log("Homestay order failure for "+ this.order.homestayId);
+          console.log(error);         
+          this.order.homestayComplete = OrderStatus.error;   
+        }
+      });
   }
 }
 
