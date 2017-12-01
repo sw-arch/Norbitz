@@ -34,6 +34,8 @@ def delete(username):  # noqa: E501
         }
     )
 
+    return "Success"
+
 
 def load(username):  # noqa: E501
     """Load user data
@@ -85,3 +87,5 @@ def save(orderMessage):  # noqa: E501
             }
         }
     )
+
+    return "Success"
