@@ -41,9 +41,6 @@ export class FlightsComponent implements OnInit {
   selectionEvent = new EventEmitter();
 
   ngOnInit() {
-    console.log(this.fromDate.substring(0,10));
-    console.log(this.toDate.substring(0,10));
- 
     this.delter.fromLocationToLocationStartDateEndDate(
        this.origin,
        this.destination,
