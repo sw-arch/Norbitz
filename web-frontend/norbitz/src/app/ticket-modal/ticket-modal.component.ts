@@ -38,6 +38,7 @@ export class TicketModalComponent implements OnInit {
       this.selectedTicket = id;
       let ticket:any = this.tickets.find((val)=>val.id==id);
       this.pending.order.selectedTicketId = id;
+      this.pending.order.selectedTicketPrice = ticket.price;
       var orderObj = this.pending.order.selectedTicketData;
       this.tickets = ticket.tickets;
       orderObj['Id'] = ticket.id;

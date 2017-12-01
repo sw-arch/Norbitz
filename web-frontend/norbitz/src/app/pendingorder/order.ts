@@ -35,6 +35,7 @@ export class Order {
 
     selectedTicketId: any;
     selectedTicketData = {};
+    selectedTicketPrice: number = 0.0;
 
     savedTotalCost: number = 0.0;
 
