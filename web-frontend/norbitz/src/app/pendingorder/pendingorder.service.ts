@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Order, OrderStatus } from './order'
 import { DevelopersService as CruiseDevloperService, CruiseItem } from '../../apis/carnivore-cruise-lines';
-import { UserService as HurtsService, Vehicle, SpecialEquipment, AdminService } from '../../apis/hurts-car-rental';
+import { UserService as HurtsService, Vehicle, SpecialEquipment, AdminService, UserService } from '../../apis/hurts-car-rental';
 import { DefaultService as ScandalsService, Activity } from '../../apis/scandals';
+import { FlightsService, PurchaseService, Flight, Path } from '../../apis/delter-airlines';
 import { AdminsService as AirdndService, Listing, LocationListings, ListingDetails } from '../../apis/airdnd';
+import { UserService as UsernameService } from '../user/user.service';
 
 @Injectable()
 export class PendingorderService {
@@ -13,6 +15,10 @@ export class PendingorderService {
     private cars:HurtsService,
     private fun:ScandalsService,
     private homestays:AirdndService,
+    private purchases:PurchaseService,
+    private flights:FlightsService,
+    private user:UsernameService,
+    
   ) { }
 
   order: Order = new Order();
@@ -65,17 +71,21 @@ export class PendingorderService {
 
   orderFlight(){
     console.log("Flight ordered");
-    /* this.order.cruiseComplete = OrderStatus.sent;    
-    this.cruises.selectItem(this.order.selectedCruiseId).subscribe(
+    this.order.flightComplete = OrderStatus.sent;    
+    this.purchases.placeOrder({
+      ticketID: this.order.selectedTicketId,
+      username: this.user.username.toString(),
+      name: this.user.username.toString(),
+    }).subscribe(
       (value) => {
-        console.log("Carnivore order success for "+ this.order.selectedCruiseId);
-        this.order.cruiseComplete = OrderStatus.success;
+        console.log("Carnivore order success for "+ this.order.selectedTicketId);
+        this.order.flightComplete = OrderStatus.success;
       },
       (error) => {
-        console.log("Carnivore order error for "+ this.order.selectedCruiseId);
-        this.order.cruiseComplete = OrderStatus.error;        
-      } */
-    //);
+        console.log("Carnivore order error for "+ this.order.selectedFlightId);
+        this.order.flightComplete = OrderStatus.error;        
+      } 
+    );
   }
 
   orderCar(trans:boolean){
