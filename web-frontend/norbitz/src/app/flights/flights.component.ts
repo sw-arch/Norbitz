@@ -10,7 +10,7 @@ import { FlightsService, Path, Flight } from '../../apis/delter-airlines'
 })
 export class FlightsComponent implements OnInit {
   isLoading: boolean = true;
-  delterFlights;
+  delterFlights = Array<Flight>();
   delterDataSource;
   displayedColumns = ['select', 'name', 'from', 'to', 'depart', 'return'];
   selectedFlight;
@@ -42,20 +42,20 @@ export class FlightsComponent implements OnInit {
        this.destination,
        this.fromDate.substring(0,10),
        this.toDate.substring(0,10))
-    .subscribe((value) => {
-      //Success
-      console.log("Delter search success for " + this.origin + " " + this.destination);
-      console.log(value);
-      this.delterFlights = value.flights;
-      this.delterDataSource = new MatTableDataSource<Flight>(this.delterFlights);
-      this.isLoading = false;
-    },
-    (error) => {
-      //Error
-      console.log("Delter search success for " + this.origin + " " + this.destination);
-      console.log(error)
-    }
-  );
+      .subscribe((value) => {
+        //Success
+        console.log("Delter search success for " + this.origin + " " + this.destination);
+        console.log(value);
+        this.delterFlights = value.flights;
+        this.delterDataSource = new MatTableDataSource<Flight>(this.delterFlights);
+        this.isLoading = false;
+      },
+      (error) => {
+        //Error
+        console.log("Delter search error for " + this.origin + " " + this.destination);
+        console.log(error)
+      }
+   );
   }
 
   selectFlight(id){
