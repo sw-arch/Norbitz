@@ -12,7 +12,9 @@ import { TicketModalComponent } from '../ticket-modal/ticket-modal.component';
 export class FlightsComponent implements OnInit {
   isLoading: boolean = true;
   delterFlights = Array<Flight>();
+  tickets;
   delterDataSource;
+  ticketDataSource;
   displayedColumns = ['select', 'name', 'from', 'to', 'depart', 'return'];
   selectedFlight;
 
@@ -49,7 +51,9 @@ export class FlightsComponent implements OnInit {
         console.log("Delter search success for " + this.origin + " " + this.destination);
         console.log(value);
         this.delterFlights = value.flights;
+        this.tickets = value.flights.tickets;
         this.delterDataSource = new MatTableDataSource<Flight>(this.delterFlights);
+        this.ticketDataSource = new MatTableDataSource<Flight>(this.tickets);
         this.isLoading = false;
       },
       (error) => {
@@ -90,8 +94,9 @@ export class FlightsComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(TicketModalComponent, {
-      height: '350px',
-      width: '1000px',
+      data: {
+        tickets: this.ticketDataSource,
+      }
     });
   }
 }

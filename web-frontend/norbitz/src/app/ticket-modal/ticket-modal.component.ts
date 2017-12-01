@@ -9,6 +9,11 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 export class TicketModalComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
+  // "id": 1,
+  // "seat_number": "A1",
+  // "price": 135,
+  // "available": false
+
 }
 
 
