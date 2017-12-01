@@ -9,7 +9,7 @@ import { PendingorderService } from '../pendingorder/pendingorder.service';
 })
 export class TicketModalComponent implements OnInit {
 
-  tickets;
+  tickets = Array<any>();
   selectedTicket;
   dataSource: MatTableDataSource<any>;
   displayedColumns = ['select', 'id', 'seat', 'price'];
@@ -30,25 +30,25 @@ export class TicketModalComponent implements OnInit {
   }
 
   selectTicket(id){
-    if(id == this.selectTicket){
+    if(id == this.selectedTicket){
       this.selectedTicket = null;
       this.selectionEvent.emit(false);
     }else{
       console.log("User selected Flight " + id);
       this.selectedTicket = id;
-      let flight:any = this.tickets.find((val)=>val.id==id);
+      let ticket:any = this.tickets.find((val)=>val.id==id);
       this.pending.order.selectedTicketId = id;
       var orderObj = this.pending.order.selectedTicketData;
-      this.tickets = flight.tickets;
-      orderObj['Id'] = this.tickets.id;
-      orderObj['Price'] = this.tickets.price;
-      orderObj['Seat'] = this.tickets.seat_number;
+      this.tickets = ticket.tickets;
+      orderObj['Id'] = ticket.id;
+      orderObj['Price'] = ticket.price;
+      orderObj['Seat'] = ticket.seat_number;
       this.selectionEvent.emit(true);
     }
   }
 
   buttonStyle(cId){
-    return cId == this.tickets.id? "bselected" : "bregular";
+    return cId == this.selectedTicket? "bselected" : "bregular";
   }
 
 }
