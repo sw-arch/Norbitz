@@ -93,8 +93,6 @@ paths:
       summary: "Save order data"
       description: "Save an order data entry with this endpoint."
       operationId: "save"
-      produces:
-      - "application/json"
       parameters:
       - in: "body"
         name: "orderMessage"
@@ -113,8 +111,6 @@ paths:
       - "private"
       summary: "Delete user's order history"
       operationId: "delete"
-      produces:
-      - "application/json"
       parameters:
       - name: "username"
         in: "query"
