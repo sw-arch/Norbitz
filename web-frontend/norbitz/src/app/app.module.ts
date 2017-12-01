@@ -15,6 +15,8 @@ import {
   MatCheckboxModule,
   MatExpansionModule,
   MatRadioModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 
 import { ApiModule as NorbitzModule, BASE_PATH as NorbitzBasePath } from '../apis/norbitz';
@@ -42,6 +44,7 @@ import { FlightsComponent } from './flights/flights.component';
 import { OrderdisplayComponent } from './orderdisplay/orderdisplay.component';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { SignupComponent } from './signup/signup.component';
+import { StatusdisplayComponent } from './statusdisplay/statusdisplay.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +61,7 @@ import { SignupComponent } from './signup/signup.component';
     OrderdisplayComponent,
     OrderhistoryComponent,
     SignupComponent,
+    StatusdisplayComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,8 @@ import { SignupComponent } from './signup/signup.component';
     MatCheckboxModule,
     MatExpansionModule,
     MatRadioModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     UserService,

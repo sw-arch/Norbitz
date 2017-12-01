@@ -96,4 +96,11 @@ nav a.active {
   border-left: 5px solid #a94442; /* red */
 }
 
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #4cae4c;
+}
 
+.mat-spinner path {
+  stroke: #4cae4c;
+  stroke-width: 1px !important;
+}

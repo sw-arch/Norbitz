@@ -1,0 +1,9 @@
+<span *ngIf="status == 1" style="display: inline-block;">
+    <mat-spinner [diameter]="25"></mat-spinner>    
+</span>
+<span *ngIf="status == 2">
+  <i class="material-icons check" >check</i>
+</span>
+<span *ngIf="status == 3">
+  <i class="material-icons error" >error</i>
+</span>

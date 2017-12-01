@@ -7,19 +7,19 @@
     <b>Return Date: </b>{{toDateDisplayString(order.endDate)}}<br/>
     <br/>
     <div *ngIf="order.transCarId">
-        <h3>Transporation Rental Car</h3>
+        <h3>Transporation Rental Car</h3><app-statusdisplay [status]="order.transCarComplete" *ngIf="displayStatus"></app-statusdisplay>
         <div *ngFor="let key of getKeys(order.transCarData)">
             <b>{{key}}: </b> {{order.transCarData[key]}}
         </div>
     </div>
     <div *ngIf="order.extraCarId">
-      <h3>Local Rental Car</h3>
+      <h3>Local Rental Car</h3><app-statusdisplay [status]="order.extraCarComplete" *ngIf="displayStatus"></app-statusdisplay>
       <div *ngFor="let key of getKeys(order.extraCarData)">
           <b>{{key}}: </b> {{order.extraCarData[key]}}
       </div>
     </div>
     <div *ngIf="order.funIdsArr && order.funIdsArr.length > 0">
-        <h3>Local Events</h3>
+        <h3>Local Events</h3><app-statusdisplay [status]="order.funComplete" *ngIf="displayStatus"></app-statusdisplay>
         <div *ngFor="let activity of order.funIdsArr">
             <b>Activity: </b> {{activity}}<br/>
             <b>Location: </b> {{getActivity(activity).location}}<br/>
@@ -29,13 +29,13 @@
         </div>
     </div>
     <div *ngIf="order.selectedCruiseId">
-        <h3>Cruises</h3>
+        <h3>Cruises</h3><app-statusdisplay [status]="order.cruiseComplete" *ngIf="displayStatus"></app-statusdisplay>
         <div *ngFor="let key of getKeys(order.selectedCruiseData)">
             <b>{{key}}: </b> {{order.selectedCruiseData[key]}}
         </div>
     </div>
     <div *ngIf="order.homestayId">
-        <h3>Homestay</h3>
+        <h3>Homestay</h3><app-statusdisplay [status]="order.homestayComplete" *ngIf="displayStatus"></app-statusdisplay>
         <div *ngFor="let key of getKeys(order.homestayData)">
             <b>{{key}}: </b> {{order.homestayData[key]}}
         </div>

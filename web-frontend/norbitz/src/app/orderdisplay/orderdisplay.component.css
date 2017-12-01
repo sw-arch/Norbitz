@@ -1,0 +1,13 @@
+h3 {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #4cae4c;
+}
+
+.mat-spinner path {
+  stroke: #4cae4c;
+  stroke-width: 1px !important;
+}

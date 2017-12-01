@@ -14,7 +14,10 @@ export class OrderdisplayComponent implements OnInit {
   order: Order;
 
   @Input()
-  usedSavedTotals: Boolean = false;
+  usedSavedTotals: boolean = false;
+
+  @Input()
+  displayStatus: boolean = true;
 
   ngOnInit() {
   }

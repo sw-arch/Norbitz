@@ -1,6 +1,8 @@
 export class Order {
     constructor() { }
 
+    orderPlaced: boolean = false;
+
     origin: string;
     desination: string;
     startDate: string;
@@ -11,24 +13,29 @@ export class Order {
     transCarId: any;
     transCarData = {};
     transCarCostPerDay:number = 0.0;
+    transCarComplete:OrderStatus = OrderStatus.pending;
 
     extraCarId: any;
     extraCarData = {};
     extraCarCostPerDay:number = 0.0;
+    extraCarComplete:OrderStatus = OrderStatus.pending;
 
     homestayId: string;
     homestayData = {};
     homestayCost: number;
+    homestayComplete:OrderStatus = OrderStatus.pending;
 
     funIds: Set<string> = new Set<string>();
     funDataAll: any;
     funIdsArr: string[] = [];
+    funComplete:OrderStatus = OrderStatus.pending;
 
     savedTotalCost: number = 0.0;
 
     selectedCruiseId: any;
     selectedCruiseData = {};
     selectedCruisePrice: number = 0.0;
+    cruiseComplete:OrderStatus = OrderStatus.pending;
 
     get startDateDate():Date {
         return new Date(this.startDate);
@@ -76,3 +83,9 @@ export class Order {
 
 }
 
+export enum OrderStatus {
+    pending = 0,
+    sent = 1,
+    success = 2,
+    error = 3,
+}
