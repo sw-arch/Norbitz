@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatTable } from '@angular/material';
 import { PendingorderService } from '../pendingorder/pendingorder.service'
-import { FlightsService, Path } from '../../apis/delter-airlines'
+import { FlightsService, Path, Flight } from '../../apis/delter-airlines'
 
 @Component({
   selector: 'app-flights',
@@ -10,10 +10,10 @@ import { FlightsService, Path } from '../../apis/delter-airlines'
 })
 export class FlightsComponent implements OnInit {
   isLoading: boolean = true;
-  delterPaths: Array<Path>;
-  delterDataSource: MatTableDataSource<Path>;
+  delterFlights: Array<Flight>;
+  delterDataSource;
   displayedColumns = ['select', 'name'];
-  selectedPath: Path;
+  selectedFlight: Flight;
 
   constructor(
     private delter: FlightsService,
@@ -37,11 +37,25 @@ export class FlightsComponent implements OnInit {
 
   ngOnInit() {
     //TODO: Enable once ready for hotel intigration
-    //this.getData();
+    this.getData();
+
   }
 
   getData(){
     this.delter.fromLocationToLocationStartDateEndDate(this.origin, this.destination, this.fromDate, this.toDate)
-    .subscribe(/*Waiting on https://github.com/henryjr1/DelterAirlinesTeam3/issues/4 */);
+    .subscribe((value) => {
+      //Success
+      console.log("Delter search success for " + this.origin + " " + this.destination);
+      console.log(value);
+      this.delterFlights = value.flights;
+      this.delterDataSource = new MatTableDataSource<Flight>(this.delterFlights);
+      this.isLoading = false;
+    },
+    (error) => {
+      //Error
+      console.log("Delter search success for "+ this.origin + " " + this.destination);
+      console.log(error)
+    }
+  );
   }
 }

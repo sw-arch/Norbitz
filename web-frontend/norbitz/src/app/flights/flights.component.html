@@ -2,8 +2,8 @@
   <p>Flights coming soon!</p>
 </div>
 <div *ngIf="!isLoading && !flights">
-No flights could be found for {{location}}
+No flights could be found for {{origin}} to {{destination}}
 </div>
 <div *ngIf="!isLoading && flights">
-  <b>Flights avalible for {{location}}</b>
+  <b>Flights avalible for {{origin}} to {{destination}}</b>
 </div>
