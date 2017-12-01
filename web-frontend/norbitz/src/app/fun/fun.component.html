@@ -1,10 +1,10 @@
 <div *ngIf="isLoading">
     <p>Loading...</p>
 </div>
-<div *ngIf="!isLoading && !scandalsActivities">
+<div *ngIf="!isLoading && scandalsActivities.length == 0">
 No activities could be found for {{ location }}
 </div>
-<div *ngIf="!isLoading && scandalsActivities">
+<div *ngIf="!isLoading && scandalsActivities.length > 0">
     <b>Activities avalible for {{ location }}</b>
     <div id="scandalsTable">
         <mat-table #table [dataSource]="scandalsDataSource">
