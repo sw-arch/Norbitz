@@ -18,6 +18,10 @@ export class HotelComponent implements OnInit {
   roomDataSource;
 
   ngOnInit() {
+    //getData();
+  }
+
+  getData(){
     this.rooms.getroomById(1).subscribe(
       (value) => {
         //Success
