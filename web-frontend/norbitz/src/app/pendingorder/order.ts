@@ -49,7 +49,7 @@ export class Order {
     }
 
     get daysDuration():number {
-        return this.msToDays(this.endDateDate.valueOf() - this.startDateDate.valueOf());
+        return Math.max(1,this.msToDays(this.endDateDate.valueOf() - this.startDateDate.valueOf()));
     }
 
     get calculatedTotalCost():number {
