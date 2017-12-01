@@ -26,13 +26,13 @@
     </mat-form-field>
 
     <mat-form-field *ngIf="booktype == 'trip'" (click)="pickerStart.open()">
-      <input matInput [matDatepicker]="pickerStart" placeholder="Departure Date" [formControl]="startDateCF" formControlName="startDate" required>
+      <input matInput [matDatepicker]="pickerStart" [max]="endDateCF.value" placeholder="Departure Date" [formControl]="startDateCF" formControlName="startDate" required>
       <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
       <mat-datepicker #pickerStart disabled="false"></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field *ngIf="booktype == 'trip'" (click)="pickerEnd.open()">
-      <input matInput [matDatepicker]="pickerEnd" placeholder="Return Date" [formControl]="endDateCF" formControlName="endDate" required>
+      <input matInput [matDatepicker]="pickerEnd" [min]="startDateCF.value" placeholder="Return Date" [formControl]="endDateCF" formControlName="endDate" required>
       <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
       <mat-datepicker #pickerEnd disabled="false"></mat-datepicker>
     </mat-form-field>
