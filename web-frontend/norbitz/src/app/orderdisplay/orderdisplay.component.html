@@ -3,6 +3,7 @@
     <span *ngIf="order.bookingType == 'trip'"><b>Origin: </b>{{order.origin}}<br/></span>
     <span *ngIf="order.bookingType == 'trip'"><b>Desination: </b>{{order.desination}}<br/></span>
     <span *ngIf="order.bookingType == 'cruise'"><b>Port: </b>{{order.port}}<br/></span>
+
     <b>Departure Date: </b>{{toDateDisplayString(order.startDate)}}<br/>
     <b>Return Date: </b>{{toDateDisplayString(order.endDate)}}<br/>
     <br/>
@@ -12,6 +13,11 @@
             <b>{{key}}: </b> {{order.transCarData[key]}}
         </div>
     </div>
+    <div *ngIf="order.selectedFlightId">
+            <h3>Flights</h3><app-statusdisplay [status]="order.flightComplete" *ngIf="displayStatus"></app-statusdisplay>
+            <div *ngFor="let key of getKeys(order.selectedFlightData)">
+                <b>{{key}}: </b> {{order.selectedFlightData[key]}}
+            </div>
     <div *ngIf="order.extraCarId">
       <h3>Local Rental Car</h3><app-statusdisplay [status]="order.extraCarComplete" *ngIf="displayStatus"></app-statusdisplay>
       <div *ngFor="let key of getKeys(order.extraCarData)">
@@ -40,6 +46,7 @@
         <div *ngFor="let key of getKeys(order.homestayData)">
             <b>{{key}}: </b> {{order.homestayData[key]}}
         </div>
+    </div>  
     </div>
     <br/>
     <br/>

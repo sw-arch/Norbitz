@@ -32,7 +32,8 @@ export class Order {
 
     selectedFlightId: any;
     selectedFlightData = {};
-    selectedFlightPrice: number = 0.0;
+    selectedFlightPrice: number = 0.0
+    flightComplete:OrderStatus = OrderStatus.pending;;
 
     selectedTicketId: any;
     

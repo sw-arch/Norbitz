@@ -44,6 +44,9 @@ export class PendingorderService {
     if(this.order.homestayId){
       this.orderHomestay();
     }
+    if(this.order.selectedFlightId){
+      this.orderFlight();
+    }
   }
 
   orderCruise(){
@@ -58,6 +61,21 @@ export class PendingorderService {
         this.order.cruiseComplete = OrderStatus.error;        
       }
     );
+  }
+
+  orderFlight(){
+    console.log("Flight ordered");
+    /* this.order.cruiseComplete = OrderStatus.sent;    
+    this.cruises.selectItem(this.order.selectedCruiseId).subscribe(
+      (value) => {
+        console.log("Carnivore order success for "+ this.order.selectedCruiseId);
+        this.order.cruiseComplete = OrderStatus.success;
+      },
+      (error) => {
+        console.log("Carnivore order error for "+ this.order.selectedCruiseId);
+        this.order.cruiseComplete = OrderStatus.error;        
+      } */
+    //);
   }
 
   orderCar(trans:boolean){
