@@ -63,7 +63,7 @@ export class FlightsComponent implements OnInit {
       this.selectedFlight = null;
       this.selectionEvent.emit(false);
     }else{
-      console.log("User selected Cruise " + id);
+      console.log("User selected Flight " + id);
       this.selectedFlight = id;
       let flight:any = this.delterFlights.find((val)=>val.id==id);
       this.pending.order.selectedFlightId = id;
