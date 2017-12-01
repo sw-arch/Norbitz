@@ -7,7 +7,7 @@
           <mat-header-cell *matHeaderCellDef></mat-header-cell>
           <mat-cell *matCellDef="let element">
             <button type="submit" class="btn btn-success" [ngClass]="buttonStyle(element.id)"
-                    (click)="selectFlight(element.ticket.id)">
+                    (click)="selectTicket(element.id)">
               {{element.id == selectedFlight? "Remove": "Select"}}
             </button>
           </mat-cell>
@@ -20,7 +20,7 @@
   
         <ng-container matColumnDef="seat">
           <mat-header-cell *matHeaderCellDef>Seat</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.seat_id}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.seat_number}}</mat-cell>
         </ng-container>
   
         <ng-container matColumnDef="price">
@@ -35,10 +35,3 @@
 
   
 </form>
-
-  <!-- <mat-dialog-content>Are you sure?</mat-dialog-content>
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>No</button> -->
-    <!-- Can optionally provide a result for the closing dialog. -->
-    <!-- <button mat-button [mat-dialog-close]="true">Yes</button>
-  </mat-dialog-actions> -->

@@ -52,7 +52,6 @@ export class FlightsComponent implements OnInit {
         console.log("Delter search success for " + this.origin + " " + this.destination);
         console.log(value);
         this.delterFlights = value.flights;
-        this.tickets = value.flights.tickets;
         this.delterDataSource = new MatTableDataSource<Flight>(this.delterFlights);
         this.isLoading = false;
       },
@@ -74,6 +73,7 @@ export class FlightsComponent implements OnInit {
       let flight:any = this.delterFlights.find((val)=>val.id==id);
       this.pending.order.selectedFlightId = id;
       var orderObj = this.pending.order.selectedFlightData;
+      this.tickets = flight.tickets;
       orderObj['Name'] = flight.plane.flight_number;
       orderObj['From'] = flight.fromLocation;
       orderObj['To'] = flight.toLocation;
@@ -82,6 +82,7 @@ export class FlightsComponent implements OnInit {
       this.pending.order.startDate = flight.startDate;
       this.pending.order.endDate = flight.endDate;
       this.selectionEvent.emit(true);
+      this.openDialog();
     }
   }
   buttonStyle(cId){
@@ -94,10 +95,12 @@ export class FlightsComponent implements OnInit {
 
   openDialog() {
     console.log(this.tickets)
-    const dialogRef = this.dialog.open(TicketModalComponent, {
+    const dialogRef = this.dialog.open(TicketModalComponent, 
+      {
       data: {
         tickets: this.tickets,
-      }
+      }, height: '500px',
+      width: '800px',
     });
   }
 }

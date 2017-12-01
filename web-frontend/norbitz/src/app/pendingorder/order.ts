@@ -33,6 +33,9 @@ export class Order {
     selectedFlightId: any;
     selectedFlightData = {};
 
+    selectedTicketId: any;
+    selectedTicketData = {};
+
     savedTotalCost: number = 0.0;
 
     selectedCruiseId: any;
