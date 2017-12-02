@@ -95,7 +95,9 @@ export class PendingorderService {
       this.order.extraCarComplete = OrderStatus.sent;
     } 
     let vid = trans ? this.order.transCarId : this.order.extraCarId;
-    this.cars.purchaseVehicle(vid, this.order.startDate, this.order.endDate).subscribe(
+    this.cars.purchaseVehicle(vid, {
+        vehicleID: vid, startDate: this.order.startDate, endDate: this.order.endDate
+      }).subscribe(
       (value) => {
         //"Success"
         console.log("Car order success for "+ vid); 
