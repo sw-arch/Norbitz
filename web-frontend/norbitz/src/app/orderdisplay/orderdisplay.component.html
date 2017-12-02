@@ -13,16 +13,17 @@
             <b>{{key}}: </b> {{order.transCarData[key]}}
         </div>
     </div>
-    <div *ngIf="order.selectedFlightId">
-            <h3>Flights</h3><app-statusdisplay [status]="order.flightComplete" *ngIf="displayStatus"></app-statusdisplay>
-            <div *ngFor="let key of getKeys(order.selectedFlightData)">
-                <b>{{key}}: </b> {{order.selectedFlightData[key]}}
-            </div>
     <div *ngIf="order.extraCarId">
-      <h3>Local Rental Car</h3><app-statusdisplay [status]="order.extraCarComplete" *ngIf="displayStatus"></app-statusdisplay>
-      <div *ngFor="let key of getKeys(order.extraCarData)">
-          <b>{{key}}: </b> {{order.extraCarData[key]}}
-      </div>
+        <h3>Local Rental Car</h3><app-statusdisplay [status]="order.extraCarComplete" *ngIf="displayStatus"></app-statusdisplay>
+        <div *ngFor="let key of getKeys(order.extraCarData)">
+            <b>{{key}}: </b> {{order.extraCarData[key]}}
+        </div>
+    </div> 
+    <div *ngIf="order.selectedFlightId">
+        <h3>Flights</h3><app-statusdisplay [status]="order.flightComplete" *ngIf="displayStatus"></app-statusdisplay>
+        <div *ngFor="let key of getKeys(order.selectedFlightData)">
+            <b>{{key}}: </b> {{order.selectedFlightData[key]}}
+        </div>
     </div>
     <div *ngIf="order.funIdsArr && order.funIdsArr.length > 0">
         <h3>Local Events</h3>
@@ -34,19 +35,18 @@
             <b>Cost: </b> ${{getActivity(activity).cost.toFixed(2)}}<br/>
             <br/>
         </div>
-    </div>
+    </div>  
     <div *ngIf="order.selectedCruiseId">
         <h3>Cruises</h3><app-statusdisplay [status]="order.cruiseComplete" *ngIf="displayStatus"></app-statusdisplay>
         <div *ngFor="let key of getKeys(order.selectedCruiseData)">
             <b>{{key}}: </b> {{order.selectedCruiseData[key]}}
         </div>
-    </div>
+    </div> 
     <div *ngIf="order.homestayId">
         <h3>Homestay</h3><app-statusdisplay [status]="order.homestayComplete" *ngIf="displayStatus"></app-statusdisplay>
         <div *ngFor="let key of getKeys(order.homestayData)">
             <b>{{key}}: </b> {{order.homestayData[key]}}
         </div>
-    </div>  
     </div>
     <br/>
     <br/>
