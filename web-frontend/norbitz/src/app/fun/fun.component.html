@@ -5,7 +5,7 @@
 No activities could be found for {{ location }}
 </div>
 <div *ngIf="!isLoading && scandalsActivities.length > 0">
-    <b>Activities avalible for {{ location }}</b>
+    <b>Activities available for {{ location }}</b>
     <div id="scandalsTable">
         <mat-table #table [dataSource]="scandalsDataSource">
             <ng-container matColumnDef="select">

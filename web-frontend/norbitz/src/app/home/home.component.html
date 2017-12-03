@@ -60,12 +60,11 @@
         <button mat-button matStepperNext>{{lodgingFormDone ? "Next" : "Skip"}} <i class="material-icons">navigate_next</i></button>
       </span>
       <h2>Lodging</h2>
-      <h3>Hotels <i>from Hulbun</i></h3>
+      <h3>Hotels <i>from Hilbun</i></h3>
       <app-hotel></app-hotel>
       <br/>
       <hr/>
       <h3>Homestays <i>from AirDnD</i></h3>
-      <!--[fromDate]="startDate" [toDate]="endDate"-->
       <app-homestays [location]="desination" (selectionEvent)="homestaySelected = $event"></app-homestays>
   </mat-step>
   <mat-step label="Extras" [editable]="!checkoutComplete">
@@ -77,7 +76,7 @@
     <app-cars [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="extrasCarSelected = $event" [extraCar]="true"></app-cars>
     <br/>
     <hr>
-    <h3>Local Events <i>from Sandals</i></h3>
+    <h3>Local Events <i>from Scandals</i></h3>
     <app-fun [location]="desination" [fromDate]="startDate" [toDate]="endDate" (selectionEvent)="funSelected = $event"></app-fun>
   </mat-step>
   <mat-step label="Review" [stepControl]="reviewFormGroup" [editable]="!checkoutComplete">

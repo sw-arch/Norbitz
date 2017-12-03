@@ -5,7 +5,7 @@
   No rooms could be found for {{location}}
 </div>
 <div *ngIf="!isLoading && listings">
-  <b>Rooms avalible for {{location}}</b>
+  <b>Rooms available for {{location}}</b>
   <mat-table #table [dataSource]="listingDataSource">
     <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>

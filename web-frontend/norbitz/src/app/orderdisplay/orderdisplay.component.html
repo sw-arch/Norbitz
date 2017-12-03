@@ -8,7 +8,7 @@
     <b>Return Date: </b>{{toDateDisplayString(order.endDate)}}<br/>
     <br/>
     <div *ngIf="order.transCarId">
-        <h3>Transporation Rental Car</h3><app-statusdisplay [status]="order.transCarComplete" *ngIf="displayStatus"></app-statusdisplay>
+        <h3>Transportation Rental Car</h3><app-statusdisplay [status]="order.transCarComplete" *ngIf="displayStatus"></app-statusdisplay>
         <div *ngFor="let key of getKeys(order.transCarData)">
             <b>{{key}}: </b> {{order.transCarData[key]}}
         </div>

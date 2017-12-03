@@ -2,7 +2,7 @@
 
 <form>
     <p *ngIf="signupError" class="login-error">The username "{{submittedusername}}" already exists</p>    
-  <p class="topmsg">Usersnames must consist of lowercase letters a-z.</p>
+  <p class="topmsg">Usernames must consist of lowercase letters a-z.</p>
   <mat-form-field>
     <input matInput [(ngModel)]="username" name="username" placeholder="Enter a username" required>
   </mat-form-field>
