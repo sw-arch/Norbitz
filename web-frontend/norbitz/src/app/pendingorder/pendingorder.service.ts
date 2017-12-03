@@ -74,15 +74,15 @@ export class PendingorderService {
     this.order.flightComplete = OrderStatus.sent;    
     this.purchases.placeOrder({
       ticketID: this.order.selectedTicketId,
-      username: this.user.username.toString(),
-      name: this.user.username.toString(),
+      username: this.user.username.getValue(),
+      name: this.user.username.getValue(),
     }).subscribe(
       (value) => {
-        console.log("Carnivore order success for "+ this.order.selectedTicketId);
+        console.log("Delter order success for "+ this.order.selectedTicketId);
         this.order.flightComplete = OrderStatus.success;
       },
       (error) => {
-        console.log("Carnivore order error for "+ this.order.selectedFlightId);
+        console.log("Delter order error for "+ this.order.selectedFlightId);
         this.order.flightComplete = OrderStatus.error;        
       } 
     );
