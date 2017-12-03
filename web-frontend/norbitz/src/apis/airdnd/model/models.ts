@@ -5,6 +5,7 @@ export * from './listingDetails';
 export * from './locationListings';
 export * from './pricing';
 export * from './reservation';
+export * from './reservations';
 export * from './review';
 export * from './reviews';
 export * from './user';

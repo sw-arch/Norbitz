@@ -9,7 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { Reservation } from './reservation';
 
 
-export interface Dates extends Array<string> {
+export interface Reservations extends Array<Reservation> {
 }
