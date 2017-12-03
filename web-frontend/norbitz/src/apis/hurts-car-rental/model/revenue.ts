@@ -11,10 +11,6 @@
  */
 
 
-export interface SpecialEquipment {
-    gps: boolean;
-    maxChildSeat: number;
-    skiRack: boolean;
-    snowChains: boolean;
-    leftControl: boolean;
+export interface Revenue {
+    revenue: number;
 }
