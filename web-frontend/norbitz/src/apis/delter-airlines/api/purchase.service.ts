@@ -89,7 +89,7 @@ export class PurchaseService {
             headers = headers.set("Content-Type", httpContentTypeSelected);
         }
 
-        return this.httpClient.post<any>(`${this.basePath}/purchase/order`,
+        return this.httpClient.post<any>(`${this.basePath}/purchases/order`,
             path,
             {
                 withCredentials: this.configuration.withCredentials,
