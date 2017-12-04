@@ -42,24 +42,21 @@ export class FlightsComponent implements OnInit {
 
   ngOnInit() {
     this.delter.fromLocationToLocationStartDateEndDate(
-       this.origin,
-       this.destination,
-       this.fromDate.substring(0,10),
-       this.toDate.substring(0,10))
-      .subscribe((value) => {
-        //Success
-        console.log("Delter search success for " + this.origin + " " + this.destination);
-        console.log(value);
+        this.origin,
+        this.destination,
+        this.fromDate.substring(0,10),
+        this.toDate.substring(0,10))
+      .subscribe(
+        (value) => {
         this.delterFlights = value.flights;
         this.delterDataSource = new MatTableDataSource<Flight>(this.delterFlights);
         this.isLoading = false;
-      },
-      (error) => {
-        //Error
-        console.log("Delter search error for " + this.origin + " " + this.destination);
-        console.log(error)
-      }
-   );
+        },
+        (error) => {
+          console.log("Delter search error for " + this.origin + " " + this.destination);
+          console.log(error)
+        }
+      );
   }
 
   selectFlight(id){

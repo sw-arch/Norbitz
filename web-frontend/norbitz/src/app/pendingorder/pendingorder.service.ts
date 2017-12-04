@@ -74,8 +74,10 @@ export class PendingorderService {
     this.order.flightComplete = OrderStatus.sent;    
     this.purchases.placeOrder({
       ticketID: this.order.selectedTicketId,
-      username: this.user.username.getValue(),
       name: this.user.username.getValue(),
+      dob: "1926-04-21",
+      email: "Unused field",
+      address: "Unused field",
     }).subscribe(
       (value) => {
         console.log("Delter order success for "+ this.order.selectedTicketId);
